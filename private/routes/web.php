@@ -8,6 +8,18 @@ Route::get('/', function () {
     return view('Connexion.html');
 });
 
+Route::get('/creneau', function () {
+    return view('creneau');
+});
+
+Route::get('/addSession', function () {
+    return view('addSession');
+});
+
+Route::get('/sessionAdded', function () {
+    return view('sessionAdded');
+});
+
 Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
