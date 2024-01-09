@@ -21,8 +21,8 @@ Route::get('/creneau', function () {
     return view('creneau');
 });
 
-Route::get('/ajouterSeance', function () {
-    return view('ajouterSeance');
+Route::get('/addSession', function () {
+    return view('addSession');
 });
 
 
