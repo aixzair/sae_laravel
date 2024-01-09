@@ -15,7 +15,7 @@
     <title>Attribution des rôles</title>
 </head>
 <body>
-    <?php include "header.php" ?>
+    <?php include "header.blade.php" ?>
     <main>
         <div>
             <button class="back">
@@ -23,30 +23,42 @@
             </button>
         </div>
 
-        <table class="roleTab">
-            
-            <tr>
-                <th>Adhérents</th>
-                <th>Pilote</th>
-                <th>Sécurité de Surface</th>
-                <th>Directeur de Plongées</th>
-                <th>Plongeur</th>
-            </tr>
+        <form action="">
+        @csrf
+            <table class="roleTab">
+                
+                <tr>
+                    <th>Adhérents</th>
+                    <th>Pilote</th>
+                    <th>Sécurité de Surface</th>
+                    <th>Directeur de Plongées</th>
+                    <th>Plongeur</th>
+                </tr>
 
-            <?php
-                foreach($lignes as $ligne){
-                echo
-                "<tr>
-                    <th>".$ligne["AD_NOM"]." ". $ligne["AD_PRENOM"]."</th>
-                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                 <?php
+                    // foreach($lignes as $ligne){
+                    // echo
+                    // "<tr>
+                    //     <th>".$ligne["AD_NOM"]." ". $ligne["AD_PRENOM"]."</th>
+                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    // </tr>";
+                    // }
+                ?> 
+                    
+                <tr>
+                    <th>A</th>
+                    <th><input class="roleCheck" type="checkbox"></th>
+                    <th><input class="roleCheck" type="checkbox"></th>
+                    <th><input class="roleCheck" type="checkbox"></th>
+                    <th><input class="roleCheck" type="checkbox"></th>
                 </tr>";
-                }
-            ?>
-            
-        </table>
+            </table>
+
+            <input type="submit" value="VALIDER">
+        </form>
     </main>
 </body>
 </html>
