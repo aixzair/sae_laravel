@@ -340,10 +340,11 @@ header{
 }
 
 .monthButton{
-    font-size: 1.8vw;
+    text-align: center;
+    font-size: 1.6vw;
     font-weight: bolder;
     width: 15vw;
-    height: 5vh;
+    height: 7vh;
     border-top-right-radius: 0.4em;
     border-top-left-radius: 0.4em;
 
@@ -354,7 +355,7 @@ header{
     height: 70vh;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-top: 20px;
+    padding-top: 40px;
     padding-bottom: 20px;
     padding-left: 30px;
     padding-right: 30px;

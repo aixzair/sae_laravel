@@ -35,8 +35,8 @@
     //WIP PHP can't find DB as of now
         use Illuminate\Support\Facades\DB;
 
-        function getMonthlySessions($month, $servername, $username, $password, $dbname)
-        {
+        function getMonthlySessions($month)
+        {/*
             $year = date("Y");
             $fDay = date_create('\''.$year.'-'.$month.'-01\'');
             $lDay = date_create('\''.$year.'-'.($month+1).'-01\'');
@@ -45,56 +45,56 @@
             foreach($result as $line)
             {
                 echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
-            }
+            }*/
         }
         ?>
 
         <div id="Mars" class="month";>
             <h2>Toutes les séances de Mars (titre à supprimer)</h2>
             <?php
-                getMonthlySessions(3, $servername, $username, $password, $dbname);
+                getMonthlySessions(3);
             ?>
         </div>    
         <div id="Avril" class="month" style="display:none">
             <h2>Toutes les séances de Avril</h2>
             <?php
-                getMonthlySessions(4, $servername, $username, $password, $dbname);
+                getMonthlySessions(4);
             ?>
         </div>    
         <div id="Mai" class="month" style="display:none">
             <h2>Toutes les séances de Mai</h2>
             <?php
-                getMonthlySessions(5, $servername, $username, $password, $dbname);
+                getMonthlySessions(5);
             ?>
         </div>
         <div id="Juin" class="month" style="display:none">
             <h2>Toutes les séances de Juin</h2>
             <?php
-                getMonthlySessions(6, $servername, $username, $password, $dbname);
+                getMonthlySessions(6);
             ?>
         </div>    
         <div id="Juillet" class="month" style="display:none">
             <h2>Toutes les séances de Juillet</h2>
             <?php
-                getMonthlySessions(7, $servername, $username, $password, $dbname);
+                getMonthlySessions(7);
             ?>
         </div>    
         <div id="Aout" class="month" style="display:none">
             <h2>Toutes les séances de Août</h2>
             <?php
-                getMonthlySessions(8, $servername, $username, $password, $dbname);
+                getMonthlySessions(8);
             ?>
         </div>
         <div id="Septembre" class="month" style="display:none">
             <h2>Toutes les séances de Septembre</h2>
             <?php
-                getMonthlySessions(9, $servername, $username, $password, $dbname);
+                getMonthlySessions(9);
             ?>
         </div>    
         <div id="Octobre" class="month" style="display:none">
             <h2>Toutes les séances de Octobre</h2>
             <?php
-                getMonthlySessions(10, $servername, $username, $password, $dbname);
+                getMonthlySessions(10);
             ?>
         </div>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
