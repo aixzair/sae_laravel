@@ -24,7 +24,7 @@ class PlongeeModel
     public function list(){
         require("connexion.php");
 
-        $answer = $bdd->query("select sea_id, plon_date, bat_id, plon_effectifs, plon_observation, lieu_nom from PLONGEE join LIEU using (lieu_id) order by plon_date;");
+        $answer = $bdd->query("select sea_id, plon_date, bat_id, plon_effectifs, plon_observation, lieu_nom, plon_debut, plon_fin from PLONGEE join LIEU using (lieu_id) order by plon_date;");
 
         return $answer;
     }
@@ -34,18 +34,18 @@ class PlongeeModel
      * @return boolean true if the dive is complete in participants, false otherwise
      */
     public function isComplete(int $sea_id, String $plon_date){
-        $answer = $bdd->query("select plon_effectif from PLONGEE where sea_id = $sea_id and plon_date = $plon_date;");
+        require("connexion.php");
+        $answer = $bdd->query("select plon_effectifs from PLONGEE where sea_id = $sea_id and plon_date = '$plon_date';");
         $max = 0;
         while ($session = $answer->fetch()){ 
-            $max = $sessions['plon_effectif'];
+            $max = $session['plon_effectifs'];
         }
 
-        $answer = $bdd->query("select count(*) as inscrits from INSCRIRE where sea_id = $sea_id and plon_date = $plon_date;");
+        $answer = $bdd->query("select count(*) as inscrits from INSCRIRE where sea_id = $sea_id and plon_date = '$plon_date';");
         $inscrits = 0;
         while ($session = $answer->fetch()){ 
-            $inscrits = $sessions['inscrits'];
+            $inscrits = $session['inscrits'];
         }
-
         return $inscrits >= $max;
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-$dotenv = fopen('.env', 'r');
+$dotenv = fopen('../../.env', 'r');
 if ($dotenv) {
     while (($line = fgets($dotenv)) !== false) {
         $line = trim($line);

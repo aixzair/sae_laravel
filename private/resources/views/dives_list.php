@@ -7,10 +7,10 @@
 </head>
 <body>
     <?php
-        require_once("/../app/Http/Controllers/PlongeeController.php");
+        require_once("../../app/Http/Controllers/PlongeeController.php");
         $controller = new PlongeeController();
         if(isset($_GET['dive'])){
-            $controller->register($_GET['sea_id'], $_GET['plon_date'], 'myEmail') //TODO : replace 'myEmail' with the $_SESSION variable
+            $controller->register($_GET['sea_id'], $_GET['plon_date'], 'myEmail'); //TODO : replace 'myEmail' with the $_SESSION variable
         }
         $controller->displayDivings();
     ?>

@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('/dives_list', function () {
-    return view('dives_list');
+    return view('dives_list.php');
 });
