@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/creneau', function () {
+    return view('creneau');
+});
+
+Route::get('/addSession', function () {
+    return view('addSession');
+});
+
+Route::get('/sessionAdded', function () {
+    return view('sessionAdded');
+});
