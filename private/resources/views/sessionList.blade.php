@@ -30,29 +30,88 @@
         <button id="btOctobre" class="monthButton button" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
+
+    <?php
+        $servername = "localhost";
+        $username = "username";
+        $password = "password";
+        $dbname = "myDB";
+
+        //$month under the format MM (ex : "01", "10", "09")
+        function getMonthlySessions($month, $servername, $username, $password, $dbname)
+        {
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+            }
+            $year = date("Y");
+            $fDay = date_create($year.'-'.$month.'-01');
+            $lDay = date_create($year.'-'.($month+1).'-01');
+
+            $sql = "SELECT plon_date FROM PLONGEE WHERE date >= $fDay AND date < $lDay";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+            // output data of each row
+            while($row = $result->fetch_assoc()) {
+                echo "<div class=\"session\"> ". $row["plon_date"]. "</div>";
+            }
+            } else {
+                //echo "0 results";
+            }
+            $conn->close();
+        }
+        ?>
+
         <div id="Mars" class="month";>
             <h2>Toutes les séances de Mars (titre à supprimer)</h2>
+            <?php
+                getMonthlySessions(3, $servername, $username, $password, $dbname);
+            ?>
         </div>    
         <div id="Avril" class="month" style="display:none">
             <h2>Toutes les séances de Avril</h2>
+            <?php
+                getMonthlySessions(4, $servername, $username, $password, $dbname);
+            ?>
         </div>    
         <div id="Mai" class="month" style="display:none">
             <h2>Toutes les séances de Mai</h2>
+            <?php
+                getMonthlySessions(5, $servername, $username, $password, $dbname);
+            ?>
         </div>
         <div id="Juin" class="month" style="display:none">
             <h2>Toutes les séances de Juin</h2>
+            <?php
+                getMonthlySessions(6, $servername, $username, $password, $dbname);
+            ?>
         </div>    
         <div id="Juillet" class="month" style="display:none">
             <h2>Toutes les séances de Juillet</h2>
+            <?php
+                getMonthlySessions(7, $servername, $username, $password, $dbname);
+            ?>
         </div>    
         <div id="Aout" class="month" style="display:none">
             <h2>Toutes les séances de Août</h2>
+            <?php
+                getMonthlySessions(8, $servername, $username, $password, $dbname);
+            ?>
         </div>
         <div id="Septembre" class="month" style="display:none">
             <h2>Toutes les séances de Septembre</h2>
+            <?php
+                getMonthlySessions(9, $servername, $username, $password, $dbname);
+            ?>
         </div>    
         <div id="Octobre" class="month" style="display:none">
             <h2>Toutes les séances de Octobre</h2>
+            <?php
+                getMonthlySessions(10, $servername, $username, $password, $dbname);
+            ?>
         </div>
         Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when a
