@@ -160,6 +160,13 @@ header{
     height: 25px;
 }
 
+.checkboxRole{
+    width : 4vw;
+    height : 4vh
+}
+
+
+
 .labels{
     text-align: right;
     position: relative;
@@ -306,4 +313,17 @@ header{
     width: 15vw;
     border-top-right-radius: 0.4em;
     border-top-left-radius: 0.4em;
+}
+
+
+/* ----------------------------- Style Session Management -------------------------- */
+
+.teamsTab{
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.teamsTab>tbody>tr>th{
+    border: black 1px solid;
+    padding: 2vw;
 }
