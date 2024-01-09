@@ -9,14 +9,14 @@ use App\Models\Responsabilite;
 class Responsable extends BaseController {
 
     function setRolls() {
-        return view('role', [
+        return view('roles', [
             'names' => (new Responsabilite())->getResponsabilities()
         ]);
     }
 
     function setRollsSubmit() {
-        
 
-        return view('role');
+
+        return view('roles');
     }
 }

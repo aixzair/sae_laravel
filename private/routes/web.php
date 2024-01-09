@@ -8,9 +8,9 @@ Route::get('/', function () {
     return view('Connexion.html');
 });
 
-Route::get('role',
+Route::get('roles',
     [Responsable::class, 'setRolls']
 );
-Route::get('roleSubmit',
+Route::get('rolesSubmit',
     [Responsable::class, 'setRollsSubmit']
 );
