@@ -6,10 +6,10 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Models\Responsabilite;
 use App\Models\Member;
 
-class Controller extends BaseController {
+class Responsable extends BaseController {
 
     function setRolls() {
-        return view('role', [
+        return view('roles', [
             'names' => (new Responsabilite())->getResponsabilities()
         ]);
     }
@@ -17,5 +17,9 @@ class Controller extends BaseController {
     function addSession(){
         $members = Member::all();
         return view('addSession', ['members' => $members]);
+    }
+
+    function setRollsSubmit() {
+        return view('roles');
     }
 }
