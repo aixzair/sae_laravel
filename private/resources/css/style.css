@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ----------------------------- Style Header -------------------------- */
+
+header{
+    background-color: gray;
+    height : 15vh;
+    min-height: 125px;
+}
+
+.Logo{
+    margin-left:1vw;
+    margin-top: 2.5vh;
+    position:absolute;
+}
+
+.NavText{
+    margin: 4.5vh 1vw;
+    padding: 10px;
+    color: white;
+    font-size: x-large;
+}
+
+.NavButton{
+    height : 7vh;
+    width: 9vw;
+    margin: 3.5vh 1vw;
+    padding: 10px;
+    border-radius: 2em;
+    font-size: medium;
+}
+
+.NavBar{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 5vw;
+}
+
+#Logout{
+    margin: 0 2vw 0 1vw;
+}
+
+
+/* ----------------------------- Style Login -------------------------- */
+
+.connection{
+    margin: 10vh auto;
+    width: 55vw;
+    color: white;
+    text-align: center;
+}
+
+.connect-p1{
+    background-color: rgb(82, 82, 82);
+    padding: 20px 0 20px 0;
+    border-radius: 10px 10px 0 0;
+    font-size: x-large;
+    font-weight: normal;
+}
+
+.connect-p2{
+    background-color: gray;    
+    padding: 50px 0 50px 0;
+    border-radius: 0 0 10px 10px;
+    font-size: x-large;
+}
+
+.btn-container{
+    height: 60px;
+}
+
+.btn-container{
+    height: 60px;
+}
+
+.btn{
+    padding: 7px 10px;
+    font-size: 24px;
+    margin-top: 10px;
+    display: block;
+    height: auto;
+    min-width: 150px;
+    width: 15vw;
+    cursor: pointer;
+    background-color: rgb(82, 82, 82);
+    color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 5px;
+}
+
+.btn>a{
+    color: white;
+}
+
+.btns{
+    display: flex;
+    margin: auto;
+    width: fit-content;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.link{
+    padding: 3px 5px;
+    font-size: 18px;
+    margin-top: 10px;
+    display: block;
+    height: fit-content;
+    min-width: 125px;
+    cursor: pointer;
+    background-color: #2a3990;
+    color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 5px;
+}
+
+.link>a{
+    color: white;
+}
+
+.btn-ajout{
+    margin: auto;
+    width: 22vw;
+}
+
+/* ----------------------------- Style Role -------------------------- */
+
+.back{
+    padding-top: 0.25vh;
+    margin: 2vh 5vw;
+    width: 5vw;
+}
+
+.roleTab{
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.roleTab>tbody>tr>th{
+    border: black 1px solid;
+    padding: 2vw;
+}
+
+.checkboxRole{
+    width : 4vw;
+    height : 4vh
+}
