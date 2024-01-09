@@ -20,51 +20,46 @@
   </header>
   <div class="monthContainer">
     <div class="monthBar">
-        <button id="btMars" class="monthButton button" onclick="openMonth('Mars')">Mars</button>
+        <button id="btMars" class="monthButton button" onclick="openMonth('Mars')" style="background-color: grey">Mars</button>
         <button id="btAvril" class="monthButton button" onclick="openMonth('Avril')">Avril</button>
         <button id="btMai" class="monthButton button" onclick="openMonth('Mai')">Mai</button>
         <button id="btJuin" class="monthButton button" onclick="openMonth('Juin')">Juin</button>
         <button id="btJuillet" class="monthButton button" onclick="openMonth('Juillet')">Juillet</button>
-        <button id="btAout" class="monthButton button" onclick="openMonth('Mai')">Mai</button>
+        <button id="btAout" class="monthButton button" onclick="openMonth('Aout')">Août</button>
         <button id="btSeptembre" class="monthButton button" onclick="openMonth('Septembre')">Septembre</button>
         <button id="btOctobre" class="monthButton button" onclick="openMonth('Octobre')">Octobre</button>
     </div>
+    <div class="scroll">
+        
+    </div>
 </div>
 <div>
-    <div id="Mars" class="month">
+    <div id="Mars" class="month";>
         <h2>Mars</h2>
-    </div>
-    
+    </div>    
     <div id="Avril" class="month" style="display:none">
         <h2>Avril</h2>
-    </div>
-    
+    </div>    
     <div id="Mai" class="month" style="display:none">
         <h2>Mai</h2>
     </div>
     <div id="Juin" class="month" style="display:none">
         <h2>Juin</h2>
-    </div>
-    
+    </div>    
     <div id="Juillet" class="month" style="display:none">
         <h2>Juillet</h2>
-    </div>
-    
+    </div>    
     <div id="Août" class="month" style="display:none">
         <h2>Août</h2>
     </div>
     <div id="Septembre" class="month" style="display:none">
         <h2>Septembre</h2>
-    </div>
-    
+    </div>    
     <div id="Octobre" class="month" style="display:none">
         <h2>Octobre</h2>
     </div>
-  </div>
 </div>
-<div>
 
-</div>
 </body>
 <script>
     function openMonth(monthName) {
