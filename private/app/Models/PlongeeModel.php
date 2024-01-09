@@ -8,7 +8,8 @@ class PlongeeModel
 
     /**
      * register a diver to a dive
-     * @param int $plongee the dive's id
+     * @param int $sea_id the dive's session id
+     * @param String $plon_date the dive's date
      * @param String $user_email the diver's email 
      * @return void
      */
@@ -32,8 +33,20 @@ class PlongeeModel
      * check if a dive is complete
      * @return boolean true if the dive is complete in participants, false otherwise
      */
-    public function isComplete(int $plongee){
+    public function isComplete(int $sea_id, String $plon_date){
+        $answer = $bdd->query("select plon_effectif from PLONGEE where sea_id = $sea_id and plon_date = $plon_date;");
+        $max = 0;
+        while ($session = $answer->fetch()){ 
+            $max = $sessions['plon_effectif'];
+        }
 
+        $answer = $bdd->query("select count(*) as inscrits from INSCRIRE where sea_id = $sea_id and plon_date = $plon_date;");
+        $inscrits = 0;
+        while ($session = $answer->fetch()){ 
+            $inscrits = $sessions['inscrits'];
+        }
+
+        return $inscrits >= $max;
     }
 }
 
