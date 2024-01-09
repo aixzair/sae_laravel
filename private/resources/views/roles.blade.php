@@ -1,3 +1,8 @@
+<?php
+    // Requete php pour recup les adhérents : 
+    // $lignes = DB::select("SELECT AD_NOM, AD_PRENOM FROM ADHERENT"); // use .... 
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,17 +15,7 @@
     <title>Attribution des rôles</title>
 </head>
 <body>
-    <header>
-        <img class = "Logo" src="../img/logo.png" alt="Logo">
-        <nav>
-          <div class="NavBar">
-            <p class="NavText">Plongées anuelle restantes : 90</p>
-            <button class = "NavButton">RESERVER SÉANCE</button>
-            <button class = "NavButton">PROFIL</button>
-            <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
-          </div>
-        </nav>
-      </header>
+    <?php include "header.php" ?>
     <main>
         <div>
             <button class="back">
@@ -29,6 +24,7 @@
         </div>
 
         <table class="roleTab">
+            
             <tr>
                 <th>Adhérents</th>
                 <th>Pilote</th>
@@ -36,14 +32,20 @@
                 <th>Directeur de Plongées</th>
                 <th>Plongeur</th>
             </tr>
-            <tr>
-                <th>A1</th>
-                
-                <th><input class="checkboxRole" type="checkbox"></th>
-                <th><input class="checkboxRole" type="checkbox"></th>
-                <th><input class="checkboxRole" type="checkbox"></th>
-                <th><input class="checkboxRole" type="checkbox"></th>
-            </tr>
+
+            <?php
+                foreach($lignes as $ligne){
+                echo
+                "<tr>
+                    <th>".$ligne["AD_NOM"]." ". $ligne["AD_PRENOM"]."</th>
+                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                </tr>";
+                }
+            ?>
+            
         </table>
     </main>
 </body>
