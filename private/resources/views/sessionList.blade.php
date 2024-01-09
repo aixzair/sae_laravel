@@ -38,20 +38,14 @@
         function getMonthlySessions($month, $servername, $username, $password, $dbname)
         {
             $year = date("Y");
-            $fDay = date_create($year.'-'.$month.'-01');
-            $lDay = date_create($year.'-'.($month+1).'-01');
-            
-            /*$result = DB::table('plongee')
-                    ->where('plon_date',  '>=', $fDay)
-                    ->where('plon_date',  '<', $lDay)
-                    ->get();*/
+            $fDay = date_create('\''.$year.'-'.$month.'-01\'');
+            $lDay = date_create('\''.$year.'-'.($month+1).'-01\'');
 
-            $result = DB::select("SELECT PLON_DATE FROM PLONGEE WHERE date >= $fDay AND date < $lDay");
+            $result = DB::select("SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= $fDay AND PLON_DATE < $lDay");
             foreach($result as $line)
             {
                 echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
             }
-        
         }
         ?>
 
