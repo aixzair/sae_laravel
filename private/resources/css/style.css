@@ -174,7 +174,7 @@ header{
     flex-direction: column;
     justify-content: space-evenly;
     margin-right: 20px;
-    margin-left: 5vw;
+    margin-left: 7vw;
 }
 
 .labels p{
@@ -195,7 +195,7 @@ header{
 }
 
 .divField input{
-    width: 10vw;
+    width: 5vw;
     margin-right: 15px;
     height: 1.5vh;
     min-width: 20px;
@@ -211,8 +211,8 @@ header{
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
-    margin-right: 10vw;
-    width: 30vw;
+    margin-right: 5vw;
+    width: 25vw;
 }
 
 
@@ -238,7 +238,7 @@ header{
 }
 
 #profileImage{
-    width: 35vw;
+    width: 15vw;
     align-self: center;
 }
 
