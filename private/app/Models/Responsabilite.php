@@ -22,7 +22,7 @@ class Responsabilite {
         return $responsabilities;
     }
 
-    function addRole(string $email, string $nom) : bool {
+    function addRole(string $email, string $name) : bool {
         try {
             return DB::insert(
                 "INSERT INTO RESPONSABILISER (AD_EMAIL, RES_ID)
@@ -30,10 +30,28 @@ class Responsabilite {
                     ?,
                     (SELECT RES_ID FROM RESPONSABILITE WHERE RES_NOM = ?)
                 )",
-                [$email, $nom]
+                [$email, $name]
             );    
         } catch (\Exception $exception) {
             return false;
         }
+    }
+
+    function memberHaveResponsability(string $idendity, string $responsability) : bool {
+        $lines = DB::select(
+            "SELECT *RES_ID
+            FROM RESPONSABILISER
+            JOIN RESPONSABILITE USING(RES_ID) 
+            WHERE
+            ? = ( SELECT AD_PRENOM || ' ' || AD_NOM FROM ADHERENT)
+            AND ? = RES_NOM",
+            [$idendity, $responsability]
+        );
+
+        foreach ($lines as $line) {
+            return true;
+        }
+
+        return false;
     }
 }

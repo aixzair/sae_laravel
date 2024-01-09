@@ -15,7 +15,7 @@
     <title>Attribution des rôles</title>
 </head>
 <body>
-    <?php include "header.blade.php" ?>
+    <?php // include "header.blade.php" ?>
     <main>
         <div>
             <button class="back">
