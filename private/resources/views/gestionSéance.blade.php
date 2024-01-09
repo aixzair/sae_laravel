@@ -14,6 +14,47 @@
 <?php include "header.blade.php" ?>
 
     <main>
+        <div>
+        <label for="teams">Nombre de palanquées : </label>
+            <select name="pets" id="pet-select">
+            <option value="">Choisissez un nombre</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    <!-- For later when needed
+        <button>
+            Aléatoire
+        </button>
+     -->
+        </div>
+
+        <div>
+            <table class="teamsTab">
+                
+                <tr>
+                    <th>Adhérents</th>
+                    <th>Palanquées</th>
+                </tr>
+
+                <!-- <?php
+                    foreach($lignes as $ligne){
+                    echo
+                    "<tr>
+                        <th>".$ligne["AD_NOM"]." ". $ligne["AD_PRENOM"]."</th>
+                        <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                        <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                        <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                        <th><input class=\"roleCheck\" type=\"checkbox\"></th>
+                    </tr>";
+                    }
+                ?> -->
+                
+            </table>
+        </div>
 
         
     </main>

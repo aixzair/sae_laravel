@@ -149,3 +149,16 @@ header{
     width : 4vw;
     height : 4vh
 }
+
+/* ----------------------------- Style Session Management -------------------------- */
+
+.teamsTab{
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.teamsTab>tbody>tr>th{
+    border: black 1px solid;
+    padding: 2vw;
+}
+
