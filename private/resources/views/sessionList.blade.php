@@ -11,7 +11,7 @@
     <img class = "Logo" src="../img/logo.png" alt="Logo">
     <nav>
       <div class="NavBar">
-        <p class="NavText">Plongées anuelle restantes : 90</p>
+        <p class="NavText">Plongées annuelles restantes : 90</p>
         <button class = "NavButton">RESERVER SÉANCE</button>
         <button class = "NavButton">PROFIL</button>
         <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
@@ -20,7 +20,7 @@
   </header>
   <div class="monthContainer">
     <div class="monthBar">
-        <button id="btMars" class="monthButton button" onclick="openMonth('Mars')" style="background-color: grey">Mars</button>
+        <button id="btMars" class="monthButton button" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
         <button id="btAvril" class="monthButton button" onclick="openMonth('Avril')">Avril</button>
         <button id="btMai" class="monthButton button" onclick="openMonth('Mai')">Mai</button>
         <button id="btJuin" class="monthButton button" onclick="openMonth('Juin')">Juin</button>
@@ -30,33 +30,56 @@
         <button id="btOctobre" class="monthButton button" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
-        
-    </div>
-</div>
-<div>
-    <div id="Mars" class="month";>
-        <h2>Mars</h2>
-    </div>    
-    <div id="Avril" class="month" style="display:none">
-        <h2>Avril</h2>
-    </div>    
-    <div id="Mai" class="month" style="display:none">
-        <h2>Mai</h2>
-    </div>
-    <div id="Juin" class="month" style="display:none">
-        <h2>Juin</h2>
-    </div>    
-    <div id="Juillet" class="month" style="display:none">
-        <h2>Juillet</h2>
-    </div>    
-    <div id="Août" class="month" style="display:none">
-        <h2>Août</h2>
-    </div>
-    <div id="Septembre" class="month" style="display:none">
-        <h2>Septembre</h2>
-    </div>    
-    <div id="Octobre" class="month" style="display:none">
-        <h2>Octobre</h2>
+        <div id="Mars" class="month";>
+            <h2>Toutes les séances de Mars (titre à supprimer)</h2>
+        </div>    
+        <div id="Avril" class="month" style="display:none">
+            <h2>Toutes les séances de Avril</h2>
+        </div>    
+        <div id="Mai" class="month" style="display:none">
+            <h2>Toutes les séances de Mai</h2>
+        </div>
+        <div id="Juin" class="month" style="display:none">
+            <h2>Toutes les séances de Juin</h2>
+        </div>    
+        <div id="Juillet" class="month" style="display:none">
+            <h2>Toutes les séances de Juillet</h2>
+        </div>    
+        <div id="Aout" class="month" style="display:none">
+            <h2>Toutes les séances de Août</h2>
+        </div>
+        <div id="Septembre" class="month" style="display:none">
+            <h2>Toutes les séances de Septembre</h2>
+        </div>    
+        <div id="Octobre" class="month" style="display:none">
+            <h2>Toutes les séances de Octobre</h2>
+        </div>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when a
+        n unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        It has survived not only five centuries, but also the leap into electronic typesetting, 
+        remaining essentially unchanged. It was popularised in the 1960s with the release of 
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
+        software like Aldus PageMaker including versions of Lorem Ipsum. It is a long 
+        established fact that a reader will be distracted by the readable content of a page
+        when looking at its layout. The point of using Lorem Ipsum is that it has a 
+        more-or-less normal distribution of letters, as opposed to using 'Content here, 
+        content here', making it look like readable English. Many desktop publishing packages
+        and web page editors now use Lorem Ipsum as their default model text, and a search 
+        for 'lorem ipsum' will uncover many web sites still in their infancy.
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when a
+        n unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        It has survived not only five centuries, but also the leap into electronic typesetting, 
+        remaining essentially unchanged. It was popularised in the 1960s with the release of 
+        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
+        software like Aldus PageMaker including versions of Lorem Ipsum. It is a long 
+        established fact that a reader will be distracted by the readable content of a page
+        when looking at its layout. The point of using Lorem Ipsum is that it has a 
+        more-or-less normal distribution of letters, as opposed to using 'Content here, 
+        content here', making it look like readable English. Many desktop publishing packages
+        and web page editors now use Lorem Ipsum as their default model text, and a search 
+        for 'lorem ipsum' will uncover many web sites still in their infancy.
     </div>
 </div>
 
@@ -69,9 +92,11 @@
         for (i = 0; i < x.length; i++) {
             x[i].style.display = "none";
             y[i].style.backgroundColor = 'white';
+            y[i].style.borderBottomStyle = "solid";
         }
         document.getElementById(monthName).style.display = "block";
         document.getElementById("bt" + monthName).style.backgroundColor = 'grey';
+        document.getElementById("bt" + monthName).style.borderBottomStyle = "none";
     }
 </script>
 </html>
