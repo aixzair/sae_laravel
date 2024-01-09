@@ -32,36 +32,26 @@
     <div class="scroll">
 
     <?php
-        $servername = "localhost";
-        $username = "username";
-        $password = "password";
-        $dbname = "myDB";
+    //WIP PHP can't find DB as of now
+        use Illuminate\Support\Facades\DB;
 
-        //$month under the format MM (ex : "01", "10", "09")
         function getMonthlySessions($month, $servername, $username, $password, $dbname)
         {
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-            }
             $year = date("Y");
             $fDay = date_create($year.'-'.$month.'-01');
             $lDay = date_create($year.'-'.($month+1).'-01');
+            
+            /*$result = DB::table('plongee')
+                    ->where('plon_date',  '>=', $fDay)
+                    ->where('plon_date',  '<', $lDay)
+                    ->get();*/
 
-            $sql = "SELECT plon_date FROM PLONGEE WHERE date >= $fDay AND date < $lDay";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-            // output data of each row
-            while($row = $result->fetch_assoc()) {
-                echo "<div class=\"session\"> ". $row["plon_date"]. "</div>";
+            $result = DB::select("SELECT PLON_DATE FROM PLONGEE WHERE date >= $fDay AND date < $lDay");
+            foreach($result as $line)
+            {
+                echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
             }
-            } else {
-                //echo "0 results";
-            }
-            $conn->close();
+        
         }
         ?>
 
