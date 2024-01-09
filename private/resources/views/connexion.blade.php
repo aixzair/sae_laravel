@@ -28,6 +28,7 @@
         </div>
         <div class="connect-p2">
             <form action="roles.html" method="post">
+                @csrf
                 <div>
                     <label for="email">Adresse Email :</label>
                     <input type="email" name="email" id="email" placeholder="email@example.com"><br>
