@@ -23,7 +23,7 @@ class PlongeeController extends Controller
         while ($session = $divings->fetch()){ 
             echo '
                     <tr>
-                        <td> <a href\"index.php?page=dives_list&sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'>' . $session['plon_date'] . "-" . $session['lieu_nom'] .'<td/>
+                        <td> <a href\"index.php/dives_list?sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'>' . $session['plon_date'] . "-" . $session['lieu_nom'] .'<td/>
                     <tr/>';
         }
         echo"</table>";
@@ -31,9 +31,9 @@ class PlongeeController extends Controller
 
     }
 
-    public function register(int $sea_id, String $user_email){
+    public function register(int $sea_id, String $plon_date, String $user_email){
         $modele = new PlongeeModel();
-        $modele->register($sea_id, $user_email);
+        $modele->register($sea_id, $plon_date, $user_email);
     }
 }
 

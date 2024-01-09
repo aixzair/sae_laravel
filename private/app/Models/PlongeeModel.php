@@ -12,8 +12,8 @@ class PlongeeModel
      * @param String $user_email the diver's email 
      * @return void
      */
-    public function register(int $sea_id, String $plon_date String $user_email){
-        $req = $bdd->prepare('INSERT INTO () VALUES()');
+    public function register(int $sea_id, String $plon_date, String $user_email){
+        $req = $bdd->prepare('INSERT INTO INSCRIRE(sea_id, plon_date, ad_email) VALUES(' . $sea_id . ',' . $plon_date . ',' . $user_email . ' )');
         $req->execute();
     }
 
