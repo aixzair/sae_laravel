@@ -6,11 +6,17 @@ use Illuminate\Routing\Controller as BaseController;
 
 use App\Models\Responsabilite;
 
-class Controller extends BaseController {
+class Responsable extends BaseController {
 
     function setRolls() {
-        return view('role', [
+        return view('roles', [
             'names' => (new Responsabilite())->getResponsabilities()
         ]);
+    }
+
+    function setRollsSubmit() {
+
+
+        return view('roles');
     }
 }
