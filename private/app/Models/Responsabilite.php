@@ -21,4 +21,19 @@ class Responsabilite {
 
         return $responsabilities;
     }
+
+    function addRole(string $email, string $nom) : bool {
+        try {
+            return DB::insert(
+                "INSERT INTO RESPONSABILISER (AD_EMAIL, RES_ID)
+                VALUES (
+                    ?,
+                    (SELECT RES_ID FROM RESPONSABILITE WHERE RES_NOM = ?)
+                )",
+                [$email, $nom]
+            );    
+        } catch (\Exception $exception) {
+            return false;
+        }
+    }
 }
