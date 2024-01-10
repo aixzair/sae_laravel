@@ -400,3 +400,24 @@ header{
     border: black 1px solid;
     padding: 2vw;
 }
+
+/* ----------------------------- Style PDF -------------------------- */
+
+.titleForm{
+    text-align: center;
+}
+
+.tab{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.tab>tbody>tr>th{
+    border: black 1px solid;
+    padding: 2vw;
+    min-width: 7vw;
+}
+
+.palanquee{
+    margin-top: 10px;
+}
