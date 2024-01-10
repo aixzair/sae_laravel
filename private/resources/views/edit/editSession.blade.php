@@ -20,14 +20,15 @@
         $dateday = Carbon::parse($id2)->format('Y-m-d');
 
         //$info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = DATE_FORMAT(\'2024-04-05\', \'%Y/%m/%d\')');
-        $info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = ?');
+
+        //$info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = ?');
+        $info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = '.$dateday);
         foreach($info as $list){
             $date = $list->PLON_DATE;
             //$seance = $list->SEA_ID;
 
             echo $list->PLON_DATE.'<br>';
         }
-
         
     ?>
 
