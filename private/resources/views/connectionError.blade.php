@@ -6,12 +6,19 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
     <title>Connexion</title>
 </head>
 <body>
   <header>
     <img class = "Logo" src="../img/logo.png" alt="Logo">
+    <nav>
+      <div class="NavBar">
+        <p class="NavText">Plongées anuelle restantes : 90</p>
+        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">PROFIL</button>
+      </div>
+    </nav>
   </header>
   
   <main>
@@ -22,6 +29,7 @@
         <div class="connect-p2">
             <form action="gestionAuthentification" method="post">
 			@csrf
+            <p class="error">Adresse mail ou mot de passe incorrecte</p>
                 <div>
                     <label for="email">Adresse Email :</label>
                     <input type="email" name="email" id="email" placeholder="email@example.com"><br>

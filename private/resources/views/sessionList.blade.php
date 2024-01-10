@@ -7,36 +7,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toutes les séances</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <title>Liste Séance</title>
 </head>
 <body>
   <header>
-    <img class = "Logo" src="../img/logo.png" alt="Logo">
+    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
     <nav>
       <div class="NavBar">
         <p class="NavText">Plongées annuelles restantes : 90</p>
         <button class = "NavButton">RESERVER SÉANCE</button>
         <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
+        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
       </div>
     </nav>
   </header>
   <div class="monthContainer">
     <div class="monthBar">
-        <button id="btMars" class="monthButton button" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
-        <button id="btAvril" class="monthButton button" onclick="openMonth('Avril')">Avril</button>
-        <button id="btMai" class="monthButton button" onclick="openMonth('Mai')">Mai</button>
-        <button id="btJuin" class="monthButton button" onclick="openMonth('Juin')">Juin</button>
-        <button id="btJuillet" class="monthButton button" onclick="openMonth('Juillet')">Juillet</button>
-        <button id="btAout" class="monthButton button" onclick="openMonth('Aout')">Août</button>
-        <button id="btSeptembre" class="monthButton button" onclick="openMonth('Septembre')">Septembre</button>
-        <button id="btOctobre" class="monthButton button" onclick="openMonth('Octobre')">Octobre</button>
+        <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
+        <button id="btAvril" class="monthButton" onclick="openMonth('Avril')">Avril</button>
+        <button id="btMai" class="monthButton" onclick="openMonth('Mai')">Mai</button>
+        <button id="btJuin" class="monthButton" onclick="openMonth('Juin')">Juin</button>
+        <button id="btJuillet" class="monthButton" onclick="openMonth('Juillet')">Juillet</button>
+        <button id="btAout" class="monthButton" onclick="openMonth('Aout')">Août</button>
+        <button id="btSeptembre" class="monthButton" onclick="openMonth('Septembre')">Septembre</button>
+        <button id="btOctobre" class="monthButton" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
 
     <?php
-    //WIP PHP can't find DB as of now
+    //WIP PHP can't find DB with local connection
 
         function getMonthlySessions($month)
         {
@@ -49,9 +52,12 @@
                         ->where('PLON_DATE','>=', $fDay)
                         ->where('PLON_DATE','<', $lDay)
                         ->get();*/
+            echo 'Fday'.$fDay.'   lDay  '.$lDay;
             $result = DB::Select(
+                //doesn't return anything with this query
                 "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
                 [$fDay, $lDay]
+                /*"SELECT PLON_DATE FROM PLONGEE"*/
             );
             foreach($result as $line)
             {
