@@ -27,7 +27,7 @@
             <h3>Connexion</h3>
         </div>
         <div class="connect-p2">
-            <form action="gestionAuthentification" method="post">
+            <form action="/gestionAuthentification" method="post">
 			@csrf
                 <div>
                     <label for="email">Adresse Email :</label>
