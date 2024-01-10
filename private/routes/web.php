@@ -12,13 +12,11 @@ Route::get('/', function () {
 
 // SESSION --------------------------------
 
-Route::get('/addSession', 
+Route::get('/session/add', 
     [SessionManager::class, 'add']
 );
-
-Route::get('/sessionAdded', function () {
-    return view('session/addGet');
-});
+Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
+->name('session/add.submit');
 
 Route::get('/sessionList', function () {
     return view('session/list');
@@ -29,7 +27,8 @@ Route::get('/sessionList', function () {
 Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
-Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
+Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])
+->name('roles.submit');
 
 // AUTRES ---------------------------------
 

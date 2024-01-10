@@ -10,7 +10,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form name="form" action="sessionAdded" method="get">
+    <form action="{{ route('session/add.submit') }}" method="post">
+    @csrf
+
         <p> Date de la plongée </p>
         <input type="date" name="day-start" min="2018-01-01" required/>
         <br>
@@ -46,7 +48,7 @@
         </select>
 
         <p> Pilote <P>
-        <select name="driver">
+        <select name="pilot">
             @foreach($pilots as $pilot)
             <option>{{$pilot->AD_NOM }} {{$pilot->AD_PRENOM}}</option>
             @endforeach

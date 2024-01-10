@@ -7,6 +7,24 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Tables\Adherent;
 
 class Member {
+
+    function getMember(string $AD_NOM, string $AD_PRENOM) : Adherent {
+        $adherent = new Adherent();
+
+        $lines = DB::select(
+            "SELECT AD_EMAIL FROM ADHERENT WHERE AD_NOM = ? AND AD_PRENOM = ? LIMIT 1",
+            [$AD_NOM, $AD_PRENOM]
+        );
+
+        foreach ($lines as $line) {
+            $adherent->AD_NOM = $AD_NOM;
+            $adherent->AD_PRENOM = $AD_PRENOM;
+            $adherent->AD_EMAIL = $line->AD_EMAIL;
+        }
+
+        return $adherent;
+    }
+
     function getMembers() : array {
         $members = [];
         $lines = DB::select('SELECT AD_NOM, AD_PRENOM FROM ADHERENT');

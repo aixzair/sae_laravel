@@ -29,7 +29,7 @@
 
         <p>{{$message}}</p>
 
-        <form action="{{ route('roles.submit') }}"" method="post" onsubmit="updateCheckBox()">
+        <form action="{{ route('roles.submit') }}" method="post" onsubmit="updateCheckBox()">
         @csrf
             <table class="roleTab">
                 <tr>
