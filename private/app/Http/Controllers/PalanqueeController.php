@@ -4,6 +4,31 @@ require_once("../../app/Models/PalanqueeModel.php");
 class PalanqueeController /*extends Controller*/{
 
     /**
+     * Produce a form for a specified palanquee
+     *
+     * @param integer $pal_id the planquee's identifier
+     * @return void
+     */
+    public function formulairePalanquee(int $pal_id){
+        echo '
+            <form method="post">
+                <label>Effectif</label>
+                <select>
+                    <option value=""></option>
+                    <option value=2></option>
+                    <option value=3></option>
+                </select>
+                <label>Profondeur maximum</label>
+                <input type="number" name="prof_max" max=70 min=1 />
+                <label>Heure de début</label>
+                <input type="time" name="heure_debut"></input>
+                <label>Heure de fin</label>
+                <input type="time" name="heure_fin"></input>
+            </form>';
+
+    }
+
+    /**
      * Generate the table which is the main part of the "palanquee" page
      *
      * @return void
@@ -11,12 +36,17 @@ class PalanqueeController /*extends Controller*/{
     public function generateTable(){
         $model = new PalanqueeModel();
         $divers = $model->getDivers(1, "2024-04-01");
-        $sel = ' <select> 
-                        <option value=""></option>
-                        <option value=1>1</option>
-                        <option value=2>2</option>
-                    <select/> ';
         $palanquees_number = $model->getPalanqueesNumber(1, "2024-04-01");
+        $palanquees = $model->getPalanquees(1, "2024-04-01");
+
+        if(isset($_POST['nb_palanquee'])){
+            $palanquees_number = $_POST['nb_palanquee'];
+            $model->createPalanquees(1, "2024-04-01", $palanquees_number);
+        }
+
+        for($i = 0; $i < $palanquees_number; $i++){
+            $this->formulairePalanquee($palanquees[$i]);
+        }
 
         echo '<form method="post">';
         echo "<table>
