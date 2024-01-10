@@ -14,6 +14,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Responsable;
+use App\Http\Controllers\ConnexionController;
 
 Route::get('/', function () {
     return view('connexion');
