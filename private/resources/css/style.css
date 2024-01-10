@@ -324,6 +324,24 @@ header{
     height: 50vh;
 }
 
+/* ----------------------------- Style Secretary Profile -------------------------- */
+
+.forfait{
+    display: flex;
+    flex-direction: row;
+}
+
+#inscription{
+    display: block;
+    margin: auto;
+    background-color: #d9d9d9;
+    border-radius: 2em;
+    width: 500px;
+    height: 2vh;
+    padding: 2vh;
+    
+}
+
 /* ----------------------------- Style listeSeances -------------------------- */
 
 .monthContainer{
