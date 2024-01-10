@@ -1,5 +1,6 @@
 <?php
         use Illuminate\Support\Facades\DB;
+        use Carbon\Carbon;
 ?>
 
 <!DOCTYPE html>
@@ -13,16 +14,24 @@
     <?php
         $id1 = $_GET['id1'];
         $id2 = $_GET['id2'];
-        $date = 0;
-        $dt = new DateTime($id2);
         
-        $seance = 1;
-        $info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = '.date ('Y-m-d',$id1).'& SEA_ID= '.$id2);
+        $dt = new DateTime($id2);
+        $dateday = Carbon::parse($id2)->format('Y-m-d');
+
+   
+        
+        //$info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = DATE_FORMAT(\'2024-04-05\', \'%Y/%m/%d\')');
+        $info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = '.$dateday);
         foreach($info as $list){
             $date = $list->PLON_DATE;
-            $seance = $list->SEA_ID;
+            //$seance = $list->SEA_ID;
+
+            echo $list->PLON_DATE.'<br>';
         }
+
+        
     ?>
+
 
 <form name="form" action="sessionAdded" method="get">
 
