@@ -21,6 +21,23 @@ class PlongeeModel
     }
 
     /**
+     * Undocumented function
+     *
+     * @param int $sea_id the dive's session id
+     * @param String $plon_date the dive's date
+     * @param String $user_email the diver's email 
+     * @return void
+     */
+    public function deregister(int $sea_id, String $plon_date, String $user_email){
+        require("connexion.php");
+        $req = $bdd->prepare("delete from INSCRIRE where SEA_ID=$sea_id and plon_date='$plon_date' and ad_email='$user_email';");
+        //echo "delete from INSCRIRE where SEA_ID=$sea_id and plon_date='$plon_date' and ad_email='$user_email';";
+        $req->execute();
+    }
+
+    /**
+     * search all of the upcomings diving sessions
+     * 
      * @return a list of all the upcomings dives
      */
     public function list(){
@@ -32,7 +49,10 @@ class PlongeeModel
     }
 
     /**
-     * check if a dive is complete
+     * check if a diving session is complete
+     * 
+     * @param integer $sea_id the session's id
+     * @param String $plon_date the session's date
      * @return boolean true if the dive is complete in participants, false otherwise
      */
     public function isComplete(int $sea_id, String $plon_date){
@@ -50,6 +70,28 @@ class PlongeeModel
         }
         return $inscrits >= $max;
     }
+
+    /**
+     * Check if a user is registered on a diving session
+     *
+     * @param integer $sea_id the session's id
+     * @param String $plon_date the session's date
+     * @param String $user_email the user's email address
+     * @return boolean true if the user is already registered for this session, false otherwise
+     */
+    public function isRegistered(int $sea_id, String $plon_date, String $user_email){
+        //SELECT count(*) FROM `INSCRIRE` WHERE sea_id = 1 and PLON_DATE = '2024-04-01' and AD_EMAIL = 'abigail.garcia@gmail.com' 
+        require("connexion.php");
+        $answer = $bdd->query("SELECT count(*) as nb FROM INSCRIRE WHERE sea_id = $sea_id and PLON_DATE = '$plon_date' and AD_EMAIL = '$user_email';");
+        while ($session = $answer->fetch()){ 
+            if($session['nb'] > 0){
+                return true;
+            };
+        }
+        return false;
+    }
 }
+
+
 
 ?>

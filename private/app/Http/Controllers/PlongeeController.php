@@ -17,20 +17,28 @@ class PlongeeController /*extends Controller*/
      * @return void
      */
     public function displayDivings(){
-        $modele = new PlongeeModel();
-        $divings = $modele->list();
+        $model = new PlongeeModel();
+        $divings = $model->list();
         echo"<table>";
         while ($session = $divings->fetch()){ 
-            if($modele->isComplete($session['sea_id'], $session['plon_date'])){
+            if($model->isComplete($session['sea_id'], $session['plon_date'])){
                 echo '
                     <tr>
                     <td> ' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . '<td/>
                     <tr/>';
             }else{
-                echo '
+                if($model->isRegistered($session['sea_id'], $session['plon_date'], "abigail.garcia@gmail.com")){ //TODO replace the email address
+                    echo '
                     <tr>
-                        <td> <a href="dives_list.php?sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'">' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . '<a/><td/>
+                        <td> <a href="dives_list.php?action=deregister&sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'">Se retirer<a/>' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . '<td/>
                     <tr/>';
+                } else{
+                    echo '
+                    <tr>
+                        <td> <a href="dives_list.php?action=register&sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'">Choisir<a/>' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . '<td/>
+                    <tr/>';
+                }
+                
             }
         }
         echo"</table>";
@@ -47,6 +55,19 @@ class PlongeeController /*extends Controller*/
     public function register(int $sea_id, String $plon_date, String $user_email){
         $modele = new PlongeeModel();
         $modele->register($sea_id, $plon_date, $user_email);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $sea_id the dive's session id
+     * @param String $plon_date $plon_date the dive's date
+     * @param String $user_email $user_email the user's email 
+     * @return void
+     */
+    public function deregister(int $sea_id, String $plon_date, String $user_email){
+        $modele = new PlongeeModel();
+        $modele->deregister($sea_id, $plon_date, $user_email);
     }
 }
 

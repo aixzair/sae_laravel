@@ -10,8 +10,13 @@
     <?php
         require_once("../../app/Http/Controllers/PlongeeController.php");
         $controller = new PlongeeController();
-        if(isset($_GET['sea_id'])){
-            $controller->register($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace 'myEmail' with the $_SESSION variable
+        if(isset($_GET['action'])){
+            if($_GET['action']=='register'){
+                $controller->register($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace the email address
+            }else{
+                $controller->deregister($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace the email address
+            }
+            
         }
         $controller->displayDivings();
     ?>
