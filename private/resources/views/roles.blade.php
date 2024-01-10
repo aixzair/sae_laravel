@@ -15,7 +15,7 @@
     <title>Attribution des rôles</title>
 </head>
 <body>
-    <?php include "header.blade.php" ?>
+    <?php // include "header.blade.php" ?>
     <main>
         <div>
             <button class="back">
@@ -23,10 +23,9 @@
             </button>
         </div>
 
-        <form action="">
+        <form action="rolesSubmit" method="post">
         @csrf
             <table class="roleTab">
-                
                 <tr>
                     <th>Adhérents</th>
                     <th>Pilote</th>
@@ -35,29 +34,42 @@
                     <th>Plongeur</th>
                 </tr>
 
-                 <?php
-                    // foreach($lignes as $ligne){
-                    // echo
-                    // "<tr>
-                    //     <th>".$ligne["AD_NOM"]." ". $ligne["AD_PRENOM"]."</th>
-                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    //     <th><input class=\"roleCheck\" type=\"checkbox\"></th>
-                    // </tr>";
-                    // }
-                ?> 
-                    
+                @foreach ($names as $name => $responsabilities)
                 <tr>
-                    <th>A</th>
-                    <th><input class="roleCheck" type="checkbox"></th>
-                    <th><input class="roleCheck" type="checkbox"></th>
-                    <th><input class="roleCheck" type="checkbox"></th>
-                    <th><input class="roleCheck" type="checkbox"></th>
-                </tr>";
+                    <th>{{ $name }}</th>
+                    <th>
+                        <input
+                            class="roleCheck"
+                            type="checkbox"
+                            {{in_array("pilote", $responsabilities)? 'checked': ''}}
+                        >
+                    </th>
+                    <th>
+                        <input
+                            class="roleCheck"
+                            type="checkbox"
+                            {{in_array("sécurité", $responsabilities)? 'checked': ''}}
+                        >
+                    </th>
+                    <th>
+                        <input
+                            class="roleCheck"
+                            type="checkbox"
+                            {{in_array("directeur", $responsabilities)? 'checked': ''}}
+                        >
+                    </th>
+                    <th>
+                        <input 
+                            class="roleCheck"
+                            type="checkbox"
+                            {{in_array("plongeur", $responsabilities)? 'checked': ''}}
+                        >
+                    </th>
+                </tr>
+                @endforeach
             </table>
 
-            <input type="submit" value="VALIDER">
+            <button type="submit">Valider</button>
         </form>
     </main>
 </body>
