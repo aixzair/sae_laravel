@@ -131,6 +131,11 @@ header{
     width: 22vw;
 }
 
+.error{
+    color: rgb(218, 0, 0);
+    font-size: medium;
+}
+
 /* ----------------------------- Style Role -------------------------- */
 
 .back{
