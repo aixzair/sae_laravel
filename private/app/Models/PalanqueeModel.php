@@ -8,7 +8,7 @@ class PalanqueeModel {
      * @param String $plon_date the session's date
      * @return array an array with all the participants
      */
-    public function getDivers(int $sea_id, String $plon_date){
+    public function getDivers(int $sea_id, String $plon_date):array{
         require("connexion.php");
         $list = array();
         $i = 0;
@@ -21,6 +21,23 @@ class PalanqueeModel {
             $i++;
         }
         return $list;
+    }
+
+    /**
+     * Search the number of palanquees in the database related to the specified dive
+     *
+     * @param integer $sea_id the session's id
+     * @param String $plon_date $plon_date the session's date
+     * @return integer the number of palanquees currently registered for this dive
+     */
+    public function getPalanqueesNumber(int $sea_id, String $plon_date):int{
+        require("connexion.php");
+        $number = 0;
+        $answer = $bdd->query("SELECT count(*) as nb FROM PALANQUE WHERE SEA_ID = $sea_id AND PLON_DATE = '$plon_date'");
+        while ($data = $answer->fetch()){ 
+            $number = $data['nb'];
+        }
+        return $number;
     }
 } 
 
