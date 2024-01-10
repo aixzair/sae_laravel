@@ -44,12 +44,6 @@
             $fDay = date_create($year.'-'.$month.'-1');
             $lDay = date_create($year.'-'.($month+1).'-1');
  
-            /*$result = DB::table('PLONGEE')
-                        ->select('PLON_DATE')
-                        ->where('PLON_DATE','>=', $fDay)
-                        ->where('PLON_DATE','<', $lDay)
-                        ->get();*/
-            //echo 'Fday : '.$fDay->format('d-m-Y H:i').'   lDay : '.$lDay->format('Y-m-d H:i:s');
             $result = DB::Select(
                 "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
                 [$fDay, $lDay]
