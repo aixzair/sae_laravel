@@ -20,31 +20,36 @@ class Responsable extends BaseController {
     function setRollsSubmit(Request $request) {
         $data = $request->all();
         $model_responsabilitie = new Responsabilite();
-        $int = 0;
-        
+
         foreach ($data as $name => $responsabilities) {
             if (!is_array($responsabilities)) {
                 continue;
             }
 
-            foreach ($responsabilities as $responsability) {
-                $haveResponsability = $model_responsabilitie->memberHaveResponsability($name, $responsability);
-                echo "$name ($responsability) : $haveResponsability <br>";
-                if ($request->has("$name.$responsability")) {
+            $name = str_replace('_', ' ', $name);
+
+            foreach ($responsabilities as $value) {
+                $values = explode('-', $value);
+
+                if (count($values) < 2) {
+                    continue;
+                }
+
+                $haveResponsability = $model_responsabilitie->memberHaveResponsability($name, $values[0]);
+
+                if ($values[1] == "true") {
                     if (!$haveResponsability) {
-                        echo "ajouter responsabilité <br>";
-                        $int++;
+                        $model_responsabilitie->insertResponsability($name, $values[0]);
                     }
                 } else {
                     if ($haveResponsability) {
-                        echo "retirer responsabilité <br>";
-                        $int--;
+                        $model_responsabilitie->deleteResponsability($name, $values[0]);
                     }
                 }
             }
         }
 
-        // return $this->setRolls($int . "");
+        return $this->setRolls();
     }
 
     function addSession(){

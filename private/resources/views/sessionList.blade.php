@@ -1,6 +1,5 @@
 <?php
-    
-    use Illuminate\Support\Facades\DB;
+    //use App\Models\sessionListModel;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +36,8 @@
         <button id="btOctobre" class="monthButton" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
-
-    <?php
-    //WIP PHP can't find DB with local connection
+        <?php
+            use Illuminate\Support\Facades\DB;
 
         function getMonthlySessions($month)
         {
@@ -65,82 +63,53 @@
             }
         }
         ?>
-
         <div id="Mars" class="month";>
-            <h2>Toutes les séances de Mars (titre à supprimer)</h2>
             <?php
+                //sessionListController::getMonthlySessions(3);
                 getMonthlySessions(3);
             ?>
         </div>    
         <div id="Avril" class="month" style="display:none">
-            <h2>Toutes les séances de Avril</h2>
             <?php
+                //sessionListController::getMonthlySessions(4);
                 getMonthlySessions(4);
             ?>
         </div>    
         <div id="Mai" class="month" style="display:none">
-            <h2>Toutes les séances de Mai</h2>
             <?php
+                //sessionListController::getMonthlySessions(5);
                 getMonthlySessions(5);
             ?>
         </div>
         <div id="Juin" class="month" style="display:none">
-            <h2>Toutes les séances de Juin</h2>
             <?php
+                //sessionListController::getMonthlySessions(6);
                 getMonthlySessions(6);
             ?>
         </div>    
         <div id="Juillet" class="month" style="display:none">
-            <h2>Toutes les séances de Juillet</h2>
             <?php
+                //sessionListController::getMonthlySessions(7);
                 getMonthlySessions(7);
             ?>
         </div>    
         <div id="Aout" class="month" style="display:none">
-            <h2>Toutes les séances de Août</h2>
             <?php
+                //sessionListController::getMonthlySessions(8);
                 getMonthlySessions(8);
             ?>
         </div>
         <div id="Septembre" class="month" style="display:none">
-            <h2>Toutes les séances de Septembre</h2>
             <?php
+                //sessionListController::getMonthlySessions(9);
                 getMonthlySessions(9);
             ?>
         </div>    
         <div id="Octobre" class="month" style="display:none">
-            <h2>Toutes les séances de Octobre</h2>
             <?php
+                //sessionListController::getMonthlySessions(10);
                 getMonthlySessions(10);
             ?>
-        </div>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when a
-        n unknown printer took a galley of type and scrambled it to make a type specimen book. 
-        It has survived not only five centuries, but also the leap into electronic typesetting, 
-        remaining essentially unchanged. It was popularised in the 1960s with the release of 
-        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-        software like Aldus PageMaker including versions of Lorem Ipsum. It is a long 
-        established fact that a reader will be distracted by the readable content of a page
-        when looking at its layout. The point of using Lorem Ipsum is that it has a 
-        more-or-less normal distribution of letters, as opposed to using 'Content here, 
-        content here', making it look like readable English. Many desktop publishing packages
-        and web page editors now use Lorem Ipsum as their default model text, and a search 
-        for 'lorem ipsum' will uncover many web sites still in their infancy.
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s when a
-        n unknown printer took a galley of type and scrambled it to make a type specimen book. 
-        It has survived not only five centuries, but also the leap into electronic typesetting, 
-        remaining essentially unchanged. It was popularised in the 1960s with the release of 
-        Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-        software like Aldus PageMaker including versions of Lorem Ipsum. It is a long 
-        established fact that a reader will be distracted by the readable content of a page
-        when looking at its layout. The point of using Lorem Ipsum is that it has a 
-        more-or-less normal distribution of letters, as opposed to using 'Content here, 
-        content here', making it look like readable English. Many desktop publishing packages
-        and web page editors now use Lorem Ipsum as their default model text, and a search 
-        for 'lorem ipsum' will uncover many web sites still in their infancy.
-    </div>
 </div>
 
 </body>

@@ -11,9 +11,16 @@
 </head>
 <body>
   <header>
-    <img class = "Logo" src="../img/logo.png" alt="Logo">
+    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
+    <nav>
+      <div class="NavBar">
+        <p class="NavText">Plongées anuelle restantes : 90</p>
+        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">PROFIL</button>
+      </div>
+    </nav>
   </header>
-  
+
   <main>
     <div class="connection">
         <div class="connect-p1">
@@ -24,10 +31,11 @@
 			@csrf
                 <div>
                     <label for="email">Adresse Email :</label>
+
                     <input type="email" name="email" id="email" placeholder="email@example.com"><br>
                 </div>
-                <div>
-                    <label for="password">Mot de Passe :</label>
+                <div class="connectionLine">
+                    <label class="connectionLabels" for="password">Mot de Passe :</label>
                     <input type="password" name="password" id="password" placeholder="Password">
                 </div>
                 <div class="btns">

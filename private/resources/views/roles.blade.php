@@ -13,19 +13,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
     <title>Attribution des rôles</title>
+
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script defer src="{{ asset('/js/updateRoles.js') }}"></script>
 </head>
 <body>
     <?php // include "header.blade.php" ?>
     <main>
         <div>
             <button class="back">
-                <img src="../img/arrow-left-solid.svg" alt="Retour">
+                <img src="{{ asset('/images/arrow-left-solid.svg')}}" alt="Retour">
             </button>
         </div>
 
         <p>{{$message}}</p>
 
-        <form action="{{ route('roles.submit') }}"" method="post">
+        <form action="{{ route('roles.submit') }}" method="post" onsubmit="updateCheckBox()">
         @csrf
             <table class="roleTab">
                 <tr>

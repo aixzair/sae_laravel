@@ -14,7 +14,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Responsable;
+
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\sessionListController;
+
 
 Route::get('/', function () {
     return view('connexion');
@@ -39,6 +42,11 @@ Route::get('/sessionAdded', function () {
 Route::get('/editSession', function () {
     return view('editSession');
 });
+
+Route::get('/sessionEdited', function () {
+    return view('sessionEdited');
+});
+// Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
 
 Route::get('/roles',
     [Responsable::class, 'setRolls']
