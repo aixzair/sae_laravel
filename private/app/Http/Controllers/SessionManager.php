@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 use App\Models\Boat;
 use App\Models\Member;
+use App\Models\Session;
+
+use App\Models\Tables\Plongee;
+
 
 class SessionManager extends BaseController {
 
@@ -23,43 +27,37 @@ class SessionManager extends BaseController {
     }
 
     function addSubmit(Request $request) {
+        $plongee = new Plongee();
         $data = $request->all();
+
         $memberMobel = new Member();
+        $boatModel = new Boat();
+        $sessionModel = new Session();
 
         $director = explode(" ", isset($data['director']) ? $data['director'] : "");
         $manager = explode(" ", isset($data['security']) ? $data['security'] : "");
         $driver = explode(" ", isset($data['pilot']) ? $data['pilot'] : "");
 
         $boat = isset($data['boat']) ? $data['boat'] : "";
+        $date = isset($data['day-start'])? $data['day-start'] : "";
         $periode = isset($data['session'])? $data['session'] : "";
 
         switch ($periode) {
             case 'Matin': $periode = 1; break;
             case 'Apres-Midi': $periode = 2; break;
             case 'Soir': $periode = 3; break;
-            default: $periode = -1; break;
+            default: throw new \Exception("période invalide");
         }
 
-        $director = $memberMobel->getMember($director[0], $director[1]);
-        $manager = $memberMobel->getMember($manager[0], $manager[1]);
-        $driver = $memberMobel->getMember($driver[0], $driver[1]);
+        $plongee->SEA_ID = $periode;
+        $plongee->PLON_DATE = $date;
 
-        $mail_Director = 1;
-        $mail_Manager = 1;
-        $mail_Driver = 1;
-        $num_Bat = 1;
-        $periode = 1;
+        $plongee->PLON_DIRECTEUR = $memberMobel->getMember($director[0], $director[1])->AD_EMAIL;
+        $plongee->PLON_SECURITE = $memberMobel->getMember($manager[0], $manager[1])->AD_EMAIL;
+        $plongee->PON_PILOTE = $memberMobel->getMember($driver[0], $driver[1])->AD_EMAIL;
+        $plongee->BAT_ID = $boatModel->getBoatByName($boat)->BAT_ID;
 
-        $requete = DB::Select('SELECT * FROM BATEAU WHERE BAT_NOM = :Nom', ['Nom' => $num_Bat]);
-        foreach($requete as $member){
-            $mail_Bat =  $member->BAT_ID;
-        }
-
-
-        $requete = DB::insert('INSERT INTO PLONGEE 
-        (SEA_ID, PLON_DATE, PLON_DIRECTEUR, BAT_ID, LIEU_ID, PLON_SECURITE, PLON_PILOTE) 
-        VALUES (?,?,?,?,?,?,?)', 
-        [$periode, $_GET['day-start'], $mail_Director, $num_Bat,1, $mail_Manager, $mail_Driver]);    
+        $sessionModel->addSession($plongee);
 
         return $this->add();
     }
