@@ -46,7 +46,7 @@ class SessionManager extends BaseController {
             case 'Matin': $periode = 1; break;
             case 'Apres-Midi': $periode = 2; break;
             case 'Soir': $periode = 3; break;
-            default: throw new \Exception("période invalide");
+            default: $periode = 1;
         }
 
         $plongee->SEA_ID = $periode;
@@ -57,8 +57,10 @@ class SessionManager extends BaseController {
         $plongee->PON_PILOTE = $memberMobel->getMember($driver[0], $driver[1])->AD_EMAIL;
         $plongee->BAT_ID = $boatModel->getBoatByName($boat)->BAT_ID;
 
-        $sessionModel->addSession($plongee);
-
-        return $this->add();
+        if ($sessionModel->addSession($plongee)) {
+            return view('welcome');
+        } else {
+            return $this->add();
+        }
     }
 }

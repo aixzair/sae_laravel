@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Tables\Plongee;
 
 class Session {
-        function addSession(Plongee $plongee) : bool {
+    function addSession(Plongee $plongee) : bool {
+        try {
             return DB::insert(
                 "INSERT INTO PLONGEE (
                     SEA_ID, PLON_DATE, PLON_DIRECTEUR, BAT_ID,
@@ -17,7 +18,10 @@ class Session {
                     $plongee->SEA_ID, $plongee->PLON_DATE, $plongee->PLON_DIRECTEUR, $plongee->BAT_ID,
                     $plongee->PLON_SECURITE, $plongee->PON_PILOTE
                 ]
-            ); 
+            );
+        } catch (\Exception $exception) {
+            return false;
         }
+    }
 
 }
