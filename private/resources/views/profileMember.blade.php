@@ -7,17 +7,9 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="../img/logo.png" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées anuelle restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
+  
+  <?php include "header.blade.php" ?>
+
   <i class="fa-solid fa-arrow-left" style="width: 100px; height: 100px; left: 26px; top: 174px; position: absolute"></i>
   <div class="halfBoxContainer">
     <div class="profileBoxes profileHalfbox">
