@@ -21,13 +21,13 @@
 
     var_dump($_GET['day-start']);
     var_dump($_GET['director']);
-    var_dump($_GET['manager']);
+    var_dump($_GET['security']);
     var_dump($_GET['driver']);
     var_dump($_GET['session']);
     var_dump($_GET['boat']);
 
     $director = explode(" ", $_GET['director']);
-    $manager = explode(" ", $_GET['manager']);
+    $manager = explode(" ", $_GET['security']);
     $driver = explode(" ", $_GET['driver']);
     $boat = $_GET['boat'];
 
