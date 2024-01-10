@@ -44,12 +44,18 @@
                 $lDay = date_create($year.'-'.($month+1).'-1');
 
                 $result = DB::Select(
-                    "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                    "SELECT PLON_DATE, PLON_DEBUT, PLON_FIN/*, PLON_EFFECTIFS_MAX*/ FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
                     [$fDay, $lDay]
                 );
                 foreach($result as $line)
                 {
-                    echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
+                    //DD-MM-YYYY HH-mm format
+                    $fSessionDate = date("d-m-Y",strtotime($line->PLON_DATE));
+                    $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
+                    $endingTime = date("H:i",strtotime($line->PLON_FIN));
+                    
+                    //TO DO : change background color if session is invalid or full
+                    echo "<div class=\"session\"> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</div>";
                 }
             }
         ?>
