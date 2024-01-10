@@ -26,31 +26,15 @@
   
   <div class="window">
     <div class="labels">
-      <p class="label">Date :</p>
-      <p class="label">Créneau :</p>
-      <p class="label">Site :</p>
-      <p class="label">Pilote :</p>
-      <p class="label">Sécurité surf. :</p>
-      <p class="label">Directeur de plongée :</p>
-      <p class="label">Bateau :</p>
+      <p class="label">Date : {{$session['PLON_DATE']}}</p>
+      <p class="label">Créneau : {{$session['MOMENT']}}</p>
+      <p class="label">Site : {{$session['LIEU_NOM']}} </p>
+      <p class="label">Pilote : {{$session['PLON_PILOTE']}}</p>
+      <p class="label">Sécurité surf. : {{$session['PLON_SECURITE']}}</p>
+      <p class="label">Directeur de plongée : {{$session['PLON_DIRECTEUR']}}</p>
+      <p class="label">Bateau : {{$session['BAT_NOM']}}</p>
       <p class="label">Niveau min. :</p>
-      <p class="label">Nombre participants :</p>
-    </div>
-    <div class="inputFields">
-      <input class="field">
-      <input class="field">
-      <input class="field">
-      <input class="field">
-      <input class="field">
-      <input class="field">
-      <input class="field">
-      <input class="field">
-      <div class="divField">
-        <p class="label">Min :</p>
-        <input class="field">
-        <p class="label">Max :</p>
-        <input class="field">
-      </div>
+      <p class="label">Nombre participants : {{$memberCount}}</p>
     </div>
   </div>
 </body>

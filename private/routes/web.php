@@ -18,17 +18,17 @@ Route::get('/session/add',
 Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
 ->name('session/add.submit');
 
-Route::get('/sessionList', function () {
-    return view('session/list');
-});
+Route::get('/session/show', 
+    [SessionManager::class, 'show']
+);
 
 // ROLES ----------------------------------
 
-Route::get('/roles',
+Route::get('/role/set',
     [Responsable::class, 'setRolls']
 );
-Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])
-->name('roles.submit');
+Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
+->name('role/set.submit');
 
 // AUTRES ---------------------------------
 

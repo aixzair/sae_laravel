@@ -8,7 +8,7 @@ use App\Models\Tables\Adherent;
 
 class Member {
 
-    function getMember(string $AD_NOM, string $AD_PRENOM) : Adherent {
+    public function getMember(string $AD_NOM, string $AD_PRENOM) : Adherent {
         $adherent = new Adherent();
 
         $lines = DB::select(
@@ -25,7 +25,24 @@ class Member {
         return $adherent;
     }
 
-    function getMembers() : array {
+    public function getMemberByEmail(string $AD_EMAIL) : Adherent {
+        $adherent = new Adherent();
+
+        $lines = DB::select(
+            "SELECT * FROM ADHERENT WHERE AD_EMAIL = ? LIMIT 1",
+            [$AD_EMAIL]
+        );
+
+        foreach ($lines as $line) {
+            $adherent->AD_NOM = $line->AD_NOM;
+            $adherent->AD_PRENOM = $line->AD_PRENOM;
+            $adherent->AD_EMAIL = $AD_EMAIL;
+        }
+
+        return $adherent;
+    }
+
+    public function getMembers() : array {
         $members = [];
         $lines = DB::select('SELECT AD_NOM, AD_PRENOM FROM ADHERENT');
 
@@ -39,7 +56,7 @@ class Member {
         return $members;
     }
 
-    function getDirectors() : array {
+    public function getDirectors() : array {
         $directors = [];
         $lines = DB::select(
             "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (
@@ -59,7 +76,7 @@ class Member {
         return $directors;
     }
 
-    function getPilots() : array {
+    public function getPilots() : array {
         $pilots = [];
         $lines = DB::select(
             "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (
@@ -79,7 +96,7 @@ class Member {
         return $pilots;
     }
 
-    function getSecurities() : array {
+    public function getSecurities() : array {
         $securities = [];
         $lines = DB::select(
             "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (

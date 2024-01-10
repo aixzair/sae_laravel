@@ -1,8 +1,3 @@
-<?php
-    // Requete php pour recup les adhérents : 
-    // $lignes = DB::select("SELECT AD_NOM, AD_PRENOM FROM ADHERENT"); // use .... 
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +24,7 @@
 
         <p>{{$message}}</p>
 
-        <form action="{{ route('roles.submit') }}" method="post" onsubmit="updateCheckBox()">
+        <form action="{{ route('role/set.submit') }}" method="post" onsubmit="updateCheckBox()">
         @csrf
             <table class="roleTab">
                 <tr>

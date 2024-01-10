@@ -11,10 +11,38 @@ use App\Models\Session;
 
 use App\Models\Tables\Plongee;
 
-
 class SessionManager extends BaseController {
 
-    function add() {
+    public function show(Request $request) {
+        $sessionModel = new Session();
+        $memberModel = new Member();
+        $boatModel = new Boat();
+
+        $sessionShow = [];
+        $session = $sessionModel->getSession(
+            $request->has('SEA_ID') ? $request->input('SEA_ID') : "a",
+            $request->has('PLON_DATE') ? $request->input('PLON_DATE') : "a"
+        );
+
+        if ($session == null) {
+            abort(404);
+        }
+
+        $sessionShow['PLON_DATE'] = $session->PLON_DATE;
+        $sessionShow['PLON_DIRECTEUR'] = $memberModel->getMemberByEmail($session->PLON_DIRECTEUR)->getIdentity();
+        $sessionShow['PLON_SECURITE'] = $memberModel->getMemberByEmail($session->PLON_SECURITE)->getIdentity();
+        $sessionShow['PLON_PILOTE'] = $memberModel->getMemberByEmail($session->PLON_PILOTE)->getIdentity();
+        $sessionShow['BAT_NOM'] = $boatModel->getBoat($session->BAT_ID)->BAT_NOM;
+        $sessionShow['LIEU_NOM'] = $sessionModel->getSiteName($session);
+        $sessionShow['MOMENT'] = $sessionModel->getMoment($session);
+
+        return view('session/show', [
+            "session" => $sessionShow,
+            "memberCount" => $session->PLON_EFFECTIFS
+        ]);
+    }
+
+    public function add() {
         $boatModel = new Boat();
         $memberMobel = new Member();
 
@@ -26,7 +54,7 @@ class SessionManager extends BaseController {
         ]);
     }
 
-    function addSubmit(Request $request) {
+    public function addSubmit(Request $request) {
         $plongee = new Plongee();
         $data = $request->all();
 
@@ -54,7 +82,7 @@ class SessionManager extends BaseController {
 
         $plongee->PLON_DIRECTEUR = $memberMobel->getMember($director[0], $director[1])->AD_EMAIL;
         $plongee->PLON_SECURITE = $memberMobel->getMember($manager[0], $manager[1])->AD_EMAIL;
-        $plongee->PON_PILOTE = $memberMobel->getMember($driver[0], $driver[1])->AD_EMAIL;
+        $plongee->PLON_PILOTE = $memberMobel->getMember($driver[0], $driver[1])->AD_EMAIL;
         $plongee->BAT_ID = $boatModel->getBoatByName($boat)->BAT_ID;
 
         if ($sessionModel->addSession($plongee)) {

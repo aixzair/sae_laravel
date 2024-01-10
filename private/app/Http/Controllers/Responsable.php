@@ -11,7 +11,7 @@ use App\Models\Member;
 class Responsable extends BaseController {
 
     function setRolls(string $message = "") {
-        return view('roles', [
+        return view('role/set', [
             'names' => (new Responsabilite())->getResponsabilities(),
             'message' => $message
         ]);
