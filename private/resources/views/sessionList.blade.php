@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toutes les séances</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!--link rel="stylesheet" href="../css.style.css"--> 
 </head>
 <body>
   <header>
@@ -50,8 +51,9 @@
                         ->where('PLON_DATE','<', $lDay)
                         ->get();*/
             $result = DB::Select(
-                "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
-                [$fDay, $lDay]
+               /* "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                [$fDay, $lDay]*/
+                "SELECT PLON_DATE FROM PLONGEE"
             );
             foreach($result as $line)
             {
