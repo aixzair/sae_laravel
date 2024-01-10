@@ -45,8 +45,8 @@ Route::get('/roles',
 );
 Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
 
-Route::get('/exempleSecretaire', function() {
-	return view('exempleSecretaire');
+Route::get('/profileSecretary', function() {
+	return view('profileSecretary');
 })->middleware('role:1');
 
 Route::get('/exempleDirecteur', function() {
@@ -59,6 +59,10 @@ Route::get('/profileMember', function() {
 
 Route::get('/header', function() {
 	return view('header');
+});
+
+Route::get('\connectionError', function() {
+	return view('connectionError');
 });
 
 Route::get('/profilResp', function() {

@@ -324,6 +324,11 @@ header{
     height: 50vh;
 }
 
+.titre{
+    display: block;
+    margin: 50px;
+}
+
 /* ----------------------------- Style Secretary Profile -------------------------- */
 
 .forfait{
