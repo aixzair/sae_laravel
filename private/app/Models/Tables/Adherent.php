@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Tables;
 
 class Adherent {
     public string $AD_NOM;

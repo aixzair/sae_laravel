@@ -1,5 +1,4 @@
 <?php
-        use App\Model\Member;
         use Illuminate\Support\Facades\DB;
 ?>
 
@@ -32,13 +31,11 @@
 
         <p> Bateau: </p>
         <select name="boat">
-            <?php
-                $bateaux = DB::Select('SELECT * FROM BATEAU');
-                foreach($bateaux as $list){
-                    echo '<option> '.$list->BAT_NOM.'</option>';
-                }
-            ?>
-        </select> <br>
+            @foreach($boats as $boat)
+                <option>{{$boat->BAT_NOM}}</option>
+            @endforeach
+        </select>
+        <br>
 
         <p> Directeur<P>
         <select name="director">

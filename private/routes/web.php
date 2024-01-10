@@ -3,32 +3,40 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Responsable;
+use App\Http\Controllers\SessionManager;
 
 Route::get('/', function () {
     return view('Connexion.html');
 });
 
-Route::get('/creneau', function () {
-    return view('creneau');
-});
 
-Route::get('/addSession', function () {
-    return view('addSession');
+// SESSION --------------------------------
+
+Route::get('/addSession', 
+    [SessionManager::class, 'add']
+);
+
+Route::get('/sessionAdded', function () {
+    return view('session/addGet');
 });
 
 Route::get('/sessionList', function () {
-    return view('sessionList');
+    return view('session/list');
 });
 
-Route::get('/sessionAdded', function () {
-    return view('sessionAdded');
-});
-
-Route::get('/editSession', function () {
-    return view('editSession');
-});
+// ROLES ----------------------------------
 
 Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
 Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
+
+// AUTRES ---------------------------------
+
+Route::get('/creneau', function () {
+    return view('creneau');
+});
+
+Route::get('/editSession', function () {
+    return view('editSession');
+});
