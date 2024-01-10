@@ -23,12 +23,16 @@ class ConnexionController extends BaseController
 		$count=count($max_id);
 		if($count==0){
 			session()->flash('role',0);
+			session()->flash('email',"");
+			session()->flash('password',"");
 			return view('\connectionError');
 		}
 		
 		$num_role= $max_id[0]->ID;
 	
 		session()->flash('role',$num_role);
+		session()->flash('email',$email);
+		session()->flash('password',$password);
 		
 		if(session('role')===1){
 			return view('\profileSecretary');
