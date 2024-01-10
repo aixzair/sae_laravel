@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <?php include 'header.blade.php' ?> 
+  @include ('header')
 
   <div>
     <button class="back">
