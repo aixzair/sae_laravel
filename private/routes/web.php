@@ -24,8 +24,12 @@ Route::get('/sessionAdded', function () {
     return view('sessionAdded');
 });
 
-Route::get('/editSession', function () {
-    return view('editSession');
+Route::get('editSession', function () {
+    return view('edit/editSession');
+});
+
+Route::get('sessionEdited', function () {
+    return view('edit/editSession');
 });
 
 Route::get('/roles',
