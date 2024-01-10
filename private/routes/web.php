@@ -28,6 +28,10 @@ Route::get('/editSession', function () {
     return view('editSession');
 });
 
+Route::get('/sessionEdited', function () {
+    return view('sessionEdited');
+});
+
 Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
