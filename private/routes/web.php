@@ -22,6 +22,12 @@ Route::get('/sessionList', function () {
     return view('session/list');
 });
 
+Route::get('/session/edit', 
+    [SessionManager::class, 'edit']
+);
+Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
+->name('session/edit.submit');
+
 // ROLES ----------------------------------
 
 Route::get('/roles',
