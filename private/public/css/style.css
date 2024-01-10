@@ -203,6 +203,7 @@ header{
     height: 4vh;
 }
 
+
 /* ----------------------------- Style AfficherSeance -------------------------- */
 
 .window{
@@ -443,14 +444,21 @@ header{
     margin-left: 4vw;
     margin-right: 4vw;
     text-align: center;
+}
+
+.session p{
+    
     vertical-align: middle;
 }
 
 .sessionCheckbox{
-    position: relative;
-    right: 4vw;
+    float: right;
     margin-top: auto;
     margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 4vw;
+    height: 2vh;
+    width: 2vh;
 }
 
 .redMarked{

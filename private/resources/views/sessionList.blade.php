@@ -1,5 +1,6 @@
 <?php
     //use App\Models\sessionListModel;
+    use app\Http\Controllers\PlongeeController;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     <title>Liste Séance</title>
 </head>
 <body>
@@ -24,6 +25,20 @@
       </div>
     </nav>
   </header>
+<?php
+    
+    $controller = new PlongeeController();
+    if(isset($_GET['action'])){
+        if($_GET['action']=='register'){
+            $controller->register($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace the email address
+        }else{
+            $controller->deregister($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace the email address
+        }
+        
+    }
+    //$controller->displayDivings();
+?>
+
   <div class="monthContainer">
     <div class="monthBar">
         <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
@@ -41,22 +56,18 @@
 
         function getMonthlySessions($month)
         {
+            $controller = new PlongeeController();
             $year = date("Y");
-            $fDay = date_create('\''.$year.'-'.$month.'-01\'');
-            $lDay = date_create('\''.$year.'-'.($month+1).'-01\'');
- 
-            /*$result = DB::table('PLONGEE')
-                        ->select('PLON_DATE')
-                        ->where('PLON_DATE','>=', $fDay)
-                        ->where('PLON_DATE','<', $lDay)
-                        ->get();*/
-            echo 'Fday'.$fDay.'   lDay  '.$lDay;
+            $fDay = date_create($year.'-'.$month.'-01');
+            $lDay = date_create($year.'-'.($month+1).'-01');
+
             $result = DB::Select(
-                //doesn't return anything with this query
                 "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
                 [$fDay, $lDay]
-                /*"SELECT PLON_DATE FROM PLONGEE"*/
             );
+            echo "<form action=\"{{ route('sessionsChanged.submit') }}\" method=\"post\" onsubmit=\"updateCheckBox()\">";
+            echo "@csrf";
+
             foreach($result as $line)
             {
                 $year = date("Y");
@@ -64,38 +75,43 @@
                 $lDay = date_create($year.'-'.($month+1).'-1');
                 //Also needs to get validity of session (show checkbox if yes, greys out if not)
                 $result = DB::Select(
-                    "SELECT PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
+                    "SELECT DEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
                     FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
                     ORDER BY PLON_DATE ASC",
                     [$fDay, $lDay]
                 );
-                /*SELECT count(*) as nb_plongeurs, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
-                FROM PLONGEE
-                JOIN PALANQUE using(SEA_ID, PLON_DATE)
-                JOIN PARTICIPER using(AD_EMAIL)
-                group by (PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN);*/
                 foreach($result as $line)
                 {
                     //DD-MM-YYYY HH-mm format
+                    $sea_id = $line->SEA_ID;
+                    $plon_date = $line->PLON_DATE;
                     $fSessionDate = date("d-m-Y",strtotime($line->PLON_DATE));
                     $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
                     $endingTime = date("H:i",strtotime($line->PLON_FIN));
                     
+                    echo '<form>';
                     //Changes background color if session is valid, invalid or full
-                    /*if(PLON_EFFECTIFS_MAX == number of peeps subscribed)
+                    if($controller->isComplete($sea_id, $plon_date))
                     {
-                        echo "<div class="redMarked">";
+                        //If full, container is redMarked
+                        echo "<div class=\"redMarked\">";
                     }
                     else
-                    {*/
-                        echo "<div>";
-                    //}
-                    echo "<p class=\"session\"> href=\"showSession?datetime=$fSessionDate:$startingTime\"".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
-                    //dynamic link for each session : href=\"showSession?datetime=DDMMYYYY\"
-                    /*if(session is valid)
                     {
-                        <input class="roleCheck" type="checkbox">
+                        echo "<div>";
                     }
+                    echo "<div class=\"session\"><p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    //dynamic link for each session : href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id\"
+                    /*if(session is valid)
+                    {*/
+                      /*  
+                    if($controller->isRegistered($sea_id, $plon_date, session('email'))){
+                        echo "<input class=\"sessionCheckbox\" type=\"checkbox\" checked=\"true\" {{in_array(\"session\", ".$responsabilities.")? 'checked': ''}}>";
+                    }else{
+                        echo "<input class=\"sessionCheckbox\" type=\"checkbox\" {{in_array(\"session\", ".$responsabilities.")? 'checked': ''}}>";
+                    }*/
+                        
+                    /*}
                     */
                     echo "</div>";
                 }
@@ -104,55 +120,47 @@
         ?>
         <div id="Mars" class="month";>
             <?php
-                //sessionListController::getMonthlySessions(3);
                 getMonthlySessions(3);
             ?>
         </div>    
         <div id="Avril" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(4);
                 getMonthlySessions(4);
             ?>
         </div>    
         <div id="Mai" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(5);
                 getMonthlySessions(5);
             ?>
         </div>
         <div id="Juin" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(6);
                 getMonthlySessions(6);
             ?>
         </div>    
         <div id="Juillet" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(7);
                 getMonthlySessions(7);
             ?>
         </div>    
         <div id="Aout" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(8);
                 getMonthlySessions(8);
             ?>
         </div>
         <div id="Septembre" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(9);
                 getMonthlySessions(9);
             ?>
         </div>    
         <div id="Octobre" class="month" style="display:none">
             <?php
-                //sessionListController::getMonthlySessions(10);
                 getMonthlySessions(10);
             ?>
         </div>
     </div>
 
-    <!--modal-->
+    <!--modal
     <div class="modal-container categorie-container">
         <div class="overlay categorie "></div>
             <div class="modal">
@@ -175,7 +183,7 @@
         </div>
         <button class="modal-btn categorie ">Catégories</button>
     </div>
-
+    -->
 </body>
 <script>
     const ingredientContainer = document.querySelector(".ingredient-container");

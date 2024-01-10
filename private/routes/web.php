@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Responsable;
 
 use App\Http\Controllers\ConnexionController;
+use app\Http\Controllers\PlongeeController;
 use App\Http\Controllers\sessionListController;
 
 
@@ -55,6 +56,8 @@ Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
 Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
+
+Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/profileSecretary', function() {
 	return view('profileSecretary');
