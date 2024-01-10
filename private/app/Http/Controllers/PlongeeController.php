@@ -2,6 +2,8 @@
 
 require_once("../../app/Models/PlongeeModel.php");
 //require_once("../../app/Http/Controllers/Controller.php");
+/*use app\Models\PlongeeModel as PlongeeModel;
+use app\Http\Controllers\Controller as Controller;*/
 
 class PlongeeController /*extends Controller*/
 {
@@ -27,7 +29,7 @@ class PlongeeController /*extends Controller*/
             }else{
                 echo '
                     <tr>
-                        <td> <a href="index.php/dives_list?sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'">' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . '<a/><td/>
+                        <td> <a href="dives_list.php?sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'">' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . '<a/><td/>
                     <tr/>';
             }
         }

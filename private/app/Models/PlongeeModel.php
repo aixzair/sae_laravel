@@ -14,7 +14,9 @@ class PlongeeModel
      * @return void
      */
     public function register(int $sea_id, String $plon_date, String $user_email){
-        $req = $bdd->prepare('INSERT INTO INSCRIRE(sea_id, plon_date, ad_email) VALUES(' . $sea_id . ',' . $plon_date . ',' . $user_email . ' )');
+        require("connexion.php");
+        $req = $bdd->prepare("INSERT INTO INSCRIRE(sea_id, plon_date, ad_email) VALUES($sea_id, '$plon_date', '$user_email');");
+        //echo "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) VALUES($sea_id, '$plon_date', '$user_email');";
         $req->execute();
     }
 
