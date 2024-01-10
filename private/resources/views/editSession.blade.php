@@ -17,7 +17,7 @@
         $dt = new DateTime($id2);
         
         $seance = 1;
-        $info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = '.$id1.'& SEA_ID= '.$id2);
+        $info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = '.date ('Y-m-d',$id1).'& SEA_ID= '.$id2);
         foreach($info as $list){
             $date = $list->PLON_DATE;
             $seance = $list->SEA_ID;
