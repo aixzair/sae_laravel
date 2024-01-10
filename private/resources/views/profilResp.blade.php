@@ -1,5 +1,5 @@
 <?php 
-  $lignes = DB::select("SELECT AD_NOM, AD_PRENOM, AD_NIVEAU, PLON_DATE FROM ADHERENT JOIN GERER USING (AD_EMAIL) JOIN PLONGEE USING (SEA_ID, PLON_DATE)"); 
+  $lignes = DB::select("SELECT AD_NOM, AD_PRENOM, AD_NIVEAU, PLON_DATE FROM ADHERENT JOIN INSCRIRE USING (AD_EMAIL) JOIN PLONGEE USING (SEA_ID, PLON_DATE) LIMIT 3"); 
   // use ...
 ?>
 
@@ -13,12 +13,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="{{asset('css/style.css')}}" />
   <title>Document</title>
 </head>
 <body>
 
-  <?php include "header.blade.php" ?> 
+  @include('header')
 
   <main>
     <div class="halfBoxContainer">
@@ -38,6 +38,7 @@
     </div>
 
     <div class="profileBoxes profileFullbox tabSession">
+      <h1 class="titre" id="infoSeance">Info Séance</h1>
         <table class="roleTab">
           <tr>
             <th>Nom</th>
@@ -50,12 +51,12 @@
           
           <?php foreach($lignes as $ligne){ ?>
           <tr>
-            <th><?php $ligne['AD_NOM']?></th>
-            <th><?php $ligne['AD_PRENOM']?></th>
-            <th><?php $ligne['AD_NIVEAU']?></th>
-            <th><?php $ligne['PLON_DATE'].' - '.$ligne['PLON_CRENEAU']?></th>
+            <th><?php echo" $ligne->AD_NOM"?></th>
+            <th><?php echo" $ligne->AD_PRENOM"?></th>
+            <th><?php echo" $ligne->AD_NIVEAU"?></th>
+            <th><?php echo" $ligne->PLON_DATE"?></th>
           </tr>
-          <?php } ?>
+          <?php } ?> 
         
         </table>
       <div class="button profileButton">

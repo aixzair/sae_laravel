@@ -6,9 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toutes les séances</title>
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-    <!--TO DO : Changer la page selon rôle-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <title>Liste Séance</title>
 </head>
 <body>
   <header>
@@ -37,7 +39,25 @@
         <?php
             use Illuminate\Support\Facades\DB;
 
-            function getMonthlySessions($month)
+        function getMonthlySessions($month)
+        {
+            $year = date("Y");
+            $fDay = date_create('\''.$year.'-'.$month.'-01\'');
+            $lDay = date_create('\''.$year.'-'.($month+1).'-01\'');
+ 
+            /*$result = DB::table('PLONGEE')
+                        ->select('PLON_DATE')
+                        ->where('PLON_DATE','>=', $fDay)
+                        ->where('PLON_DATE','<', $lDay)
+                        ->get();*/
+            echo 'Fday'.$fDay.'   lDay  '.$lDay;
+            $result = DB::Select(
+                //doesn't return anything with this query
+                "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                [$fDay, $lDay]
+                /*"SELECT PLON_DATE FROM PLONGEE"*/
+            );
+            foreach($result as $line)
             {
                 $year = date("Y");
                 $fDay = date_create($year.'-'.$month.'-1');
@@ -80,6 +100,7 @@
                     echo "</div>";
                 }
             }
+        }
         ?>
         <div id="Mars" class="month";>
             <?php
