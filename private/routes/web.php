@@ -26,6 +26,7 @@ Route::get('/exempleDirecteur', function() {
 	return view('exempleDirecteur');
 });
 
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
