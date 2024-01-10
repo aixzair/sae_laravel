@@ -11,8 +11,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
+
     <title>Attribution des rôles</title>
+
+    <script defer src="{{ asset('/js/updateRoles.js') }}"></script>
 </head>
 <body>
     <?php // include "header.blade.php" ?>
@@ -25,7 +28,7 @@
 
         <p>{{$message}}</p>
 
-        <form action="{{ route('roles.submit') }}"" method="post">
+        <form action="{{ route('roles.submit') }}"" method="post" onsubmit="updateCheckBox()">
         @csrf
             <table class="roleTab">
                 <tr>
@@ -45,6 +48,7 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="pilote"
+                            check=""
                             {{in_array("pilote", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -54,6 +58,7 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="sécurité"
+                            check=""
                             {{in_array("sécurité", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -63,6 +68,7 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="directeur"
+                            check=""
                             {{in_array("directeur", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -72,6 +78,7 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="plongeur"
+                            check=""
                             {{in_array("plongeur", $responsabilities)? 'checked': ''}}
                         >
                     </th>
