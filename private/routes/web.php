@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\DeconnexionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,14 +27,14 @@ Route::get('/exempleDirecteur', function() {
 	return view('exempleDirecteur');
 });
 
-Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/deconnexion', [DeconnexionController::class, 'deconnect']);
 
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
 
 
-Route::get('/Connexion', function() {
-	return view('Connexion');
+Route::get('/connexion', function() {
+	return view('connexion');
 });
 
 //Route::match(['get', 'post'],'/gestionAuthentification', function() {

@@ -1,3 +1,5 @@
 <h1> Secretaire</h1>
 
-<a href="{{ route('logout') }}">Se déconnecter</a>
+
+<a href="/deconnexion" class="button">Se déconnecter</a>
+

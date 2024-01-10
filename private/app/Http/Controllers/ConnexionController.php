@@ -18,9 +18,8 @@ class ConnexionController extends BaseController
 		$email=$_POST["email"];
 		$password=$_POST["password"];
 	
-		$max_id= DB::select ('SELECT MAX(RES_ID) AS ID FROM RESPONSABILISER JOIN ADHERENT USING(AD_EMAIL) JOIN RESPONSABILITE USING(RES_ID) WHERE AD_EMAIL=? AND AD_MDP=?',[$email,$password]);
+		$max_id= DB::select ('SELECT RES_ID AS ID FROM RESPONSABILISER JOIN ADHERENT USING(AD_EMAIL) JOIN RESPONSABILITE USING(RES_ID) WHERE AD_EMAIL=? AND AD_MDP=? order by res_id desc',[$email,$password]);
 		$num_role= $max_id[0]->ID;
-	
 		session()->flash('role',$num_role);
 		
 		if(session('role')===1){
