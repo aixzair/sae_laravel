@@ -23,13 +23,13 @@
     <main>
         <div>
             <button class="back">
-                <img src="../img/arrow-left-solid.svg" alt="Retour">
+                <img src="{{ asset('/images/arrow-left-solid.svg')}}" alt="Retour">
             </button>
         </div>
 
         <p>{{$message}}</p>
 
-        <form action="{{ route('roles.submit') }}"" method="post" onsubmit="updateCheckBox()">
+        <form action="{{ route('roles.submit') }}" method="post" onsubmit="updateCheckBox()">
         @csrf
             <table class="roleTab">
                 <tr>

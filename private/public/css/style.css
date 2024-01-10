@@ -54,11 +54,38 @@ header{
     flex-direction: column;
     justify-content: space-evenly;
     height: 70vh;
-    width: 80vw;
-    background-color:#5f5d5d ;
+    width: 40vw;
+    background-color:gray ;
+    border-radius: 2em;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .addSessionLine{
+    text-align: center;
+}
+
+.addSessionLine p{
+    margin-bottom: 1vh;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.addSessionLine input select{
+    font-size: 1.5em;
+    height: fit-content;
+    text-align: center;
+}
+
+.addSessionLine select option {
+    font-size: 2em;
+    text-align: center;
+}
+
+.addSessionLine input option {
+    font-size: 2em;
     text-align: center;
 }
 
@@ -385,7 +412,7 @@ header{
 
 .session{
     background-color: #c7c7c77a;
-    height: 6vh;
+    height: 8vh;
     border-style: solid;
     border-width: 2px;
     border-radius: 1em;
@@ -394,6 +421,17 @@ header{
     margin-right: 4vw;
     text-align: center;
     vertical-align: middle;
+}
+
+.sessionCheckbox{
+    position: relative;
+    right: 4vw;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.redMarked{
+    background-color: rgba(255, 0, 0, 0.548);
 }
 
 /* ----------------------------- Style Session Management -------------------------- */
