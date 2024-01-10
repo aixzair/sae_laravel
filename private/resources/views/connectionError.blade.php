@@ -6,36 +6,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
     <title>Connexion</title>
 </head>
 <body>
   <header>
-    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées anuelle restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-      </div>
-    </nav>
+    <img class = "Logo" src="../img/logo.png" alt="Logo">
+    
   </header>
-
+  
   <main>
     <div class="connection">
         <div class="connect-p1">
             <h3>Connexion</h3>
         </div>
         <div class="connect-p2">
-            <form action="/gestionAuthentification" method="post">
+            <form action="gestionAuthentification" method="post">
 			@csrf
+            <p class="error">Adresse mail ou mot de passe incorrecte</p>
                 <div>
                     <label for="email">Adresse Email :</label>
-
                     <input type="email" name="email" id="email" placeholder="email@example.com"><br>
                 </div>
-                <div class="connectionLine">
-                    <label class="connectionLabels" for="password">Mot de Passe :</label>
+                <div>
+                    <label for="password">Mot de Passe :</label>
                     <input type="password" name="password" id="password" placeholder="Password">
                 </div>
                 <div class="btns">

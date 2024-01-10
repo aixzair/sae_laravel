@@ -3,21 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
     <title>Profil</title>
-    <link rel="stylesheet" href="../css/style.css">
+
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="../img/logo.png" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées anuelle restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
+  
+  @include ('header')
+
+
   <i class="fa-solid fa-arrow-left" style="width: 100px; height: 100px; left: 26px; top: 174px; position: absolute"></i>
   <div class="halfBoxContainer">
     <div class="profileBoxes profileHalfbox">
