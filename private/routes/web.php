@@ -53,6 +53,18 @@ Route::get('/exempleDirecteur', function() {
 	return view('exempleDirecteur');
 });
 
+Route::get('/profileMember', function() {
+	return view('profileMember');
+});
+
+Route::get('/header', function() {
+	return view('header');
+});
+
+Route::get('/profilResp', function() {
+	return view('profilResp');
+});
+
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
 
 

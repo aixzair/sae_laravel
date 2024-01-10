@@ -1,5 +1,5 @@
 <?php 
-  $lignes = DB::select("SELECT AD_NOM, AD_PRENOM, AD_NIVEAU, PLON_DATE FROM ADHERENT JOIN GERER USING (AD_EMAIL) JOIN PLONGEE USING (SEA_ID, PLON_DATE)"); 
+  $lignes = DB::select("SELECT AD_NOM, AD_PRENOM, AD_NIVEAU, PLON_DATE FROM ADHERENT JOIN INSCRIRE USING (AD_EMAIL) JOIN PLONGEE USING (SEA_ID, PLON_DATE)"); 
   // use ...
 ?>
 
@@ -18,7 +18,7 @@
 </head>
 <body>
 
-  <?php include "header.blade.php" ?> 
+  @include('header')
 
   <main>
     <div class="halfBoxContainer">
@@ -50,12 +50,12 @@
           
           <?php foreach($lignes as $ligne){ ?>
           <tr>
-            <th><?php $ligne['AD_NOM']?></th>
-            <th><?php $ligne['AD_PRENOM']?></th>
-            <th><?php $ligne['AD_NIVEAU']?></th>
-            <th><?php $ligne['PLON_DATE'].' - '.$ligne['PLON_CRENEAU']?></th>
+            <th><?php $ligne->AD_NOM?></th>
+            <th><?php $ligne->AD_PRENOM?></th>
+            <th><?php $ligne->AD_NIVEAU?></th>
+            <th><?php $ligne->PLON_DATE?></th>
           </tr>
-          <?php } ?>
+          <?php } ?> 
         
         </table>
       <div class="button profileButton">

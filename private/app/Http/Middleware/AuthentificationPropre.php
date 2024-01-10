@@ -18,7 +18,31 @@ class AuthentificationPropre
     {
 		if($role===session('role')){
 			return $next($request);
+		}
+
+		if($role===2 and session('role')===3){
+			return $next($request);
 		}	
+
+		if($role===2 and session('role')===4){
+			return $next($request);
+		}
+
+		if($role===3 and session('role')===2){
+			return $next($request);
+		}	
+
+		if($role===3 and session('role')===4){
+			return $next($request);
+		}
+
+		if($role===4 and session('role')===2){
+			return $next($request);
+		}	
+
+		if($role===4 and session('role')===3){
+			return $next($request);
+		}			
         //return Response()->view('welcome');
 		return redirect('/');
     }

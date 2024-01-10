@@ -8,7 +8,7 @@
 </head>
 <body>
   
-  <?php include "header.blade.php" ?>
+  @include ('header')
 
   <i class="fa-solid fa-arrow-left" style="width: 100px; height: 100px; left: 26px; top: 174px; position: absolute"></i>
   <div class="halfBoxContainer">
