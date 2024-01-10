@@ -16,8 +16,16 @@ Route::get('/addSession', function () {
     return view('addSession');
 });
 
+Route::get('/sessionList', function () {
+    return view('sessionList');
+});
+
 Route::get('/sessionAdded', function () {
     return view('sessionAdded');
+});
+
+Route::get('/editSession', function () {
+    return view('editSession');
 });
 
 Route::get('/roles',
