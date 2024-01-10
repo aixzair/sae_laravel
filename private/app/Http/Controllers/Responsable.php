@@ -55,4 +55,8 @@ class Responsable extends BaseController {
     function addSession(){
         return view('addSession', ['members' => (new Member())->getMembers()]);
     }
+
+    function editSession(){
+        return view('editSession', ['members' => (new Member())->getMembers()]);
+    }
 }
