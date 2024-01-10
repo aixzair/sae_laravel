@@ -43,7 +43,7 @@
             $year = date("Y");
             $fDay = date_create('\''.$year.'-'.$month.'-01\'');
             $lDay = date_create('\''.$year.'-'.($month+1).'-01\'');
-
+ 
             /*$result = DB::table('PLONGEE')
                         ->select('PLON_DATE')
                         ->where('PLON_DATE','>=', $fDay)
