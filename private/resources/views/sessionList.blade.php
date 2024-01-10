@@ -1,3 +1,7 @@
+<?php
+    
+    use Illuminate\Support\Facades\DB;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,19 +37,26 @@
 
     <?php
     //WIP PHP can't find DB as of now
-        use Illuminate\Support\Facades\DB;
 
         function getMonthlySessions($month)
-        {/*
+        {
             $year = date("Y");
             $fDay = date_create('\''.$year.'-'.$month.'-01\'');
             $lDay = date_create('\''.$year.'-'.($month+1).'-01\'');
 
-            $result = DB::select("SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= $fDay AND PLON_DATE < $lDay");
+            /*$result = DB::table('PLONGEE')
+                        ->select('PLON_DATE')
+                        ->where('PLON_DATE','>=', $fDay)
+                        ->where('PLON_DATE','<', $lDay)
+                        ->get();*/
+            $result = DB::Select(
+                "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                [$fDay, $lDay]
+            );
             foreach($result as $line)
             {
                 echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
-            }*/
+            }
         }
         ?>
 
