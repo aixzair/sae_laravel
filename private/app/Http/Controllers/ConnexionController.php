@@ -19,6 +19,7 @@ class ConnexionController extends BaseController
 		$email=$request->input('email');
 		$password=$request->input('password');
 	
+
 		$max_id= DB::select ('SELECT RES_ID AS ID FROM RESPONSABILISER JOIN ADHERENT USING(AD_EMAIL) JOIN RESPONSABILITE USING(RES_ID) WHERE AD_EMAIL=? AND AD_MDP=? order by id desc ',[$email,$password]);
 		$count=count($max_id);
 		if($count==0){
@@ -28,11 +29,12 @@ class ConnexionController extends BaseController
 			return view('\connectionError');
 		}
 		
+
+		/*$max_id= DB::select ('SELECT RES_ID AS ID FROM RESPONSABILISER JOIN ADHERENT USING(AD_EMAIL) JOIN RESPONSABILITE USING(RES_ID) WHERE AD_EMAIL=? AND AD_MDP=? order by res_id desc',[$email,$password]);
 		$num_role= $max_id[0]->ID;
-	
 		session()->flash('role',$num_role);
 		session()->flash('email',$email);
-		session()->flash('password',$password);
+		session()->flash('password',$password);*/
 		
 		if(session('role')===1){
 			return view('\profileSecretary');

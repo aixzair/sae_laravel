@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\DeconnexionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,24 +71,14 @@ Route::get('/exempleDirecteur', function() {
 	return view('exempleDirecteur');
 });
 
-Route::get('/profileMember', function() {
-	return view('profileMember');
-});
 
-Route::get('/header', function() {
-	return view('header');
-});
-
-Route::get('\connectionError', function() {
-	return view('connectionError');
-});
-
-Route::get('/profilResp', function() {
-	return view('profilResp');
-});
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
 
+
+Route::get('/Connexion', function() {
+	return view('Connexion');
+});
 
 //Route::match(['get', 'post'],'/gestionAuthentification', function() {
 	//return view('gestionAuthentification');
