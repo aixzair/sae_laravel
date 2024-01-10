@@ -33,10 +33,12 @@
 
     switch($_GET['session']){
 
-        case 'Matin': $periode = 1; break;
-        case 'Apres-Midi': $periode = 2; break;
+        case 'morning': $periode = 1; break;
+        case 'afternoon': $periode = 2; break;
         default: $periode = 3; break;
     }
+
+    var_dump($periode);
 
     //$requete = DB::Select('SELECT AD_LICENCE FROM ADHERENT WHERE AD_NOM = :Nom and AD_PRENOM = :Prenom', ['Nom' => 'Martin', 'Prenom' => 'Evelyn']);
     /*$requete = DB::Select('SELECT * FROM ADHERENT WHERE AD_NOM = :Nom and AD_PRENOM = :Prenom', ['Nom' => $director[0], 'Prenom' => $director[1]]);
@@ -59,9 +61,9 @@
         $mail_Bat =  $member->BAT_ID;
     }
     */
-
+    DB::statement('SET FOREIGN_KEY_CHECKS=0');
     $requete = DB::update('UPDATE PLONGEE SET 
-    SEA_ID = ?, PLON_DATE = ? where SEA_ID = ? and PLON_DATE = ?',
+    SEA_ID = ?, PLON_DATE = ? WHERE SEA_ID = ? AND PLON_DATE = ?',
     [$periode, $_GET['day-start'], $_GET['id1'], $_GET['id2']]);    
     ?>
 </body>
