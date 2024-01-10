@@ -19,33 +19,44 @@ class Responsable extends BaseController {
 
     function setRollsSubmit(Request $request) {
         $data = $request->all();
-        $model_responsabilitie = new Responsabilite();
 
+        // Obtenez tous les noms des champs dans la requête
+        $fieldNames = array_keys($data);
+
+        // Parcourez les noms des champs pour les afficher
+        foreach ($fieldNames as $fieldName) {
+            echo "$fieldName <br>";
+        }
+
+
+        /*$data = $request->all();
+        $model_responsabilitie = new Responsabilite();
         $int = 0;
 
         foreach ($data as $name => $responsabilities) {
+            echo "$name <br>";
             if (!is_array($responsabilities)) {
                 continue;
             }
-            var_dump($responsabilities);
+
             foreach ($responsabilities as $responsability) {
-                echo "a = " . $responsability;
                 $haveResponsability = $model_responsabilitie->memberHaveResponsability($name, $responsability);
+                echo "$name ($responsability) : " .  ($haveResponsability? "oui" : "non" ) . "<br>";
                 if ($request->has("$name.$responsability")) {
                     if (!$haveResponsability) {
-                        echo "ajouter responsabilité";
+                        echo "ajouter responsabilité <br>";
                         $int++;
                     }
                 } else {
                     if ($haveResponsability) {
-                        echo "retirer responsabilité";
+                        echo "retirer responsabilité <br>";
                         $int--;
                     }
                 }
             }
         }
 
-        // return $this->setRolls($int . "");
+        // return $this->setRolls($int . "");*/
     }
 
     function addSession(){
