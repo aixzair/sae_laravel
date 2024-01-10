@@ -42,14 +42,37 @@
                 $year = date("Y");
                 $fDay = date_create($year.'-'.$month.'-1');
                 $lDay = date_create($year.'-'.($month+1).'-1');
-
+                //Also needs to get validity of session (show checkbox if yes, greys out if not)
                 $result = DB::Select(
-                    "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                    "SELECT PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
+                    FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
+                    ORDER BY PLON_DATE ASC",
                     [$fDay, $lDay]
                 );
                 foreach($result as $line)
                 {
-                    echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
+                    //DD-MM-YYYY HH-mm format
+                    $fSessionDate = date("d-m-Y",strtotime($line->PLON_DATE));
+                    $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
+                    $endingTime = date("H:i",strtotime($line->PLON_FIN));
+                    
+                    //TO DO : change background color if session is invalid or full
+                    /*if(PLON_EFFECTIFS_MAX == number of peeps subscribed)
+                    {
+                        echo "<div class="redMarked">";
+                    }
+                    else
+                    {*/
+                        echo "<div>";
+                    //}                   
+                    echo "<p class=\"session\"> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    //dynamic link for each session : href=\"\" yaddayadda%valid
+                    /*if()
+                    {
+                        <input class="roleCheck" type="checkbox">
+                    }
+                    */
+                    echo "</div>";
                 }
             }
         ?>
