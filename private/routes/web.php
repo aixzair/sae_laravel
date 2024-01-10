@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Responsable;
 
 Route::get('/', function () {
-    return view('Connexion.html');
+    return view('connexion');
 });
 
 Route::get('/creneau', function () {
