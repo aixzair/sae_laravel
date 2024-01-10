@@ -9,3 +9,11 @@
     </div>
   </nav>
 </header>
+
+
+
+SELECT count(*), ad_email from plongee
+join inscrire using (sea_id,plon_date)
+join adherent using(ad_email)
+where ad_email =  'benjamin.allen@gmail.com'
+group by ad_email;*/
