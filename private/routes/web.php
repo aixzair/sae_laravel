@@ -7,7 +7,7 @@ use App\Http\Controllers\sessionListController;
 
 
 Route::get('/', function () {
-    return view('Connexion.html');
+    return view('connexion');
 });
 
 Route::get('/creneau', function () {
@@ -16,6 +16,9 @@ Route::get('/creneau', function () {
 
 Route::get('/addSession', function () {
     return view('addSession');
+});
+Route::get('/showSession', function () {
+    return view('showSession');
 });
 
 Route::get('/sessionList', function () {
