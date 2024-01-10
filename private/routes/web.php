@@ -24,6 +24,10 @@ Route::get('/sessionAdded', function () {
     return view('sessionAdded');
 });
 
+Route::get('/editSession', function () {
+    return view('editSession');
+});
+
 Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
