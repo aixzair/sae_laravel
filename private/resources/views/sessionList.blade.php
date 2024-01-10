@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
-    <title>Liste Séance</title>
+    <title>Liste Plongée</title>
 </head>
 <body>
   <header>
@@ -19,7 +19,7 @@
     <nav>
       <div class="NavBar">
         <p class="NavText">Plongées annuelles restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">RESERVER PLONGÉE</button>
         <button class = "NavButton">PROFIL</button>
         <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
       </div>
@@ -67,49 +67,49 @@
         ?>
 
         <div id="Mars" class="month";>
-            <h2>Toutes les séances de Mars (titre à supprimer)</h2>
+            <h2>Toutes les plongées de Mars (titre à supprimer)</h2>
             <?php
                 getMonthlySessions(3);
             ?>
         </div>    
         <div id="Avril" class="month" style="display:none">
-            <h2>Toutes les séances de Avril</h2>
+            <h2>Toutes les plongées de Avril</h2>
             <?php
                 getMonthlySessions(4);
             ?>
         </div>    
         <div id="Mai" class="month" style="display:none">
-            <h2>Toutes les séances de Mai</h2>
+            <h2>Toutes les plongées de Mai</h2>
             <?php
                 getMonthlySessions(5);
             ?>
         </div>
         <div id="Juin" class="month" style="display:none">
-            <h2>Toutes les séances de Juin</h2>
+            <h2>Toutes les plongées de Juin</h2>
             <?php
                 getMonthlySessions(6);
             ?>
         </div>    
         <div id="Juillet" class="month" style="display:none">
-            <h2>Toutes les séances de Juillet</h2>
+            <h2>Toutes les plongées de Juillet</h2>
             <?php
                 getMonthlySessions(7);
             ?>
         </div>    
         <div id="Aout" class="month" style="display:none">
-            <h2>Toutes les séances de Août</h2>
+            <h2>Toutes les plongées de Août</h2>
             <?php
                 getMonthlySessions(8);
             ?>
         </div>
         <div id="Septembre" class="month" style="display:none">
-            <h2>Toutes les séances de Septembre</h2>
+            <h2>Toutes les plongées de Septembre</h2>
             <?php
                 getMonthlySessions(9);
             ?>
         </div>    
         <div id="Octobre" class="month" style="display:none">
-            <h2>Toutes les séances de Octobre</h2>
+            <h2>Toutes les plongées de Octobre</h2>
             <?php
                 getMonthlySessions(10);
             ?>

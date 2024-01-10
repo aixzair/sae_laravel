@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
-    <title>Créer Séance</title>
+    <title>Créer Plongée</title>
 </head>
 <body>
     <?php
@@ -26,7 +26,7 @@
         <input type="date" name="day-start" min="2018-01-01" required/>
         <br>
 
-        <p> Séance: </p>
+        <p> Plongée: </p>
         <select name="session" required>
             <option value="">--Sélectionner une période de la journée--</option>
             <option value="morning">Matin</option>

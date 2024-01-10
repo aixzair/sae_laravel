@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
-    <title>Modifier Séance</title>
+    <title>Modifier Plongée</title>
 </head>
 <body>
     <?php
@@ -34,7 +34,7 @@
 <input type="date" name="day-start" min="2018-01-01" value=<?php echo $dt->format('Y-m-d'); ?> required/>
 <br>
 
-<p> Séance: </p>
+<p> Plongée: </p>
 <select name="session" required>
     <option value="default"><?php echo $id1; ?></option>
     <option value="morning">Matin</option>

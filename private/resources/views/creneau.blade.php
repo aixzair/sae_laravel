@@ -18,7 +18,7 @@
 <?php
         $seance = 'MATIN';
         $requete = DB::select("SELECT * FROM PLONGEE");
-        echo "séance disponible <br>";
+        echo "Plongée disponible <br>";
         $i = 1;
         foreach($requete as $line){
             switch($line->SEA_ID){
@@ -26,7 +26,7 @@
                 case 2: $seance = 'APRES_MIDI'; break;
                 default: $seance = 'SOIR'; break;
             }
-            echo 'séance n°:'.$i.' '.$seance.' '.$line->PLON_DATE.'<br>';
+            echo 'Plongée n°:'.$i.' '.$seance.' '.$line->PLON_DATE.'<br>';
             $i++;
         }
     ?>

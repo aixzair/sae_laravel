@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
-  <title>Séance</title>
+  <title>Plongée</title>
 </head>
 <body>
   <header>
@@ -15,7 +15,7 @@
     <nav>
       <div class="NavBar">
         <p class="NavText">Plongées anuelle restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">RESERVER PLONGÉE²</button>
         <button class = "NavButton">PROFIL</button>
         <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
       </div>

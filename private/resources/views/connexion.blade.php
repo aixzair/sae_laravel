@@ -15,7 +15,7 @@
     <nav>
       <div class="NavBar">
         <p class="NavText">Plongées anuelle restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">RESERVER PLONGÉE</button>
         <button class = "NavButton">PROFIL</button>
       </div>
     </nav>
