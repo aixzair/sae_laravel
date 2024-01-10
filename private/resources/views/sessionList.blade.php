@@ -1,6 +1,5 @@
 <?php
-    
-    use Illuminate\Support\Facades\DB;
+    //use App\Models\sessionListModel;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,71 +34,70 @@
         <button id="btOctobre" class="monthButton" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
+        <?php
+            use Illuminate\Support\Facades\DB;
 
-    <?php
-
-        function getMonthlySessions($month)
-        {
-            $year = date("Y");
-            $fDay = date_create($year.'-'.$month.'-1');
-            $lDay = date_create($year.'-'.($month+1).'-1');
- 
-            $result = DB::Select(
-                "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
-                [$fDay, $lDay]
-            );
-            foreach($result as $line)
+            function getMonthlySessions($month)
             {
-                echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
-            }
-        }
-        ?>
+                $year = date("Y");
+                $fDay = date_create($year.'-'.$month.'-1');
+                $lDay = date_create($year.'-'.($month+1).'-1');
 
+                $result = DB::Select(
+                    "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                    [$fDay, $lDay]
+                );
+                foreach($result as $line)
+                {
+                    echo "<div class=\"session\"> ".$line->PLON_DATE."</div>";
+                }
+            }
+        ?>
         <div id="Mars" class="month";>
-            <h2>Toutes les séances de Mars (titre à supprimer)</h2>
             <?php
+                //sessionListController::getMonthlySessions(3);
                 getMonthlySessions(3);
             ?>
         </div>    
         <div id="Avril" class="month" style="display:none">
-            <h2>Toutes les séances de Avril</h2>
             <?php
+                //sessionListController::getMonthlySessions(4);
                 getMonthlySessions(4);
             ?>
         </div>    
         <div id="Mai" class="month" style="display:none">
-            <h2>Toutes les séances de Mai</h2>
             <?php
+                //sessionListController::getMonthlySessions(5);
                 getMonthlySessions(5);
             ?>
         </div>
         <div id="Juin" class="month" style="display:none">
-            <h2>Toutes les séances de Juin</h2>
             <?php
+                //sessionListController::getMonthlySessions(6);
                 getMonthlySessions(6);
             ?>
         </div>    
         <div id="Juillet" class="month" style="display:none">
-            <h2>Toutes les séances de Juillet</h2>
             <?php
+                //sessionListController::getMonthlySessions(7);
                 getMonthlySessions(7);
             ?>
         </div>    
         <div id="Aout" class="month" style="display:none">
-            <h2>Toutes les séances de Août</h2>
             <?php
+                //sessionListController::getMonthlySessions(8);
                 getMonthlySessions(8);
             ?>
         </div>
         <div id="Septembre" class="month" style="display:none">
-            <h2>Toutes les séances de Septembre</h2>
             <?php
+                //sessionListController::getMonthlySessions(9);
                 getMonthlySessions(9);
             ?>
         </div>    
         <div id="Octobre" class="month" style="display:none">
-            <h2>Toutes les séances de Octobre</h2>
             <?php
+                //sessionListController::getMonthlySessions(10);
                 getMonthlySessions(10);
             ?>
 </div>

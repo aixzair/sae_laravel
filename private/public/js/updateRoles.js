@@ -1,14 +1,14 @@
 function updateCheckBox() {
     $('.roleCheck').each(function() {
-        if (!$(this).prop('checked')) {
-            $(this).prop('checked', true);
-            $(this).attr('check', false);
-            console.log("cochée");
+        $(this).hide();
+        
+        if ($(this).prop('checked')) {
+            $(this).val(`${$(this).val()}-true`);
         } else {
-            $(this).attr('check', true)
+            $(this).prop('checked', true);
+            $(this).val(`${$(this).val()}-false`);
         }
     });
-
     
     return true;
 }
