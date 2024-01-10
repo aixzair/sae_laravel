@@ -20,25 +20,24 @@ class Responsable extends BaseController {
     function setRollsSubmit(Request $request) {
         $data = $request->all();
         $model_responsabilitie = new Responsabilite();
-
         $int = 0;
-
+        
         foreach ($data as $name => $responsabilities) {
             if (!is_array($responsabilities)) {
                 continue;
             }
-            var_dump($responsabilities);
+
             foreach ($responsabilities as $responsability) {
-                echo "a = " . $responsability;
                 $haveResponsability = $model_responsabilitie->memberHaveResponsability($name, $responsability);
+                echo "$name ($responsability) : $haveResponsability <br>";
                 if ($request->has("$name.$responsability")) {
                     if (!$haveResponsability) {
-                        echo "ajouter responsabilité";
+                        echo "ajouter responsabilité <br>";
                         $int++;
                     }
                 } else {
                     if ($haveResponsability) {
-                        echo "retirer responsabilité";
+                        echo "retirer responsabilité <br>";
                         $int--;
                     }
                 }
