@@ -23,7 +23,9 @@
             </button>
         </div>
 
-        <form action="rolesSubmit" method="post">
+        <p>{{$message}}</p>
+
+        <form action="{{ route('roles.submit') }}"" method="post">
         @csrf
             <table class="roleTab">
                 <tr>
@@ -41,6 +43,8 @@
                         <input
                             class="roleCheck"
                             type="checkbox"
+                            name="{{ $name }}[]"
+                            value="pilote"
                             {{in_array("pilote", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -48,6 +52,8 @@
                         <input
                             class="roleCheck"
                             type="checkbox"
+                            name="{{ $name }}[]"
+                            value="sécurité"
                             {{in_array("sécurité", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -55,6 +61,8 @@
                         <input
                             class="roleCheck"
                             type="checkbox"
+                            name="{{ $name }}[]"
+                            value="directeur"
                             {{in_array("directeur", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -62,6 +70,8 @@
                         <input 
                             class="roleCheck"
                             type="checkbox"
+                            name="{{ $name }}[]"
+                            value="plongeur"
                             {{in_array("plongeur", $responsabilities)? 'checked': ''}}
                         >
                     </th>

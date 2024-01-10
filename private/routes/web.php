@@ -23,6 +23,4 @@ Route::get('/sessionAdded', function () {
 Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
-Route::get('/rolesSubmit',
-    [Responsable::class, 'setRollsSubmit']
-);
+Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');

@@ -39,11 +39,11 @@ class Responsabilite {
 
     function memberHaveResponsability(string $idendity, string $responsability) : bool {
         $lines = DB::select(
-            "SELECT *RES_ID
+            "SELECT RES_ID
             FROM RESPONSABILISER
             JOIN RESPONSABILITE USING(RES_ID) 
             WHERE
-            ? = ( SELECT AD_PRENOM || ' ' || AD_NOM FROM ADHERENT)
+            ? IN ( SELECT CONCAT(AD_PRENOM, ' ', AD_NOM) FROM ADHERENT)
             AND ? = RES_NOM",
             [$idendity, $responsability]
         );
