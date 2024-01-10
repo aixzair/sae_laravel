@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Responsable;
 use App\Http\Controllers\SessionManager;
+use App\Http\Controllers\sessionListController;
+
 
 Route::get('/', function () {
     return view('Connexion.html');

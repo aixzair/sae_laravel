@@ -10,9 +10,9 @@ class Responsabilite {
 
         $responsabiliser = DB::select(
             "SELECT AD_NOM, AD_PRENOM, RES_NOM
-            FROM RESPONSABILISER
-            JOIN ADHERENT USING(AD_EMAIL)
-            JOIN RESPONSABILITE USING(RES_ID)"
+            FROM ADHERENT
+            LEFT JOIN RESPONSABILISER USING(AD_EMAIL)
+            LEFT JOIN RESPONSABILITE USING(RES_ID)"
         );
 
         foreach ($responsabiliser as $line) {
