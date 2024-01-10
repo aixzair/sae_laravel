@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class sessionListMaker extends Model
+class sessionListMaker extends Controller
 {
-    use HasFactory;
-
-    static function getMonthlySessions($month)
+    function getMonthlySessions($month)
     {
         $year = date("Y");
         $fDay = date_create($year.'-'.$month.'-1');
