@@ -15,6 +15,7 @@
 
     <title>Attribution des rôles</title>
 
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="{{ asset('/js/updateRoles.js') }}"></script>
 </head>
 <body>
@@ -48,7 +49,6 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="pilote"
-                            check=""
                             {{in_array("pilote", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -58,7 +58,6 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="sécurité"
-                            check=""
                             {{in_array("sécurité", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -68,7 +67,6 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="directeur"
-                            check=""
                             {{in_array("directeur", $responsabilities)? 'checked': ''}}
                         >
                     </th>
@@ -78,7 +76,6 @@
                             type="checkbox"
                             name="{{ $name }}[]"
                             value="plongeur"
-                            check=""
                             {{in_array("plongeur", $responsabilities)? 'checked': ''}}
                         >
                     </th>
