@@ -7,9 +7,8 @@ use App\Http\Controllers\DeconnexionController;
 
 use App\Http\Controllers\Responsable;
 
-use app\Http\Controllers\PlongeeController;
 use App\Http\Controllers\SessionManager;
-use App\Http\Controllers\sessionListController;
+use App\Http\Controllers\VotreController;
 
 
 Route::get('/', function () {
@@ -62,7 +61,11 @@ Route::get('/sessionEdited', function () {
 });
 
 
-Route::get('/Plongee99', [VotreController::class, 'votreMethode']);
+//Route::get('/Plongee99', [VotreController::class, 'votreMethode']);
+
+Route::get('/header', [VotreController::class, 'nombrePlongeesRestantes']);
+
+
 
 // Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
 
