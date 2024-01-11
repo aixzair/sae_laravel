@@ -36,31 +36,35 @@ Route::get('\connectionError', function() {
 
 // SESSION --------------------------------
 
-Route::get('/session/add', 
+Route::get('/plongée/add', 
     [SessionManager::class, 'add']
 )->name('session/add');
 
-Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
+Route::post('/plongée/addSubmit', [SessionManager::class, 'addSubmit'])
 ->name('session/add.submit');
 //->middleware('role:6');
 
-Route::get('/session/show', 
+Route::get('/plongée/show', 
     [SessionManager::class, 'show']
 )->middleware('role: 2');
 
-Route::get('/session/edit', 
+Route::get('/plongée/edit', 
     [SessionManager::class, 'edit']
 )
 ->middleware('role:6');
 
-Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
+Route::post('/plongée/editSubmit', [SessionManager::class, 'editSubmit'])
 ->name('session/edit.submit')
 ->middleware('role:6');
 
-Route::get('/session/list', function() {
+Route::get('/plongée/list', function() {
 	return view('session/list');
-})->name('session/list')->middleware('role:2');
+})->name('session/list');
+//->middleware('role:2');
 
+Route::get('/plongée/director', function() {
+	return view('session/director');
+})->name('session/director');
 
 // ROLES ----------------------------------
 
@@ -74,7 +78,7 @@ Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 //->middleware('role:6');
 
 
-// ACCEUIL ---------------------------------
+// ACCUEIL ---------------------------------
 
 Route::get('/home',
     [User::class, 'toHome']
@@ -82,18 +86,22 @@ Route::get('/home',
 
 Route::get('/acceuil/secretaire', function () {
     return view('acceuil/secretary');
-})->name('secretary.home')
-->middleware('role:1');
+})->name('secretary.home');
+//->middleware('role:1');
 
 Route::get('/acceuil/responsable', function () {
     return view('acceuil/responsable');
 })->name('responsable.home');
 //->middleware('role:6');
 
+Route::get('/acceuil/directeur', function () {
+    return view('acceuil/director');
+})->name('director.home');
+
 Route::get('/acceuil/adherent', function () {
     return view('acceuil/member');
-})->name('member.home')
-->middleware('role:2');
+})->name('member.home');
+//->middleware('role:2');
 
 
 // AUTRES ---------------------------------
@@ -107,10 +115,6 @@ Route::get(
     '/register/{date}/{sea_id}',
     [PlongeeController::class, 'register']
 )->middleware('role:2');
-
-Route::get('/profileDirector', function () {
-    return view('session/profileDirector');
-});
 
 Route::get('/directorList', function () {
     return view('directorList');

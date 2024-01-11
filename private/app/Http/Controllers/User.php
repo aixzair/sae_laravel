@@ -16,7 +16,7 @@ class User extends BaseController {
                 case 4:
                     return redirect()->route('member.home');
                 case 5:
-                    return redirect()->route('member.home');
+                    return redirect()->route('director.home');
                 case 6:
                     return redirect()->route('responsable.home');
             }

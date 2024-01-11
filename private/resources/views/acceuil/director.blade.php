@@ -25,7 +25,7 @@
       </div>
 
       <div class="profileBoxes profileHalfbox container">
-        <button class="button profileButton">Liste de mes Séances</button>
+        <button class="button profileButton buttonRoute" data-route="{{route('session/director')}}">Liste de mes Séances</button>
       </div>
     </div>
 

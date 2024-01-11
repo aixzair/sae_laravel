@@ -15,29 +15,7 @@
 
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées annuelles restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
-<?php
-    
-    /*if(isset($_GET['action'])){
-        if($_GET['action']=='register'){
-            $controller->register($_GET['sea_id'], $_GET['plon_date'], session('email'));
-        }else{
-            $controller->unregister($_GET['sea_id'], $_GET['plon_date'], session('email'));
-        }
-        
-    }*/
-    //PlongeeController::displayDivings();
-?>
+    @include('header')
 
   <div class="monthContainer">
     <div class="monthBar">
