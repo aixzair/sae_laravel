@@ -1,9 +1,9 @@
 <?php
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers;
 
-use app\Models\PlongeeModel;
-use app\Http\Controllers\Controller as Controller;
+use App\Models\PlongeeModel;
+use App\Http\Controllers\Controller as Controller;
 //use GuzzleHttp\Psr7\Request;
 use Illuminate\Http\Request;
 
@@ -13,6 +13,7 @@ class PlongeeController extends Controller
     public function __construct(){
         
     }
+
 
     /**
      * Displays the dives avaible
@@ -48,41 +49,41 @@ class PlongeeController extends Controller
     }
 
     /**
-     * register a diver to a dive
+     * Register a diver to a dive
      * @param int $sea_id the dive's session id
      * @param String $plon_date the dive's date
-     * @param String $user_email the diver's email 
      * @return void
      */
-    public function register(int $sea_id, String $plon_date, String $user_email){
+    public function register(int $sea_id, String $date){
         $modele = new PlongeeModel();
-        $modele->register($sea_id, $plon_date, $user_email);
+        $modele->register($sea_id, $date, session('email'));
+        return view('sessionList');
     }
 
     /**
-     * Undocumented function
+     * Unregister a diver to a dive
      *
      * @param integer $sea_id the dive's session id
      * @param String $plon_date $plon_date the dive's date
-     * @param String $user_email $user_email the user's email 
      * @return void
      */
-    public function deregister(int $sea_id, String $plon_date, String $user_email){
+    public function unregister(int $sea_id, String $date){
         $modele = new PlongeeModel();
-        $modele->deregister($sea_id, $plon_date, $user_email);
+        $modele->unregister($sea_id, $date, session('email'));
+        return view('sessionList');
     }
 
-    public function isComplete(int $sea_id, String $plon_date){
+    public static function isComplete(int $sea_id, String $plon_date){
         $modele = new PlongeeModel();
         return $modele->isComplete($sea_id, $plon_date);
     }
 
-    public function isRegistered(int $sea_id, String $plon_date, String $user_email){
+    public static function isRegistered(int $sea_id, String $plon_date, String $user_email){
         $modele = new PlongeeModel();
         return $modele->isRegistered($sea_id, $plon_date, $user_email);
     }
 
-    public function setSessionSubmit(Request $request){
+    /*public function setSessionSubmit(Request $request){
         $data = $request->all();
         $model = new PlongeeModel();
 
@@ -108,7 +109,7 @@ class PlongeeController extends Controller
                 }
             }
         }
-    }
+    }*/
 }
 
 ?>

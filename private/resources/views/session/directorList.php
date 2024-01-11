@@ -1,5 +1,6 @@
 <?php
 //use App\Models\sessionListModel;
+use Illuminate\Support\Facades\DB;
 use app\Http\Controllers\PlongeeController;
 ?>
 

@@ -37,16 +37,16 @@ class ConnexionController extends BaseController
 		session()->flash('password',$password);
 		
 		if(session('role')===1){
-			return view('\profileSecretary');
+			return view('profileSecretary');
 		}
 		if(session('role')===2 || session('role')===3|| session('role')===4){
-			return view('\profileMember');
+			return redirect()->route('member.home');
 		}
 		if(session('role')===5){
-			return view('\profileMember');
+			return redirect()->route('member.home');
 		}
 		if(session('role')===6){
-			return view('\profilResp');
+			return redirect()->route('responsable.home');
 		}
 		
 	}
