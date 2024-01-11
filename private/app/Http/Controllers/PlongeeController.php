@@ -83,6 +83,11 @@ class PlongeeController extends Controller
         return $modele->isRegistered($sea_id, $plon_date, $user_email);
     }
 
+    public static function isValid(int $sea_id, String $plon_date){
+        $modele = new PlongeeModel();
+        return $modele->isValid($sea_id, $plon_date);
+    }
+
     /*public function setSessionSubmit(Request $request){
         $data = $request->all();
         $model = new PlongeeModel();

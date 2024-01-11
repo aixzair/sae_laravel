@@ -51,16 +51,22 @@
     <div class="scroll">
         <?php
             use Illuminate\Support\Facades\DB;
-
+        /**
+         * Get and displays the list of dives for the selected month
+         *
+         * @param [type] $month
+         * @return void
+         */
         function getMonthlySessions($month)
         {
-            //$controller = new PlongeeController();
             $year = date("Y");
             $fDay = date_create($year.'-'.$month.'-01');
             $lDay = date_create($year.'-'.($month+1).'-01');
 
             $result = DB::Select(
-                "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
+                "SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
+                FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
+                ORDER BY PLON_DATE ASC",
                 [$fDay, $lDay]
             );
             
@@ -71,56 +77,62 @@
                 $fDay = date_create($year.'-'.$month.'-1');
                 $lDay = date_create($year.'-'.($month+1).'-1');
                 //Also needs to get validity of session (show checkbox if yes, greys out if not)
-                $result = DB::Select(
+                /*$result = DB::Select(
                     "SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
                     FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
                     ORDER BY PLON_DATE ASC",
                     [$fDay, $lDay]
-                );
-                foreach($result as $line)
+                );*/
+                //DD-MM-YYYY HH-mm format
+                $sea_id = $line->SEA_ID;
+                $plon_date = $line->PLON_DATE;
+                $fSessionDate = date("d-m-Y",strtotime($line->PLON_DATE));
+                $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
+                $endingTime = date("H:i",strtotime($line->PLON_FIN));
+                
+                //$div = "";
+                //Changes background color if session is valid, invalid or full
+                if($complete = PlongeeController::isComplete($sea_id, $plon_date))
                 {
-                    //DD-MM-YYYY HH-mm format
-                    $sea_id = $line->SEA_ID;
-                    $plon_date = $line->PLON_DATE;
-                    $fSessionDate = date("d-m-Y",strtotime($line->PLON_DATE));
-                    $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
-                    $endingTime = date("H:i",strtotime($line->PLON_FIN));
-                    
-                    
-                    //Changes background color if session is valid, invalid or full
-                    if(PlongeeController::isComplete($sea_id, $plon_date))
-                    {
-                        //If full, container is redMarked
-                        echo "<div class=\"redMarked\">";
-                    }
-                    else
-                    {
-                        echo "<div>";
-                    }
-                    echo "<div class=\"session\"><p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
-                    //dynamic link for each session : href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id\"
-                    /*if(session is valid)
-                    {*/
-                      /*  
-                    if($controller->isRegistered($sea_id, $plon_date, session('email'))){
-                        echo "<input class=\"sessionCheckbox\" type=\"checkbox\" checked=\"true\" {{in_array(\"session\", ".$responsabilities.")? 'checked': ''}}>";
-                    }else{
-                        echo "<input class=\"sessionCheckbox\" type=\"checkbox\" {{in_array(\"session\", ".$responsabilities.")? 'checked': ''}}>";
-                    }*/
-                        
-                    /*}
-                    */
-
-                    if(PlongeeController::isRegistered($sea_id, $plon_date, "session('email')")){
-                        echo "<a href=\"register/$fSessionDate/$sea_id\">Se retirer</a>";
-                    }else{
-                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">S'inscrire</a>";
-                    }
-
-                    echo "</div>";
+                    //If full, container is redMarked
+                    echo "<div class=\"redMarked\"";
+                    //$div +="<div class=\"redMarked\"";
                 }
+                else
+                {
+                    echo "<div";
+                    //$div += "<div";
+                }
+                echo " class=\"session ";
+                //$div += " class=\"session ";
+                if(PlongeeController::isValid($sea_id, $plon_date))
+                {
+                    echo "greenMarked\">";
+                    echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    //$div += "greenMarked\">";
+                    if(PlongeeController::isRegistered($sea_id, $plon_date, "session('email')")){ //TODO : replacer l'adresse mail de l'utilisateur
+                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                        //$div += "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                    }else if($complete){
+                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                        //$div += "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                    }
+                    else{
+                        echo "<a href=\"register/$fSessionDate/$sea_id\">S'inscrire</a>";
+                        //$div += "<a href=\"register/$fSessionDate/$sea_id\">S'inscrire</a>";
+                    }
+                }
+                else{
+                    echo "\">";
+                    echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    //$div += "\">";
+                }
+                
+
+                echo "</div>";
             }
         }
+        
         ?>
         <div id="Mars" class="month";>
             <?php

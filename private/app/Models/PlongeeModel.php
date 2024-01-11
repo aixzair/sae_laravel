@@ -97,24 +97,14 @@ class PlongeeModel
                     WHERE SEA_ID = ? AND PLON_DATE = ?
                     ORDER BY PLON_EFFECTIFS_MAX ASC",
                     [$sea_id, $plon_date]);
-        //$answer = $bdd->query("select plon_effectifs from PLONGEE where sea_id = $sea_id and plon_date = '$plon_date';");
         $max = array_shift($answer);
 
-        /*while ($session = $answer->fetch()){ 
-            $max = $session['plon_effectifs'];
-        }
-        foreach($)*/
-
         $answer = DB::SELECT(
-            "SELECT COUNT(*) AS inscrits FROM INSCRIRE
+            "SELECT COUNT(*) AS nb FROM INSCRIRE
                     WHERE SEA_ID = ? AND PLON_DATE = ?",
                     [$sea_id, $plon_date]);
-        //$answer = $bdd->query("select count(*) as inscrits from INSCRIRE where sea_id = $sea_id and plon_date = '$plon_date';");
         $inscrits = array_shift($answer);
-        /*while ($session = $answer->fetch()){ 
-            $inscrits = $session['inscrits'];
-        }*/
-        return $inscrits >= $max;
+        return $inscrits->nb > $max->PLON_EFFECTIFS_MAX;
     }
 
     /**
@@ -140,10 +130,27 @@ class PlongeeModel
             WHERE sea_id = ? and PLON_DATE = ? and AD_EMAIL = ?",
                     [$sea_id, $plon_date, $user_email]);
             $inscrits = array_shift($answer);
-        return $inscrits > 0;
+        return $inscrits->nb > 0;
+    }
+
+    /**
+     * Checks whether given diving is fully set and valid to register to
+     *
+     * @param integer $sea_id
+     * @param String $plon_date
+     * @return boolean
+     */
+    public function isValid(int $sea_id, String $plon_date):bool{
+        $answer = DB::SELECT(
+            "SELECT count(*)  as nb
+            FROM PLONGEE 
+            WHERE sea_id = ? and PLON_DATE = ? AND 
+            (PLON_DIRECTEUR IS NULL OR BAT_ID IS NULL OR LIEU_ID IS NULL OR PLON_SECURITE IS NULL OR PLON_PILOTE IS NULL OR PLON_EFFECTIFS_MAX IS NULL OR PLON_EFFECTIFS_MIN IS NULL
+            OR PLON_OBSERVATION IS NULL OR PLON_DEBUT IS NULL OR PLON_DEBUT IS NULL)",
+                    [$sea_id, $plon_date]);
+            $valid = array_shift($answer);
+            return $valid->nb ==0;
     }
 }
-
-
 
 ?>
