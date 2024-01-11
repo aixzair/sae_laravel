@@ -91,6 +91,7 @@ Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, '
 Route::match(['get', 'post'],'/pageTest', [formController::class, 'index']);
 
 
+
 //Route::match(['get', 'post'],'/gestionAuthentification', function() {
 	//return view('gestionAuthentification');
 //});
