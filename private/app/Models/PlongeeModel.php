@@ -17,10 +17,20 @@ class PlongeeModel
      * @return void
      */
     public function register(int $sea_id, String $plon_date, String $user_email){
-        require("connexion.php");
+        /*require("connexion.php");
         $req = $bdd->prepare("INSERT INTO INSCRIRE(sea_id, plon_date, ad_email) VALUES($sea_id, '$plon_date', '$user_email');");
         //echo "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) VALUES($sea_id, '$plon_date', '$user_email');";
-        $req->execute();
+        $req->execute();*/
+
+        DB::insert(
+            "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) VALUES (
+                (? , ?, ?)
+            )",
+            [$sea_id, $plon_date, $user_email]
+        );
+        DB::commit();
+
+        //refresh page?
     }
 
     /**
@@ -31,27 +41,31 @@ class PlongeeModel
      * @param String $user_email the diver's email 
      * @return void
      */
-    public function deregister(int $sea_id, String $plon_date, String $user_email){
-        require("connexion.php");
+    public function unregister(int $sea_id, String $plon_date, String $user_email){
+        /*require("connexion.php");
         $req = $bdd->prepare("delete from INSCRIRE where SEA_ID=$sea_id and plon_date='$plon_date' and ad_email='$user_email';");
         //echo "delete from INSCRIRE where SEA_ID=$sea_id and plon_date='$plon_date' and ad_email='$user_email';";
-        $req->execute();
+        $req->execute();*/
+        
+        DB::delete(
+            "DELETE FROM INSCRIRE WHERE SEA_ID = ?, PLON_DATE = ?, AD_EMAIL = ?
+            )",
+            [$sea_id, $plon_date, $user_email]
+        );
+        DB::commit();
+
+        //refresh ?
     }
 
-    public function insertRegisteredSession($sea_id, $plon_date)
+    /*public function insertRegisteredSession($sea_id, $plon_date, $email)
     {
 
     }
 
-    public function deleteRegisteredSession($sea_id, $plon_date)
+    public function deleteRegisteredSession($sea_id, $plon_date, $email)
     {
-        $answer = DB::DELETE(
-            "SELECT PLON_EFFECTIFS_MAX
-                    FROM PLONGEE
-                    WHERE SEA_ID = ? AND PLON_DATE = ?
-                    ORDER BY PLON_EFFECTIFS_MAX ASC",
-                    [$sea_id, $plon_date]);
-    }
+        $answer = DB::table('INSCRIRE')->where('column_name', '=', $value)->delete();
+    }*/
 
     /**
      * search all of the upcomings diving sessions
