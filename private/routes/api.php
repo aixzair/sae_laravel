@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\APIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,9 @@ Route::get('exemple', function (Request $request) {
 	Log::debug("API active");
 	return Response()->json(['test' => 'ceci est un test']);
 });
+
+
+
+Route::get('/adherents/{seaId}/{plonDate}/{palId}', [APIController::class, 'getAdherentsPalanquee']);
+Route::get('/adherents/{seaId}/{plonDate}', [APIController::class, 'getAdherentsInscription']);
+
