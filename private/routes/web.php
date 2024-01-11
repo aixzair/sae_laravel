@@ -4,13 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\DeconnexionController;
 
-
 use App\Http\Controllers\Responsable;
 
 use app\Http\Controllers\PlongeeController;
 use App\Http\Controllers\SessionManager;
-use App\Http\Controllers\sessionListController;
-
 
 Route::get('/', function () {
     return view('connexion');
@@ -39,9 +36,19 @@ Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
 
 Route::get('/role/set',
     [Responsable::class, 'setRolls']
-);
+)->name('role.set');
 Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 ->name('role/set.submit');
+
+// ACCEUIL ---------------------------------
+
+Route::get('/acceuil/responsable', function () {
+    return view('acceuil/responsable');
+})->name('responsable.home');
+
+Route::get('/acceuil/adherent', function () {
+    return view('acceuil/member');
+})->name('member.home');
 
 // AUTRES ---------------------------------
 
