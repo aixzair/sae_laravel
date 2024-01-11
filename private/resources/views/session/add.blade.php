@@ -10,6 +10,12 @@
     <title>Document</title>
 </head>
 <body>
+
+    <!-- Si il y a eu une tentative d'ajoute, indique la finalité -->
+    @if(session('message'))
+        <script>alert("{{ session('message') }}");</script>
+    @endif
+
     <form action="{{ route('session/add.submit') }}" method="post">
     @csrf
 

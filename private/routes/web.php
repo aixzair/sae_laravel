@@ -7,11 +7,12 @@ use App\Http\Controllers\DeconnexionController;
 use App\Http\Controllers\PlongeeController;
 use App\Http\Controllers\Responsable;
 use App\Http\Controllers\SessionManager;
+use App\Http\Controllers\User;
 
 
 Route::get('/', function () {
     return view('connexion');
-});
+})->name('index');
 
 // CONNEXION -----------------------------
 
@@ -29,7 +30,7 @@ Route::get('/deconnexion',
 
 Route::get('/session/add', 
     [SessionManager::class, 'add']
-);
+)->name('session.add');
 Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
 ->name('session/add.submit');
 
@@ -55,6 +56,14 @@ Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 
 // ACCEUIL ---------------------------------
 
+Route::get('/home',
+    [User::class, 'toHome']
+)->name('home');
+
+Route::get('/acceuil/secretaire', function () {
+    return view('acceuil/secretary');
+})->name('secretary.home');
+
 Route::get('/acceuil/responsable', function () {
     return view('acceuil/responsable');
 })->name('responsable.home');
@@ -66,7 +75,9 @@ Route::get('/acceuil/adherent', function () {
 
 // AUTRES ---------------------------------
 
-Route::get('/register/{date}/{sea_id}', [PlongeeController::class, 'register']);
+Route::get('/register/{date}/{sea_id}',
+    [PlongeeController::class, 'register']
+);
 Route::get('/unregister{date}{sea_id}', [PlongeeController::class, 'unregister']);
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 

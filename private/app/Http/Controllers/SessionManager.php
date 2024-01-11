@@ -42,6 +42,11 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    
+    public function edit(){
+        return view('session/edit');
+    }
+
     public function add() {
         $boatModel = new Boat();
         $memberMobel = new Member();
@@ -52,9 +57,6 @@ class SessionManager extends BaseController {
             "pilots" => $memberMobel->getPilots(),
             "securities" => $memberMobel->getSecurities()
         ]);
-    }
-    public function edit(){
-        return view('session/edit');
     }
 
     public function addSubmit(Request $request) {
@@ -89,9 +91,11 @@ class SessionManager extends BaseController {
         $plongee->BAT_ID = $boatModel->getBoatByName($boat)->BAT_ID;
 
         if ($sessionModel->addSession($plongee)) {
-            return view('welcome');
+            return redirect()->route('session.add')
+            ->with('message', "Séance ajoutée avec succès.");
         } else {
-            return $this->add();
+            return redirect()->route('session.add')
+            ->with('message', "Erreur lors de l ajout de la séance.");
         }
     }
 
