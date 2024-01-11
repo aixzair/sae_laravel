@@ -94,20 +94,13 @@ echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    <title>Liste Séance</title>
+
+    <title>Liste plongées</title>
+
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées annuelles restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
+    @include('header')
+
   <div class="monthContainer">
     <div class="monthBar">
         <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
@@ -120,7 +113,6 @@ echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
         <button id="btOctobre" class="monthButton" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
-        
         <div id="Mars" class="month";>
             <?php
                 getMonthlySessions(3);
