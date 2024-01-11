@@ -465,6 +465,10 @@ header{
     background-color: rgba(255, 0, 0, 0.548);
 }
 
+.greenMarked{
+    background-color: rgba(0, 128, 0, 0.541);
+}
+
 /* ----------------------------- Style Session Management -------------------------- */
 
 .teamsTab{

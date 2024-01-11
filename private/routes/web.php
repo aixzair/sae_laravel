@@ -43,6 +43,10 @@ Route::get('/session/edit',
 Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
 ->name('session/edit.submit');
 
+Route::get('/sessionList', function() {
+	return view('session/list');
+});
+
 
 // ROLES ----------------------------------
 
