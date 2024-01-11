@@ -17,15 +17,21 @@ Route::get('/', function () {
 
 // CONNEXION -----------------------------
 
-Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
-
 Route::get('/Connexion', function() {
 	return view('Connexion');
 });
 
+Route::match(['post'],'/gestionAuthentification',
+    [ConnexionController::class, 'index']
+);
+
 Route::get('/deconnexion', 
     [DeconnexionController::class, 'deconnect']
 );
+
+Route::get('\connectionError', function() {
+	return view('connectionError');
+});
 
 
 // SESSION --------------------------------
@@ -98,14 +104,3 @@ Route::get(
 );
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
-Route::get('\connectionError', function() {
-	return view('connectionError');
-});
-
-Route::match(['post'],'/gestionAuthentification',
-    [ConnexionController::class, 'index']
-);
-
-//Route::match(['get', 'post'],'/gestionAuthentification', function() {
-	//return view('gestionAuthentification');
-//});
