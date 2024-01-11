@@ -12,13 +12,6 @@
 <body>
   <header>
     <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées anuelle restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-      </div>
-    </nav>
   </header>
 
   <main>
@@ -27,7 +20,7 @@
             <h3>Connexion</h3>
         </div>
         <div class="connect-p2">
-            <form action="gestionAuthentification" method="post">
+            <form action="/gestionAuthentification" method="post">
 			@csrf
                 <div>
                     <label for="email">Adresse Email :</label>

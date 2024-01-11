@@ -203,6 +203,7 @@ header{
     height: 4vh;
 }
 
+
 /* ----------------------------- Style AfficherSeance -------------------------- */
 
 .window{
@@ -433,6 +434,21 @@ header{
     font-size: 2em;
 }
 
+.session p{
+    
+    vertical-align: middle;
+}
+
+.sessionCheckbox{
+    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: 4vw;
+    height: 2vh;
+    width: 2vh;
+}
+
 .session{
     background-color: #c7c7c77a;
     height: 8vh;
@@ -443,18 +459,14 @@ header{
     margin-left: 4vw;
     margin-right: 4vw;
     text-align: center;
-    vertical-align: middle;
-}
-
-.sessionCheckbox{
-    position: relative;
-    right: 4vw;
-    margin-top: auto;
-    margin-bottom: auto;
 }
 
 .redMarked{
-    background-color: rgba(255, 0, 0, 0.548);
+    background-color: rgba(255, 0, 0, 0.623);
+}
+
+.greenMarked{
+    background-color: rgba(3, 145, 3, 0.623);
 }
 
 /* ----------------------------- Style Session Management -------------------------- */
