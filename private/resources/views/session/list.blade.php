@@ -13,7 +13,17 @@
     <title>Liste Séance</title>
 </head>
 <body>
-    @include('header')
+  <header>
+    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
+    <nav>
+      <div class="NavBar">
+        <p class="NavText">Plongées annuelles restantes : 90</p>
+        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">PROFIL</button>
+        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
+      </div>
+    </nav>
+  </header>
 <?php
     
     /*if(isset($_GET['action'])){
@@ -84,7 +94,7 @@
                 if($complete = PlongeeController::isComplete($sea_id, $plon_date))
                 {
                     //If full, container is redMarked
-                    echo "<div class=\"redMarked\"session ";
+                    echo "<div class=\"redMarked session ";
                 }
                 else
                 {
@@ -92,20 +102,27 @@
                 }
                 if(PlongeeController::isValid($sea_id, $plon_date))
                 {
-                    echo "greenMarked\">";
-                    echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
-                    if(PlongeeController::isRegistered($sea_id, $plon_date, "session('email')")){ //TODO : replacer l'adresse mail de l'utilisateur
-                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
-                    }else if($complete){
-                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                    if(!$complete)
+                    {
+                        echo "greenMarked\">";
                     }
                     else{
-                        echo "<a href=\"register/$fSessionDate/$sea_id\">S'inscrire</a>";
+                        echo "\">";
+                    }
+                    echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p>";
+
+                    if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
+                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                    }else if($complete){
+                        echo "<p>COMPLET</p>";
+                    }
+                    else{
+                        echo "<a href=\"register/$plon_date/$sea_id\">S'inscrire</a>";
                     }
                 }
                 else{
                     echo "\">";
-                    echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p><p></p>";
                 }
                 
 

@@ -98,6 +98,14 @@ Route::get(
     [PlongeeController::class, 'register']
 );
 
+Route::get('/profileDirector', function () {
+    return view('session/profileDirector');
+});
+
+Route::get('/directorList', function () {
+    return view('directorList');
+});
+
 Route::get(
     '/unregister{date}{sea_id}',
     [PlongeeController::class, 'unregister']
