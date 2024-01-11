@@ -16,7 +16,7 @@
     </head>
     <body>
 
-    @include('header')
+    @include('headerResp')
 
     <main>
         <div class="halfBoxContainer">
