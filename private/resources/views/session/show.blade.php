@@ -11,12 +11,42 @@
     <title>Plongée</title>
 </head>
 <body>
+<<<<<<< HEAD
+  <header>
+    <img class = "Logo" src="../img/logo.png" alt="Logo">
+    <nav>
+      <div class="NavBar">
+        <p class="NavText">Plongées anuelle restantes : 90</p>
+        <button class = "NavButton">RESERVER SÉANCE</button>
+        <button class = "NavButton">PROFIL</button>
+        <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
+      </div>
+    </nav>
+  </header>
+  <div>
+    <button class="back">
+      <i class="fa-solid fa-arrow-left" style="width: 100px; height: 100px; left: 26px; top: 174px; position: absolute"></i>
+    </button>
+  </div>
+  
+  <div class="window">
+    <div class="labels">
+      <p class="label">Date : {{$session['PLON_DATE']}}</p>
+      <p class="label">Créneau : {{$session['MOMENT']}}</p>
+      <p class="label">Site : {{$session['LIEU_NOM']}} </p>
+      <p class="label">Pilote : {{$session['PLON_PILOTE']}}</p>
+      <p class="label">Sécurité surf. : {{$session['PLON_SECURITE']}}</p>
+      <p class="label">Directeur de plongée : {{$session['PLON_DIRECTEUR']}}</p>
+      <p class="label">Bateau : {{$session['BAT_NOM']}}</p>
+      <p class="label">Niveau min. :</p>
+=======
     @include('header')
 
     <div>
         <button class="back buttonBack">
         <i class="fa-solid fa-arrow-left" style="width: 100px; height: 100px; left: 26px; top: 174px; position: absolute"></i>
         </button>
+>>>>>>> cbcfd7dcc61639802fb07d2e3fc34d057af93b77
     </div>
 
     <div class="window">

@@ -1,5 +1,15 @@
     <?php
     use Illuminate\Support\Facades\DB;
+
+        $lignes = DB::select("SELECT 
+        AD_NOM, 
+        AD_PRENOM, 
+        AD_NIVEAU, 
+        PLON_DATE 
+        FROM ADHERENT 
+        JOIN INSCRIRE USING (AD_EMAIL) 
+        JOIN PLONGEE USING (SEA_ID, PLON_DATE) 
+        LIMIT 3"); 
     ?>
     <!DOCTYPE html>
     <html lang="fr">
@@ -48,9 +58,8 @@
             <!-- Un for each pour recup les 3 premier résultat pour les adhérents ayant participé à une plongée passée -->
             
             <?php 
-            $lignes = DB::select("SELECT AD_NOM, AD_PRENOM, AD_NIVEAU, PLON_DATE FROM ADHERENT JOIN INSCRIRE USING (AD_EMAIL) JOIN PLONGEE USING (SEA_ID, PLON_DATE) LIMIT 3"); 
-            foreach($lignes as $ligne){ 
-            ?>
+            foreach($lignes as $ligne){ ?>
+            
             <tr>
                 <th><?php echo" $ligne->AD_NOM"?></th>
                 <th><?php echo" $ligne->AD_PRENOM"?></th>

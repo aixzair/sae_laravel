@@ -51,6 +51,48 @@ class Session {
         }
     }
 
+    function editSession(Plongee $plongee) : bool {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        try {
+            return DB::update(
+                "UPDATE PLONGEE SET
+                    SEA_ID = ?, 
+                    PLON_DATE = ?, 
+                    PLON_DIRECTEUR = ?, 
+                    BAT_ID = ?,
+                    LIEU_ID = ?, 
+                    PLON_SECURITE = ?, 
+                    PLON_PILOTE = ?
+                    WHERE SEA_ID = ? AND PLON_DATE = ? ", 
+
+                [
+                    $plongee->SEA_ID,
+                    $plongee->PLON_DATE,
+                    $plongee->PLON_DIRECTEUR,
+                    $plongee->BAT_ID,
+                    1,
+                    $plongee->PLON_SECURITE,
+                    $plongee->PLON_PILOTE,
+                    $plongee->primSEA_ID,
+                    $plongee->primPLON_DATE
+                ]
+                /*[
+                    $plongee->SEA_ID, 
+                    $plongee->PLON_DATE, 
+                    $plongee->PLON_DIRECTEUR, 
+                    $plongee->BAT_ID,
+                    1,
+                    $plongee->PLON_SECURITE, 
+                    $plongee->PLON_PILOTE, 
+                    $plongee->primSEA_ID, $plongee->primPLON_DATE
+                ]*/
+            );
+        } catch (\Exception $exception) {
+            return false;
+        }
+    }
+
     public function getSiteName(Plongee $plongee) : string {
         $lines = DB::select(
             "SELECT LIEU_NOM FROM LIEU WHERE LIEU_ID = ? LIMIT 1",
@@ -97,21 +139,23 @@ class Session {
         return $securities;
     }
 
-    /*public function getEffectif(string $SEA_ID, string $PLON_DATE) : ?Plongee {
-        $plongee = new PLONGEE();
+    public function getEffectif(string $SEA_ID, string $PLON_DATE) : array {
+        $effective = [];
 
         $lines = DB::select(
-            "SELECT PLON_EFFECTIFS FROM PLONGEE WHERE SEA_ID = ? AND PLON_DATE = ? LIMIT 1",
+            "SELECT * FROM PLONGEE WHERE SEA_ID = ? AND PLON_DATE = ? LIMIT 1",
             [$SEA_ID, $PLON_DATE]
         );
 
         foreach ($lines as $line) {
-
-            $plongee->SEA_ID = $SEA_ID;
-            $plongee->PLON_DATE = $PLON_DATE;
+            $plongee = new Plongee();
+            $plongee->$PLON_EFFECTIF = $line->PLON_EFFECTIF;
+            $effective[] = $security;
+            /*$plongee->SEA_ID = $SEA_ID;
+            $plongee->PLON_DATE = $PLON_DATE;*/
         }
 
-        return $plongee;
-    }*/
+        return $effective;
+    }
 
 }
