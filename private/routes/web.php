@@ -29,56 +29,80 @@ Route::get('/deconnexion',
     [DeconnexionController::class, 'deconnect']
 );
 
+Route::get('\connectionError', function() {
+	return view('connectionError');
+});
+
 // SESSION --------------------------------
 
-Route::get('/session/add', 
+Route::get('/plongée/add', 
     [SessionManager::class, 'add']
-);
-Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
+)->name('session/add');
+
+Route::post('/plongée/addSubmit', [SessionManager::class, 'addSubmit'])
 ->name('session/add.submit');
+//->middleware('role:6');
 
 Route::get('/session/show', 
     [SessionManager::class, 'show']
 )->name('session/show');
 //->middleware('role: 2');
 
-Route::get('/session/edit', 
+Route::get('/plongée/edit', 
     [SessionManager::class, 'edit']
-);
-Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
-->name('session/edit.submit');
+)
+->middleware('role:6');
+
+Route::post('/plongée/editSubmit', [SessionManager::class, 'editSubmit'])
+->name('session/edit.submit')
+->middleware('role:6');
+
+Route::get('/plongée/list', function() {
+	return view('session/list');
+})->name('session/list');
+//->middleware('role:2');
+
+Route::get('/plongée/director', function() {
+	return view('session/director');
+})->name('session/director');
 
 
 // ROLES ----------------------------------
 
 Route::get('/role/set',
     [Responsable::class, 'setRolls']
-)->name('role.set');
+)->name('role/set');
+//->middleware('role:6');
+
 Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 ->name('role/set.submit');
+//->middleware('role:6');
 
 
 // ACCEUIL ---------------------------------
 
-Route::get('/accueil', function () {
-    return view('acceuil/member');
-})->name('home');
+Route::get('/home',
+    [User::class, 'toHome']
+)->name('home');
 
-Route::get('/accueil/responsable', function () {
-    return view('acceuil/responsable');
-})->name('responsable.home');
-
-Route::get('/accueil/adherent', function () {
-    return view('acceuil/member');
-})->name('member.home');
-
-Route::get('/accueil/directeur', function () {
-    return view('acceuil/member');
-})->name('director.home');
-
-Route::get('/accueil/secrataire', function () {
+Route::get('/acceuil/secretaire', function () {
     return view('acceuil/secretary');
 })->name('secretary.home');
+//->middleware('role:1');
+
+Route::get('/acceuil/responsable', function () {
+    return view('acceuil/responsable');
+})->name('responsable.home');
+//->middleware('role:6');
+
+Route::get('/acceuil/directeur', function () {
+    return view('acceuil/director');
+})->name('director.home');
+
+Route::get('/acceuil/adherent', function () {
+    return view('acceuil/member');
+})->name('member.home');
+//->middleware('role:2');
 
 
 // AUTRES ---------------------------------
