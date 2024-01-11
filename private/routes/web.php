@@ -17,6 +17,7 @@ use App\Http\Controllers\Responsable;
 
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\sessionListController;
+use App\Http\Controllers\formController;
 
 
 Route::get('/', function () {
@@ -80,7 +81,14 @@ Route::get('/profilResp', function() {
 	return view('profilResp');
 });
 
+Route::get('/generationPDF', function() {
+	return view('generationPDF');
+});
+
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
+
+
+Route::match(['get', 'post'],'/pageTest', [formController::class, 'index']);
 
 
 //Route::match(['get', 'post'],'/gestionAuthentification', function() {

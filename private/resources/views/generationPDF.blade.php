@@ -1,70 +1,40 @@
+<!-- resources/views/plongee/index.blade.php -->
+
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css" />
-    {# <link rel="stylesheet" href="{{ asset('css/styles.css') }}" /> #}
-    <title>Document</title>
+    <title>Résultats des requêtes de plongée</title>
 </head>
 <body>
+    <h1>Résultats des requêtes de plongée</h1>
 
-    <main>
-
-        <h1 class="titleForm">FICHE DE SECURITE</h1>
-
-        <table class="tab">
-            <tr>
-                <th>Date : </th>
-                <th>aze</th>
-                <th rowspan="4"><img src="" alt="Logo"></th>
-            </tr>
-            <tr>
-                <th>Directeur de plongée</th>
-                <th>aze</th>
-            </tr>
-            <tr>
-                <th>Site de plongée</th>
-                <th>aze</th>
-            </tr>
-            <tr>
-                <th>Effectif</th>
-                <th>aze</th>
-            </tr>
-        </table>
-
-        <table class="tab">
-            <tr>
-                <th colspan="4">PALANQUEE n° ...</th>
-            </tr>
-            <tr>
-                <th>Heure de départ</th>
-                <th></th>
-                <th>Heure retour</th>
-                <th></th>
-            </tr>
-        </table>
-
-        @foreach()
-        <table class="tab">
-            <tr>
-                <th>Nom Prénom</th>
-                <th>Aptitudes</th>
-                <th>Fonction</th>
-            </tr>
-            @foreach()
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            @endforeach
-        </table>
+    <h2>Tableau 1</h2>
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Nom Adhérent</th>
+            <th>Lieu</th>
+            <th>Nombre</th>
+        </tr>
+        @foreach ($tableau1Results as $result)
+        <tr>
+            <td>{{ $result->plon_date }}</td>
+            <td>{{ $result->ad_nom }}</td>
+            <td>{{ $result->lieu_nom }}</td>
+            <td>{{ $result->count }}</td>
+        </tr>
         @endforeach
+    </table>
 
-    </main>
-    
+    <h2>Tableau 2</h2>
+    <ul>
+        @foreach ($tableau2Results as $result)
+        <li>{{ $result->ad_nom }}</li>
+        @endforeach
+    </ul>
+
+    <h2>Tableau 3</h2>
+    <p>Nombre de palanquées : {{ $tableau3Results }}</p>
+
 </body>
 </html>
