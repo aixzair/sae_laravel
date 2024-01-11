@@ -67,9 +67,9 @@ class PlongeeController extends Controller
      * @param String $user_email $user_email the user's email 
      * @return void
      */
-    public function deregister(int $sea_id, String $plon_date, String $user_email){
+    public function unregister(int $sea_id, String $plon_date, String $user_email){
         $modele = new PlongeeModel();
-        $modele->deregister($sea_id, $plon_date, $user_email);
+        $modele->unregister($sea_id, $plon_date, $user_email);
     }
 
     public function isComplete(int $sea_id, String $plon_date){
@@ -82,7 +82,7 @@ class PlongeeController extends Controller
         return $modele->isRegistered($sea_id, $plon_date, $user_email);
     }
 
-    public function setSessionSubmit(Request $request){
+    /*public function setSessionSubmit(Request $request){
         $data = $request->all();
         $model = new PlongeeModel();
 
@@ -108,7 +108,7 @@ class PlongeeController extends Controller
                 }
             }
         }
-    }
+    }*/
 }
 
 ?>

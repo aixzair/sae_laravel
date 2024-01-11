@@ -57,7 +57,7 @@ Route::get('/roles',
 );
 Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
 
-Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
+//Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/profileSecretary', function() {
 	return view('profileSecretary');
