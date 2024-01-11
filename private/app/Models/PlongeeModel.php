@@ -40,15 +40,14 @@ class PlongeeModel
      * @return void
      */
     public function unregister(int $sea_id, String $plon_date, String $user_email){
-        
+        //DB::enableQueryLog();
         DB::delete(
             "DELETE FROM INSCRIRE WHERE SEA_ID = ? and PLON_DATE = ? and AD_EMAIL = ?
             ",
             [$sea_id, $plon_date, $user_email]
         );
         DB::commit();
-
-        //refresh ?
+        //dd(DB::getQueryLog());
     }
 
     /**
@@ -100,14 +99,6 @@ class PlongeeModel
      * @return boolean true if the user is already registered for this session, false otherwise
      */
     public function isRegistered(int $sea_id, String $plon_date, String $user_email){
-        //SELECT count(*) FROM `INSCRIRE` WHERE sea_id = 1 and PLON_DATE = '2024-04-01' and AD_EMAIL = 'abigail.garcia@gmail.com' 
-        /*require("connexion.php");
-        $answer = $bdd->query("SELECT count(*) as nb FROM INSCRIRE WHERE sea_id = $sea_id and PLON_DATE = '$plon_date' and AD_EMAIL = '$user_email';");
-        while ($session = $answer->fetch()){ 
-            if($session['nb'] > 0){
-                return true;
-            };
-        }*/
         $answer = DB::SELECT(
             "SELECT count(*) as nb 
             FROM INSCRIRE 
@@ -117,6 +108,17 @@ class PlongeeModel
         return $inscrits->nb > 0;
     }
 
+    public function isRightLevel(int $sea_id, String $plon_date, String $user_email){
+        $answer = DB::SELECT(
+            "SELECT count(*) as nb 
+            FROM INSCRIRE 
+            JOIN ADHERENT USING(AD_EMAIL)
+            JOIN PLONGEE USING(SEA_ID, PLON_DATE)
+            WHERE SEA_ID = ? and PLON_DATE = ? and AD_EMAIL = ? AND PLON_NIVEAU < AD_NIVEAU",
+                    [$sea_id, $plon_date, $user_email]);
+            $nivSuff = array_shift($answer);
+        return $nivSuff->nb <> 0;
+    }
     /**
      * Checks whether given diving is fully set and valid to register to
      *

@@ -64,7 +64,7 @@
             $lDay = date_create($year.'-'.($month+1).'-01');
 
             $result = DB::Select(
-                "SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
+                "SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN, PLON_NIVEAU
                 FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
                 ORDER BY PLON_DATE ASC",
                 [$fDay, $lDay]
@@ -76,16 +76,12 @@
                 $year = date("Y");
                 $fDay = date_create($year.'-'.$month.'-1');
                 $lDay = date_create($year.'-'.($month+1).'-1');
-                //Also needs to get validity of session (show checkbox if yes, greys out if not)
-                /*$result = DB::Select(
-                    "SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
-                    FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
-                    ORDER BY PLON_DATE ASC",
-                    [$fDay, $lDay]
-                );*/
+                
                 //DD-MM-YYYY HH-mm format
                 $sea_id = $line->SEA_ID;
                 $plon_date = $line->PLON_DATE;
+                $plon_niveau = $line->PLON_NIVEAU;
+
                 $fSessionDate = date("d-m-Y",strtotime($line->PLON_DATE));
                 $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
                 $endingTime = date("H:i",strtotime($line->PLON_FIN));
@@ -109,15 +105,23 @@
                     else{
                         echo "\">";
                     }
-                    echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p>";
-
+                    echo "<p>$plon_date de $startingTime à $endingTime        Niveau min. : $plon_niveau</p>";
+                    //echo "Test : sea:$sea_id date:$plon_date isReg:".PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com");
                     if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
-                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                        echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
                     }else if($complete){
                         echo "<p>COMPLET</p>";
                     }
                     else{
-                        echo "<a href=\"register/$plon_date/$sea_id\">S'inscrire</a>";
+                        //echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
+                        if(PlongeeController::isRightLevel($sea_id, $plon_date, "chloe.young@gmail.com"))
+                        {
+                            echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
+                        }
+                        else
+                        {
+                            echo "<div class=\"regButton\"><a>Niveau Insuffisant</a></div>";
+                        }
                     }
                 }
                 else{
