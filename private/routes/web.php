@@ -50,8 +50,12 @@ Route::get('/creneau', function () {
 });
 
 Route::get('/sessionList', function () {
-    return view('sessionList');
+    return view('session/list');
 });
+
+Route::get('/register/{date}/{sea_id}', [PlongeeController::class, 'register']);
+Route::get('/unregister{date}{sea_id}', [PlongeeController::class, 'unregister']);
+//Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/editSession', function () {
     return view('editSession');
@@ -66,8 +70,6 @@ Route::get('/roles',
     [Responsable::class, 'setRolls']
 );
 Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
-
-//Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/profileSecretary', function() {
 	return view('profileSecretary');

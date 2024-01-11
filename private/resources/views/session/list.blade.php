@@ -1,9 +1,8 @@
 <?php
-    //use App\Models\sessionListModel;
-    use app\Http\Controllers\PlongeeController;
+    use App\Http\Controllers\PlongeeController;
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,16 +26,15 @@
   </header>
 <?php
     
-    $controller = new PlongeeController();
-    if(isset($_GET['action'])){
+    /*if(isset($_GET['action'])){
         if($_GET['action']=='register'){
             $controller->register($_GET['sea_id'], $_GET['plon_date'], session('email'));
         }else{
             $controller->unregister($_GET['sea_id'], $_GET['plon_date'], session('email'));
         }
         
-    }
-    //$controller->displayDivings();
+    }*/
+    //PlongeeController::displayDivings();
 ?>
 
   <div class="monthContainer">
@@ -56,7 +54,7 @@
 
         function getMonthlySessions($month)
         {
-            $controller = new PlongeeController();
+            //$controller = new PlongeeController();
             $year = date("Y");
             $fDay = date_create($year.'-'.$month.'-01');
             $lDay = date_create($year.'-'.($month+1).'-01');
@@ -65,8 +63,7 @@
                 "SELECT PLON_DATE FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?",
                 [$fDay, $lDay]
             );
-            echo "<form action=\"{{ route('sessionsChanged.submit') }}\" method=\"post\" onsubmit=\"updateCheckBox()\">";
-            echo "@csrf";
+            
 
             foreach($result as $line)
             {
@@ -75,7 +72,7 @@
                 $lDay = date_create($year.'-'.($month+1).'-1');
                 //Also needs to get validity of session (show checkbox if yes, greys out if not)
                 $result = DB::Select(
-                    "SELECT DEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
+                    "SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
                     FROM PLONGEE WHERE PLON_DATE >= ? AND PLON_DATE < ?
                     ORDER BY PLON_DATE ASC",
                     [$fDay, $lDay]
@@ -91,7 +88,7 @@
                     
                     
                     //Changes background color if session is valid, invalid or full
-                    if($controller->isComplete($sea_id, $plon_date))
+                    if(PlongeeController::isComplete($sea_id, $plon_date))
                     {
                         //If full, container is redMarked
                         echo "<div class=\"redMarked\">";
@@ -114,10 +111,10 @@
                     /*}
                     */
 
-                    if($controller->isRegistered($sea_id, $plon_date, session('email'))){
-                        echo "<a href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id?action=\"unregister\" \">Se retirer</a>";
+                    if(PlongeeController::isRegistered($sea_id, $plon_date, "session('email')")){
+                        echo "<a href=\"register/$fSessionDate/$sea_id\">Se retirer</a>";
                     }else{
-                        echo "<a href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id?action=\"register\" \">S'inscrire</a>";
+                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">S'inscrire</a>";
                     }
 
                     echo "</div>";
