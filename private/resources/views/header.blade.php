@@ -2,15 +2,14 @@
   <img class = "Logo" src="../img/logo.png" alt="Logo">
   <nav>
     <div class="NavBar">
-      <p class="NavText">Plongées anuelle restantes : 90</p>
+    @foreach($resultats as $resultat)
+      <p class="NavText">Plongées anuelle restantes : {{ $resultat->total}}</p>
+      @endforeach
       <button class = "NavButton">RESERVER SÉANCE</button>
       <button class = "NavButton">PROFIL</button>
       <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
     </div>
   </nav>
-  @foreach($resultats as $resultat)
-    <p>Le nombre de plongée restants est {{ $resultat->total}}
-  @endforeach
 
 </header> 
 
