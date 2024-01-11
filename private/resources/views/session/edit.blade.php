@@ -62,8 +62,8 @@
 
         <p class="label">Niveau min. :</p>
 
-        <input type="text" name="pSession" value="{{$session['SEA_ID']}}">
-        <input type="text" name="pDate" value="{{$session['PLON_DATE']}}">
+        <input type="hidden" name="pSession" value="{{$session['SEA_ID']}}">
+        <input type="hidden" name="pDate" value="{{$session['PLON_DATE']}}">
 
         <button type="submit">Ajouter</button>
       </form>
