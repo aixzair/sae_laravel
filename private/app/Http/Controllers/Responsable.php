@@ -11,7 +11,7 @@ use App\Models\Member;
 class Responsable extends BaseController {
 
     function setRolls(string $message = "") {
-        return view('roles', [
+        return view('role/set', [
             'names' => (new Responsabilite())->getResponsabilities(),
             'message' => $message
         ]);
@@ -54,5 +54,9 @@ class Responsable extends BaseController {
 
     function addSession(){
         return view('addSession', ['members' => (new Member())->getMembers()]);
+    }
+
+    function editSession(){
+        return view('editSession', ['members' => (new Member())->getMembers()]);
     }
 }
