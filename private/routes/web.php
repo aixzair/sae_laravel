@@ -41,8 +41,8 @@ Route::get('/session/add',
 )->name('session/add');
 
 Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
-->name('session/add.submit')
-->middleware('role:6');;
+->name('session/add.submit');
+//->middleware('role:6');
 
 Route::get('/session/show', 
     [SessionManager::class, 'show']
@@ -66,12 +66,12 @@ Route::get('/session/list', function() {
 
 Route::get('/role/set',
     [Responsable::class, 'setRolls']
-)->name('role/set')
-->middleware('role:6');
+)->name('role/set');
+//->middleware('role:6');
 
 Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
-->name('role/set.submit')
-->middleware('role:6');
+->name('role/set.submit');
+//->middleware('role:6');
 
 
 // ACCEUIL ---------------------------------
@@ -87,8 +87,8 @@ Route::get('/acceuil/secretaire', function () {
 
 Route::get('/acceuil/responsable', function () {
     return view('acceuil/responsable');
-})->name('responsable.home')
-->middleware('role:6');
+})->name('responsable.home');
+//->middleware('role:6');
 
 Route::get('/acceuil/adherent', function () {
     return view('acceuil/member');

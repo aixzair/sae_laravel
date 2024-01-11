@@ -1,7 +1,3 @@
-<?php
-        use Illuminate\Support\Facades\DB;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,24 +7,27 @@
     <title>Ajouter plongée</title>
 
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+
+    <script defer src="{{ asset('/js/session.js') }}"></script>
 </head>
 <body>
     @include('header')
 
     <!-- Si il y a eu une tentative d'ajoute, indique la finalité -->
-    @if(session('message'))
+    @if(session()->has('message'))
         <script>alert("{{ session('message') }}");</script>
+        <?php session()->forget('message'); ?>
     @endif
 
-    <form action="{{ route('session/add.submit') }}" method="post">
+    <form action="{{ route('session/add.submit') }}" method="post" onsubmit="return check()">
     @csrf
 
         <p> Date de la plongée </p>
-        <input type="date" name="day-start" min="2018-01-01" required/>
+        <input id="addSessionDate" type="date" name="day-start" required/>
         <br>
 
         <p> Séance: </p>
-        <select name="session" required>
+        <select id="sessionHour" name="session" required>
             <option value="">--Sélectionner une période de la journée--</option>
             <option value="morning">Matin</option>
             <option value="afternoon">Apres-Midi</option>
@@ -36,7 +35,7 @@
         </select> <br>
 
         <p> Effectifs </p>
-        <input type="number" id="tentacles" name="effective" min="0" max="3" />
+        <input type="number" id="tentacles" name="effective" min="0" max="3" required/>
 
         <p> Bateau: </p>
         <select name="boat">
