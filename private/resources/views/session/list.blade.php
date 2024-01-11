@@ -91,13 +91,13 @@
                     if(PlongeeController::isComplete($sea_id, $plon_date))
                     {
                         //If full, container is redMarked
-                        echo "<div class=\"redMarked\">";
+                        echo "<div class=\"redMarked\"";
                     }
                     else
                     {
-                        echo "<div>";
+                        echo "<div";
                     }
-                    echo "<div class=\"session\"><p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    echo " class=\"session\"><p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
                     //dynamic link for each session : href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id\"
                     /*if(session is valid)
                     {*/
