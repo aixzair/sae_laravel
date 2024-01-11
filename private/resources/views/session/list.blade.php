@@ -58,7 +58,7 @@
                 }
                 echo "<p>$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
                 
-                echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
+echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
 
                 if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
                     echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
