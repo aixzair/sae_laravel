@@ -63,7 +63,7 @@ class PlongeeTest extends TestCase{
 
         $sea_id = 1;
         $plon_date = '2024-04-01';
-       $this->assertFalse($model->isComplete($sea_id, $plon_date))
+       $this->assertFalse($model->isComplete($sea_id, $plon_date));
     }
 }
 
