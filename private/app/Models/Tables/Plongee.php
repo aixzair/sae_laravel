@@ -11,4 +11,7 @@ class Plongee {
     public int $PLON_EFFECTIFS;
     public string $BAT_ID;
     public string $LIEU_ID;
+
+    public string $primSEA_ID;
+    public string $primPLON_DATE;
 }

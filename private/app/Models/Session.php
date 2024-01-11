@@ -51,6 +51,48 @@ class Session {
         }
     }
 
+    function editSession(Plongee $plongee) : bool {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        try {
+            return DB::update(
+                "UPDATE PLONGEE SET
+                    SEA_ID = ?, 
+                    PLON_DATE = ?, 
+                    PLON_DIRECTEUR = ?, 
+                    BAT_ID = ?,
+                    LIEU_ID = ?, 
+                    PLON_SECURITE = ?, 
+                    PLON_PILOTE = ?
+                    WHERE SEA_ID = ? AND PLON_DATE = ? ", 
+
+                [
+                    $plongee->SEA_ID,
+                    $plongee->PLON_DATE,
+                    $plongee->PLON_DIRECTEUR,
+                    $plongee->BAT_ID,
+                    1,
+                    $plongee->PLON_SECURITE,
+                    $plongee->PLON_PILOTE,
+                    $plongee->primSEA_ID,
+                    $plongee->primPLON_DATE
+                ]
+                /*[
+                    $plongee->SEA_ID, 
+                    $plongee->PLON_DATE, 
+                    $plongee->PLON_DIRECTEUR, 
+                    $plongee->BAT_ID,
+                    1,
+                    $plongee->PLON_SECURITE, 
+                    $plongee->PLON_PILOTE, 
+                    $plongee->primSEA_ID, $plongee->primPLON_DATE
+                ]*/
+            );
+        } catch (\Exception $exception) {
+            return false;
+        }
+    }
+
     public function getSiteName(Plongee $plongee) : string {
         $lines = DB::select(
             "SELECT LIEU_NOM FROM LIEU WHERE LIEU_ID = ? LIMIT 1",
