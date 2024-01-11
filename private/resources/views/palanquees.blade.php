@@ -8,15 +8,16 @@
     <title>Formulaire Palanque</title>
 </head>
 <body>
-
+@if (!isset($nb_palanque))
     <form action="{{ route('get.palanque.details.form') }}" method="post">
     @csrf
 
-    <label for="nb_palanque">Nombre de palanques :</label>
+    <label for="nb_palanque">Nombre de palanquée :</label>
     <input type="number" name="nb_palanque" id="nb_palanque" required>
 
     <button type="submit">Valider</button>
-</form>
+	</form>
+@endif
 
 @if (isset($nb_palanque))
     <form action="{{ route('store.palanque.details') }}" method="post">
@@ -41,19 +42,37 @@
     </form>
 @endif
 
-@if (session('success_message'))
-    <div class="alert alert-success">
-        
-		<form action="{{ route('store.adherent.details') }}" method="post">
+@if (isset($participantsInscrits))
+    <form action="{{ route('store.adherent.details') }}" method="post">
         @csrf
+		<input type="hidden" name="nb_adherent" value="{{count($participantsInscrits)}}">
 		
-        @endfor
+		@foreach ($max_idpalanques as $key => $max_idpalanque)
+            <input type="hidden" name="max_idpalanques[{{ $key }}]" value="{{ $max_idpalanque }}">
+        @endforeach
+		
+       @for ($i = 0; $i < count($participantsInscrits); $i++)
+			<h2>Adhérent</h2>
+			<p>Nom: {{ $participantsInscrits[$i]->AD_NOM }}</p>
+			<p>Prénom: {{ $participantsInscrits[$i]->AD_PRENOM }}</p>
+
+			<!-- Ajoutez un champ d'entrée prérempli pour l'e-mail -->
+			<label for="email_{{ $participantsInscrits[$i]->AD_EMAIL }}">E-mail :</label>
+			<input type="hidden" name="emails[{{$i}}]" id="email_{{ $participantsInscrits[$i]->AD_EMAIL }}" value="{{ $participantsInscrits[$i]->AD_EMAIL }}" readonly>
+		
+			<select name="nombrePalanques[{{$i}}]" id="nombrePalanques">
+				@foreach ($max_idpalanques as $key => $max_idpalanque)
+					<option value="{{$max_idpalanque}}">{{ $max_idpalanque }} palanquée{{ $max_idpalanque > 1 ? 's' : '' }}</option>
+				@endforeach
+			</select>
+		@endfor
+
 
         <button type="submit">Enregistrer</button>
     </form>
-		
-    </div>
 @endif
+
+
 	
 
 </body>

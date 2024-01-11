@@ -79,23 +79,10 @@ Route::get('/profilResp', function() {
 	return view('profilResp');
 });
 
-/*Route::get('/palanquees', function() {
-	return view('palanquees');
-});*/
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
 
-//Route::match(['get', 'post'],'/generate-palanquees', [PalanqueeController::class, 'generatePalanquees'])->name('generate-palanquees');
 
-//Route::match(['get', 'post'],'/save-palanquees', [PalanqueeController::class, 'savePalanquees'])->name('save-palanquees');
-
-// routes/web.php
-
-
-
-/*Route::match(['get', 'post']'/palanquees', [PalanqueController::class, 'index'])->name('palanque.index');
-Route::match(['get', 'post']'/palanque', [PalanqueController::class, 'store'])->name('palanque.store');
-Route::post('/store-palanque-details', [PalanqueController::class, 'storePalanqueDetails'])->name('store.palanque.details');*/
 
 
 Route::match(['get', 'post'],'/palanquees', [PalanqueController::class, 'index'])->name('palanquees.index');
