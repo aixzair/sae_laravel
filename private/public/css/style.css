@@ -434,18 +434,6 @@ header{
     font-size: 2em;
 }
 
-.session{
-    background-color: #c7c7c77a;
-    height: 8vh;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 1em;
-    margin-top: 2vh;
-    margin-left: 4vw;
-    margin-right: 4vw;
-    text-align: center;
-}
-
 .session p{
     
     vertical-align: middle;
@@ -461,8 +449,24 @@ header{
     width: 2vh;
 }
 
+.session{
+    background-color: #c7c7c77a;
+    height: 8vh;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 1em;
+    margin-top: 2vh;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    text-align: center;
+}
+
 .redMarked{
-    background-color: rgba(255, 0, 0, 0.548);
+    background-color: rgba(255, 0, 0, 0.623);
+}
+
+.greenMarked{
+    background-color: rgba(3, 145, 3, 0.623);
 }
 
 /* ----------------------------- Style Session Management -------------------------- */

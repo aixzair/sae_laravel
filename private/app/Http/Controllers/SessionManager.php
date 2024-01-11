@@ -123,9 +123,11 @@ class SessionManager extends BaseController {
         //$plongee->PLON_EFFECTIFS = $sessionModel->getEffectif($plongee, $date);
 
         if ($sessionModel->addSession($plongee)) {
-            return view('welcome');
+            return redirect()->route('session/add')
+            ->with('message', "Séance ajoutée avec succès.");
         } else {
-            return $this->add();
+            return redirect()->route('session/add')
+            ->with('message', "Erreur lors de l ajout de la séance.");
         }
     }
 
