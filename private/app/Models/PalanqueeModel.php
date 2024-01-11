@@ -48,6 +48,7 @@ class PalanqueeModel {
      * @param integer $nb_palanquee the number of group to create 
      * @return void
      */
+    
     public function createPalanquees(int $sea_id, String $plon_date, int $nb_palanquee){
         $existing = $this->getPalanqueesNumber($sea_id, $plon_date);
         for($i = $existing; $i < $nb_palanquee; $i++){
@@ -66,7 +67,9 @@ class PalanqueeModel {
      * @return void
      */
     public function deletePalanquees(int $sea_id, String $plon_date){
-
+        require("connexion.php");
+        $req = $bdd->prepare("DELETE FROM PALANQUE WHERE SEA_ID = $sea_id AND PLON_DATE = '$plon_date'");
+        $req->execute();
     }
 
     /**

@@ -9,14 +9,14 @@ class PalanqueeController /*extends Controller*/{
      * @param integer $pal_id the planquee's identifier
      * @return void
      */
-    public function formulairePalanquee(int $pal_id){
+    public function formulairePalanquee(){
         echo '
             <form method="post">
                 <label>Effectif</label>
                 <select>
                     <option value=""></option>
-                    <option value=2></option>
-                    <option value=3></option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
                 </select>
                 <label>Profondeur maximum</label>
                 <input type="number" name="prof_max" max=70 min=1 />
@@ -24,6 +24,7 @@ class PalanqueeController /*extends Controller*/{
                 <input type="time" name="heure_debut"></input>
                 <label>Heure de fin</label>
                 <input type="time" name="heure_fin"></input>
+                <button type="submit">Valider</button>
             </form>';
 
     }
@@ -39,13 +40,14 @@ class PalanqueeController /*extends Controller*/{
         $palanquees_number = $model->getPalanqueesNumber(1, "2024-04-01");
         $palanquees = $model->getPalanquees(1, "2024-04-01");
 
+
         if(isset($_POST['nb_palanquee'])){
             $palanquees_number = $_POST['nb_palanquee'];
-            $model->createPalanquees(1, "2024-04-01", $palanquees_number);
+            $model->deletePalanquees(1, "2024-04-01");
         }
 
         for($i = 0; $i < $palanquees_number; $i++){
-            $this->formulairePalanquee($palanquees[$i]);
+            $this->formulairePalanquee();
         }
 
         echo '<form method="post">';
@@ -62,7 +64,7 @@ class PalanqueeController /*extends Controller*/{
                     <td>
                     <select>
                         <option value=""></option>';
-            for($i = 0; $i < $palanquees_number; $i++){
+            for($i = 1; $i <= $palanquees_number; $i++){
                 echo "<option value=$i>$i</option>";
             }
 
