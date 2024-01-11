@@ -39,6 +39,7 @@ Route::get('\connectionError', function() {
 Route::get('/session/add', 
     [SessionManager::class, 'add']
 )->name('session/add');
+
 Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
 ->name('session/add.submit')
 ->middleware('role:6');;
@@ -51,6 +52,7 @@ Route::get('/session/edit',
     [SessionManager::class, 'edit']
 )
 ->middleware('role:6');
+
 Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
 ->name('session/edit.submit')
 ->middleware('role:6');
@@ -66,6 +68,7 @@ Route::get('/role/set',
     [Responsable::class, 'setRolls']
 )->name('role/set')
 ->middleware('role:6');
+
 Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 ->name('role/set.submit')
 ->middleware('role:6');
@@ -97,20 +100,17 @@ Route::get('/acceuil/adherent', function () {
 
 Route::get('/creneau', function () {
     return view('creneau');
-})
-->middleware('role:2');
+})->middleware('role:2');
 // Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
 
 Route::get(
     '/register/{date}/{sea_id}',
     [PlongeeController::class, 'register']
-)
-->middleware('role:2');
+)->middleware('role:2');
 
 Route::get(
     '/unregister{date}{sea_id}',
     [PlongeeController::class, 'unregister']
-)
-->middleware('role:2');
+)->middleware('role:2');
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
