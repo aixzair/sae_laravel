@@ -46,7 +46,8 @@ Route::post('/plongée/addSubmit', [SessionManager::class, 'addSubmit'])
 
 Route::get('/plongée/show', 
     [SessionManager::class, 'show']
-)->middleware('role: 2');
+)->name('session/show');
+//->middleware('role: 2');
 
 Route::get('/plongée/edit', 
     [SessionManager::class, 'edit']

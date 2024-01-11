@@ -69,6 +69,7 @@ use App\Http\Controllers\PlongeeController;
                         } else {
                             echo "<div class=\"session ";
                         }
+
                         if (PlongeeController::isValid($sea_id, $plon_date)) {
                             if (!$complete) {
                                 echo "greenMarked\">";
@@ -77,8 +78,13 @@ use App\Http\Controllers\PlongeeController;
                             }
                             echo "<p> " . $plon_date . ' ' . $startingTime . ' à ' . $endingTime . "</p>";
                         } else {
-                            echo "\">";
-                            echo "<a href='#'><p> " . $plon_date . ' ' . $startingTime . ' à ' . $endingTime . "</p><p></p></a>";
+                            echo "\">"; ?>
+                            <a href="{{ route('session/show', 
+                                ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
+                            >
+                                <p> <?= $plon_date ?> <?= $startingTime ?> à <?= $endingTime ?> </p><p></p>
+                            </a> 
+                            <?php
                         }
 
 

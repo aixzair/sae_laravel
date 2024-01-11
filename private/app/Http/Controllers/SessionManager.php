@@ -39,7 +39,7 @@ class SessionManager extends BaseController {
 
         return view('session/show', [
             "session" => $sessionShow,
-            //"memberCount" => $session->PLON_EFFECTIFS
+            "memberCount" => 0 //$session->PLON_EFFECTIFS
         ]);
     }
 
