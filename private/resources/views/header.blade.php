@@ -1,3 +1,4 @@
+
 <header>
   <img class = "Logo" src="../img/logo.png" alt="Logo">
   <nav>
@@ -7,11 +8,10 @@
       @endforeach
       <button class = "NavButton">RESERVER SÉANCE</button>
       <button class = "NavButton">PROFIL</button>
-      <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
+      <a href="/deconnexion" class="button"><img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion"></a>
     </div>
   </nav>
 
-</header> 
 
 
 
@@ -20,3 +20,6 @@ join inscrire using (sea_id,plon_date)
 join adherent using(ad_email)
 where ad_email =  'benjamin.allen@gmail.com'
 group by ad_email;*/
+
+</header>
+

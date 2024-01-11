@@ -61,8 +61,8 @@ Route::get('/sessionEdited', function () {
     return view('sessionEdited');
 });
 
-Route::get('/Plongee99', [VotreController::class, 'votreMethode']);
 
+Route::get('/Plongee99', [VotreController::class, 'votreMethode']);
 
 // Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
 
