@@ -46,6 +46,10 @@ Route::get('/acceuil/responsable', function () {
     return view('acceuil/responsable');
 })->name('responsable.home');
 
+Route::get('/acceuil/adherent', function () {
+    return view('acceuil/member');
+})->name('member.home');
+
 // AUTRES ---------------------------------
 
 Route::get('/creneau', function () {

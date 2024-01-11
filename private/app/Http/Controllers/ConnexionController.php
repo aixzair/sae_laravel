@@ -40,10 +40,10 @@ class ConnexionController extends BaseController
 			return view('profileSecretary');
 		}
 		if(session('role')===2 || session('role')===3|| session('role')===4){
-			return redirect()->route('/profil/show');
+			return redirect()->route('member.home');
 		}
 		if(session('role')===5){
-			return redirect()->route('/profil/show');
+			return redirect()->route('member.home');
 		}
 		if(session('role')===6){
 			return redirect()->route('responsable.home');
