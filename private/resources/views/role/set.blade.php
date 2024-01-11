@@ -23,11 +23,7 @@
 
         <p>{{$message}}</p>
 
-<<<<<<< HEAD:private/resources/views/roles.blade.php
-        <form action="{{ route('roles.submit') }}" method="post" onsubmit="updateCheckBox()">
-=======
         <form action="{{ route('role/set.submit') }}" method="post" onsubmit="updateCheckBox()">
->>>>>>> mvc_stable:private/resources/views/role/set.blade.php
         @csrf
             <table class="roleTab">
                 <tr>
