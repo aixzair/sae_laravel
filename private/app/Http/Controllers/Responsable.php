@@ -49,7 +49,8 @@ class Responsable extends BaseController {
             }
         }
 
-        return $this->setRolls();
+        echo '<script>alert("Opération réussie!");</script>';
+        return redirect()->route('responsable.home');
     }
 
     function addSession(){

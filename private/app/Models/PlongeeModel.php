@@ -1,0 +1,149 @@
+<?php
+
+namespace app\Models;
+use Illuminate\Support\Facades\DB;
+
+class PlongeeModel
+{
+    public function __construct(){
+
+    }
+
+    /**
+     * register a diver to a dive
+     * @param int $sea_id the dive's session id
+     * @param String $plon_date the dive's date
+     * @param String $user_email the diver's email 
+     * @return void
+     */
+    public function register(int $sea_id, String $plon_date, String $user_email){
+        /*require("connexion.php");
+        $req = $bdd->prepare("INSERT INTO INSCRIRE(sea_id, plon_date, ad_email) VALUES($sea_id, '$plon_date', '$user_email');");
+        //echo "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) VALUES($sea_id, '$plon_date', '$user_email');";
+        $req->execute();*/
+
+        DB::insert(
+            "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) VALUES (
+                (? , ?, ?)
+            )",
+            [$sea_id, $plon_date, $user_email]
+        );
+        DB::commit();
+
+        //refresh page?
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param int $sea_id the dive's session id
+     * @param String $plon_date the dive's date
+     * @param String $user_email the diver's email 
+     * @return void
+     */
+    public function unregister(int $sea_id, String $plon_date, String $user_email){
+        /*require("connexion.php");
+        $req = $bdd->prepare("delete from INSCRIRE where SEA_ID=$sea_id and plon_date='$plon_date' and ad_email='$user_email';");
+        //echo "delete from INSCRIRE where SEA_ID=$sea_id and plon_date='$plon_date' and ad_email='$user_email';";
+        $req->execute();*/
+        
+        DB::delete(
+            "DELETE FROM INSCRIRE WHERE SEA_ID = ?, PLON_DATE = ?, AD_EMAIL = ?
+            )",
+            [$sea_id, $plon_date, $user_email]
+        );
+        DB::commit();
+
+        //refresh ?
+    }
+
+    /*public function insertRegisteredSession($sea_id, $plon_date, $email)
+    {
+
+    }
+
+    public function deleteRegisteredSession($sea_id, $plon_date, $email)
+    {
+        $answer = DB::table('INSCRIRE')->where('column_name', '=', $value)->delete();
+    }*/
+
+    /**
+     * search all of the upcomings diving sessions
+     * 
+     * @return a list of all the upcomings dives
+     */
+    public function list(){
+        
+
+        //$answer = $bdd->query("select sea_id, plon_date, bat_id, plon_effectifs, plon_observation, lieu_nom, plon_debut, plon_fin from PLONGEE join LIEU using (lieu_id) order by plon_date;");
+        $answer = DB::SELECT(
+            "SELECT PLON_DATE, SEA_ID, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
+                    FROM PLONGEE
+                    ORDER BY PLON_DATE ASC");
+        return $answer;
+    }
+
+    /**
+     * check if a diving session is complete
+     * 
+     * @param integer $sea_id the session's id
+     * @param String $plon_date the session's date
+     * @return boolean true if the dive is complete in participants, false otherwise
+     */
+    public function isComplete(int $sea_id, String $plon_date):bool{
+        $answer = DB::SELECT(
+            "SELECT PLON_EFFECTIFS_MAX
+                    FROM PLONGEE
+                    WHERE SEA_ID = ? AND PLON_DATE = ?
+                    ORDER BY PLON_EFFECTIFS_MAX ASC",
+                    [$sea_id, $plon_date]);
+        //$answer = $bdd->query("select plon_effectifs from PLONGEE where sea_id = $sea_id and plon_date = '$plon_date';");
+        $max = array_shift($answer);
+
+        /*while ($session = $answer->fetch()){ 
+            $max = $session['plon_effectifs'];
+        }
+        foreach($)*/
+
+        $answer = DB::SELECT(
+            "SELECT COUNT(*) AS inscrits FROM INSCRIRE
+                    WHERE SEA_ID = ? AND PLON_DATE = ?",
+                    [$sea_id, $plon_date]);
+        //$answer = $bdd->query("select count(*) as inscrits from INSCRIRE where sea_id = $sea_id and plon_date = '$plon_date';");
+        $inscrits = array_shift($answer);
+        /*while ($session = $answer->fetch()){ 
+            $inscrits = $session['inscrits'];
+        }*/
+        return $inscrits >= $max;
+    }
+
+    /**
+     * Check if a user is registered on a diving session
+     *
+     * @param integer $sea_id the session's id
+     * @param String $plon_date the session's date
+     * @param String $user_email the user's email address
+     * @return boolean true if the user is already registered for this session, false otherwise
+     */
+    public function isRegistered(int $sea_id, String $plon_date, String $user_email){
+        //SELECT count(*) FROM `INSCRIRE` WHERE sea_id = 1 and PLON_DATE = '2024-04-01' and AD_EMAIL = 'abigail.garcia@gmail.com' 
+        /*require("connexion.php");
+        $answer = $bdd->query("SELECT count(*) as nb FROM INSCRIRE WHERE sea_id = $sea_id and PLON_DATE = '$plon_date' and AD_EMAIL = '$user_email';");
+        while ($session = $answer->fetch()){ 
+            if($session['nb'] > 0){
+                return true;
+            };
+        }*/
+        $answer = DB::SELECT(
+            "SELECT count(*) as nb 
+            FROM INSCRIRE 
+            WHERE sea_id = ? and PLON_DATE = ? and AD_EMAIL = ?",
+                    [$sea_id, $plon_date, $user_email]);
+            $inscrits = array_shift($answer);
+        return $inscrits > 0;
+    }
+}
+
+
+
+?>

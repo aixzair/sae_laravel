@@ -6,8 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
-
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
     <title>Attribution des rôles</title>
 
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -18,7 +17,7 @@
     <main>
         <div>
             <button class="back">
-                <img src="../img/arrow-left-solid.svg" alt="Retour">
+                <img src="{{ asset('/images/arrow-left-solid.svg')}}" alt="Retour">
             </button>
         </div>
 
