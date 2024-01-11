@@ -95,24 +95,4 @@ class Member {
 
         return $pilots;
     }
-
-    public function getSecurities() : array {
-        $securities = [];
-        $lines = DB::select(
-            "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (
-                select AD_EMAIL FROM RESPONSABILISER WHERE RES_ID = (
-                    select RES_ID FROM RESPONSABILITE WHERE RES_NOM = \"sécurité\"
-                )
-            )"
-        );
-
-        foreach ($lines as $line) {
-            $security = new Adherent();
-            $security->AD_NOM = $line->AD_NOM;
-            $security->AD_PRENOM = $line->AD_PRENOM;
-            $securities[] = $security;
-        }
-
-        return $securities;
-    }
 }

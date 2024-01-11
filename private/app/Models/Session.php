@@ -28,7 +28,7 @@ class Session {
             $plongee->PLON_PILOTE = $line->PLON_PILOTE;
             $plongee->BAT_ID = $line->BAT_ID;
             $plongee->LIEU_ID = $line->LIEU_ID;
-            $plongee->PLON_EFFECTIFS = $line->PLON_EFFECTIFS;
+            $plongee->PLON_EFFECTIFS = $line->SEA_ID;
         }
 
         return $plongee;
@@ -76,4 +76,42 @@ class Session {
 
         return "?";
     }
+
+    public function getSecurities() : array {
+        $securities = [];
+        $lines = DB::select(
+            "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (
+                select AD_EMAIL FROM RESPONSABILISER WHERE RES_ID = (
+                    select RES_ID FROM RESPONSABILITE WHERE RES_NOM = \"sécurité\"
+                )
+            )"
+        );
+
+        foreach ($lines as $line) {
+            $security = new Adherent();
+            $security->AD_NOM = $line->AD_NOM;
+            $security->AD_PRENOM = $line->AD_PRENOM;
+            $securities[] = $security;
+        }
+
+        return $securities;
+    }
+
+    /*public function getEffectif(string $SEA_ID, string $PLON_DATE) : ?Plongee {
+        $plongee = new PLONGEE();
+
+        $lines = DB::select(
+            "SELECT PLON_EFFECTIFS FROM PLONGEE WHERE SEA_ID = ? AND PLON_DATE = ? LIMIT 1",
+            [$SEA_ID, $PLON_DATE]
+        );
+
+        foreach ($lines as $line) {
+
+            $plongee->SEA_ID = $SEA_ID;
+            $plongee->PLON_DATE = $PLON_DATE;
+        }
+
+        return $plongee;
+    }*/
+
 }

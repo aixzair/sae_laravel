@@ -25,6 +25,9 @@
             <option value="evening">Soir</option>
         </select> <br>
 
+        <p> Effectifs </p>
+        <input type="number" id="tentacles" name="effective" min="0" max="3" />
+
         <p> Bateau: </p>
         <select name="boat">
             @foreach($boats as $boat)
