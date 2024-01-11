@@ -15,11 +15,9 @@ use App\Http\Controllers\DeconnexionController;
 |
 */
 
-use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Responsable;
 
-use App\Http\Controllers\ConnexionController;
 use app\Http\Controllers\PlongeeController;
 use App\Http\Controllers\SessionManager;
 use App\Http\Controllers\sessionListController;
