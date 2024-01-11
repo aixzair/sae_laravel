@@ -25,7 +25,7 @@ class PlongeeController extends Controller
         echo"<table>";
         while ($session = $divings->fetch()){ 
 
-            if($model->isRegistered($session['sea_id'], $session['plon_date'], "abigail.garcia@gmail.com")){ //TODO replace the email address
+            if($model->isRegistered($session['sea_id'], $session['plon_date'], "chloe.young@gmail.com")){ //TODO replace the email address
                 echo '
                     <tr>
                         <td>' . $session['plon_date'] . " - " . $session['plon_debut'] .' à ' . $session['plon_fin'] . ' <a href="dives_list.php?action=deregister&sea_id=' . $session['sea_id'] . '&plon_date='. $session['plon_date'] .'">Se retirer<a/><td/>
@@ -54,10 +54,12 @@ class PlongeeController extends Controller
      * @param String $plon_date the dive's date
      * @return void
      */
-    public function register(int $sea_id, String $date){
+    public function register(String $date, int $sea_id){
         $modele = new PlongeeModel();
-        $modele->register($sea_id, $date, session('email'));
-        return view('sessionList');
+        $modele->register($sea_id, $date, "chloe.young@gmail.com");
+        //return view('session/list');
+        //return redirect('/sessionList');
+        return back();
     }
 
     /**
@@ -67,10 +69,12 @@ class PlongeeController extends Controller
      * @param String $plon_date $plon_date the dive's date
      * @return void
      */
-    public function unregister(int $sea_id, String $date){
+    public function unregister(String $date, int $sea_id){
         $modele = new PlongeeModel();
-        $modele->unregister($sea_id, $date, session('email'));
-        return view('sessionList');
+        $modele->unregister($sea_id, $date, "chloe.young@gmail.com");
+        //return view('session/list');
+        //return redirect('/sessionList');
+        return back();
     }
 
     public static function isComplete(int $sea_id, String $plon_date){
@@ -88,33 +92,6 @@ class PlongeeController extends Controller
         return $modele->isValid($sea_id, $plon_date);
     }
 
-    /*public function setSessionSubmit(Request $request){
-        $data = $request->all();
-        $model = new PlongeeModel();
-
-        foreach ($data as $name => $sessions) {
-            foreach ($sessions as $value) {
-                $values = explode(':', $value);
-
-                if (count($values) < 2) {
-                    continue;
-                }
-
-                $name = explode(':', $value);
-                $areChecked = $model->isRegistered();
-
-                if ($values[1] == "true") {
-                    if (!$areChecked) {
-                        $model->insertRegisteredSession($values[0], $values[1]);
-                    }
-                } else {
-                    if ($areChecked) {
-                        $model->deleteRegisteredSession($values[0], $values[1]);
-                    }
-                }
-            }
-        }
-    }*/
 }
 
 ?>

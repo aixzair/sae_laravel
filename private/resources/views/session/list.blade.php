@@ -94,7 +94,7 @@
                 if($complete = PlongeeController::isComplete($sea_id, $plon_date))
                 {
                     //If full, container is redMarked
-                    echo "<div class=\"redMarked\"session ";
+                    echo "<div class=\"redMarked session ";
                 }
                 else
                 {
@@ -102,20 +102,27 @@
                 }
                 if(PlongeeController::isValid($sea_id, $plon_date))
                 {
-                    echo "greenMarked\">";
-                    echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
-                    if(PlongeeController::isRegistered($sea_id, $plon_date, "session('email')")){ //TODO : replacer l'adresse mail de l'utilisateur
-                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
-                    }else if($complete){
-                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                    if(!$complete)
+                    {
+                        echo "greenMarked\">";
                     }
                     else{
-                        echo "<a href=\"register/$fSessionDate/$sea_id\">S'inscrire</a>";
+                        echo "\">";
+                    }
+                    echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p>";
+
+                    if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
+                        echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
+                    }else if($complete){
+                        echo "<p>COMPLET</p>";
+                    }
+                    else{
+                        echo "<a href=\"register/$plon_date/$sea_id\">S'inscrire</a>";
                     }
                 }
                 else{
                     echo "\">";
-                    echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
+                    echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p><p></p>";
                 }
                 
 
@@ -190,6 +197,7 @@
         <button class="modal-btn categorie ">Catégories</button>
     </div>
     -->
+    </div>
 </body>
 <script>
     const ingredientContainer = document.querySelector(".ingredient-container");

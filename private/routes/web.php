@@ -71,7 +71,7 @@ Route::get('/acceuil/adherent', function () {
 // AUTRES ---------------------------------
 
 Route::get('/register/{date}/{sea_id}', [PlongeeController::class, 'register']);
-Route::get('/unregister{date}{sea_id}', [PlongeeController::class, 'unregister']);
+Route::get('/unregister/{date}/{sea_id}', [PlongeeController::class, 'unregister']);
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/editSession', function () {

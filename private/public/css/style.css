@@ -437,8 +437,10 @@ header{
 .session p{
     
     vertical-align: middle;
+    margin-left: 10vw;
+    width:30vw;
 }
-
+/*
 .sessionCheckbox{
     float: right;
     margin-top: auto;
@@ -447,7 +449,7 @@ header{
     margin-right: 4vw;
     height: 2vh;
     width: 2vh;
-}
+}*/
 
 .session{
     background-color: #c7c7c77a;
@@ -459,6 +461,27 @@ header{
     margin-left: 4vw;
     margin-right: 4vw;
     text-align: center;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.session a{
+    /*position: relative;
+    margin-right: 5vw;
+    margin-left: auto;*/
+    margin-left: 25vw;
+    margin-right: 5vw;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 2em;
+    vertical-align: middle;
+    text-align: center;
+    border-width: 1px;;
+    width:10vw;
+    background-color: white;
+    color: black;
+    font-size: 0.8em;
 }
 
 .redMarked{

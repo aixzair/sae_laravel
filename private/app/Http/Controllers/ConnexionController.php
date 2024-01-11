@@ -26,7 +26,7 @@ class ConnexionController extends BaseController
 			session()->flash('role',0);
 			session()->flash('email',"");
 			session()->flash('password',"");
-			return view('\connectionError');
+			return view('connectionError');
 		}
 		
 

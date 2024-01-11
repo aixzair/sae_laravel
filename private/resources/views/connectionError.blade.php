@@ -11,7 +11,7 @@
 </head>
 <body>
   <header>
-    <img class = "Logo" src="../img/logo.png" alt="Logo">
+    <img class = "Logo" src="{{asset('images/logo.png')}}" alt="Logo">
     
   </header>
   
