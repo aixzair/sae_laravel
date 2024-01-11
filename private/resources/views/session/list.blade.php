@@ -113,9 +113,9 @@
                         echo "<p>COMPLET</p>";
                     }
                     else{
-                        //echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
                         if(PlongeeController::isRightLevel($sea_id, $plon_date, "chloe.young@gmail.com"))
                         {
+                            echo "$plon_niveau";
                             echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
                         }
                         else

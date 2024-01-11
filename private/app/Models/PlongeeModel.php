@@ -111,10 +111,8 @@ class PlongeeModel
     public function isRightLevel(int $sea_id, String $plon_date, String $user_email){
         $answer = DB::SELECT(
             "SELECT count(*) as nb 
-            FROM INSCRIRE 
-            JOIN ADHERENT USING(AD_EMAIL)
-            JOIN PLONGEE USING(SEA_ID, PLON_DATE)
-            WHERE SEA_ID = ? and PLON_DATE = ? and AD_EMAIL = ? AND PLON_NIVEAU < AD_NIVEAU",
+            FROM ADHERENT, PLONGEE
+            WHERE SEA_ID = ? and PLON_DATE = ? and AD_EMAIL = ? AND PLON_NIVEAU <= AD_NIVEAU",
                     [$sea_id, $plon_date, $user_email]);
             $nivSuff = array_shift($answer);
         return $nivSuff->nb <> 0;
