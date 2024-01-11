@@ -8,7 +8,11 @@
       <img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion">
     </div>
   </nav>
-</header>
+  @foreach($resultats as $resultat)
+    <p>Le nombre de plongée restants est {{ $resultat->total}}
+  @endforeach
+
+</header> 
 
 
 

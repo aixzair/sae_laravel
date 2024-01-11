@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Responsable;
+use App\Http\Controllers\VotreController;
 
 Route::get('/', function () {
     return view('Connexion.html');
@@ -27,6 +27,8 @@ Route::get('/sessionAdded', function () {
 Route::get('/editSession', function () {
     return view('editSession');
 });
+
+Route::get('/Plongee99', [VotreController::class, 'votreMethode']);
 
 Route::get('/roles',
     [Responsable::class, 'setRolls']
