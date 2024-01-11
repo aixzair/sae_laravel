@@ -124,6 +124,11 @@ class PlongeeController extends Controller
         return $modele->isValid($sea_id, $plon_date);
     }
 
+    public static function listDivers(int $sea_id, String $plon_date){
+        $modele = new PlongeeModel();
+        return $modele->listDivers($sea_id, $plon_date);
+    }
+
 }
 
 ?>

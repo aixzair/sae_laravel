@@ -57,6 +57,18 @@ class PlongeeModel
         return $answer;
     }
 
+    public function listDivers(int $sea_id, String $plon_date)
+    {
+        $answer = DB::SELECT(
+            "SELECT AD_PRENOM, AD_NOM, AD_NIVEAU, PLON_EFFECTIFS_MIN, PLON_EFFECTIFS_MAX
+                    FROM INSCRIRE
+                    JOIN ADHERENT USING (AD_EMAIL)
+                    JOIN PLONGEE USING (SEA_ID, PLON_DATE)
+                    WHERE SEA_ID = ? AND PLON_DATE = ?",
+                    [$sea_id, $plon_date]);
+        return $answer;
+    }
+
     /**
      * check if a diving session is complete
      * 

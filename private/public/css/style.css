@@ -449,23 +449,23 @@ header{
     margin-top: 2vh;
     margin-right: 3vw;
     padding-left: 3vw;
-    text-align: center;
     display:flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .regButton{
-    margin-right: 5vw;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-right: 4vw;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 2em;
-    padding-top: 1.5vh;
+    padding-top: 1.2vh;
     padding-left: 1vw;
     padding-right: 1vw;
     border: 2px solid;
-    width:13vw;
+    width:15vw;
     background-color: white;
+    text-align: center;
     font-size: 0.9em;
 }
 
