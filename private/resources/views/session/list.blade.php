@@ -57,9 +57,11 @@
                     echo "\">";
                 }
                 echo "<p>$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
-                
-echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
+                ?>
 
+<a href="listeParticipants/{{$plon_date}}/{{$sea_id}}">Liste Participants</a>
+
+                <?php
                 if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
                     echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
                 }else if($complete){
@@ -94,13 +96,10 @@ echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-
-    <title>Liste plongées</title>
-
+    <title>Liste Séance</title>
 </head>
 <body>
-    @include('header')
-
+  @include('header')
   <div class="monthContainer">
     <div class="monthBar">
         <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
@@ -113,6 +112,7 @@ echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
         <button id="btOctobre" class="monthButton" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
+        
         <div id="Mars" class="month";>
             <?php
                 getMonthlySessions(3);

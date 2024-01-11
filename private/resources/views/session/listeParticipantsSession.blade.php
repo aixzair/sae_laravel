@@ -1,6 +1,5 @@
 <?php
     use App\Http\Controllers\PlongeeController;
-    use Illuminate\Support\Facades\DB;
 
     function getListDivers($sea_id, $plon_date)
     {
@@ -38,20 +37,7 @@
     <title>Liste Participants</title>
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées annuelles restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
-    <?php
-        getListDivers($sea_id, $plon_date);
-
-    ?>
+    @include('header')
+    {{getListDivers($sea_id, $plon_date)}};
 </body>
 </html>
