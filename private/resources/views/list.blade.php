@@ -30,9 +30,9 @@
     $controller = new PlongeeController();
     if(isset($_GET['action'])){
         if($_GET['action']=='register'){
-            $controller->register($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace the email address
+            $controller->register($_GET['sea_id'], $_GET['plon_date'], session('email'));
         }else{
-            $controller->deregister($_GET['sea_id'], $_GET['plon_date'], 'abigail.garcia@gmail.com'); //TODO : replace the email address
+            $controller->unregister($_GET['sea_id'], $_GET['plon_date'], session('email'));
         }
         
     }
@@ -89,7 +89,7 @@
                     $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
                     $endingTime = date("H:i",strtotime($line->PLON_FIN));
                     
-                    echo '<form>';
+                    
                     //Changes background color if session is valid, invalid or full
                     if($controller->isComplete($sea_id, $plon_date))
                     {
@@ -113,6 +113,13 @@
                         
                     /*}
                     */
+
+                    if($controller->isRegistered($sea_id, $plon_date, session('email'))){
+                        echo "<a href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id?action=\"unregister\" \">Se retirer</a>";
+                    }else{
+                        echo "<a href=\"showSession?datetime=$fSessionDate?sea_id=$sea_id?action=\"register\" \">S'inscrire</a>";
+                    }
+
                     echo "</div>";
                 }
             }

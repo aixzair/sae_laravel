@@ -62,7 +62,12 @@ Route::get('/sessionEdited', function () {
 });
 // Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
 
-Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
+Route::get('/roles',
+    [Responsable::class, 'setRolls']
+);
+Route::post('/rolesSubmit', [Responsable::class, 'setRollsSubmit'])->name('roles.submit');
+
+//Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/profileSecretary', function() {
 	return view('profileSecretary');
