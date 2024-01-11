@@ -9,6 +9,8 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+use App\Models\Session;
+
 class ConnexionController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -32,7 +34,10 @@ class ConnexionController extends BaseController
 		$num_role= $max_id[0]->ID;
 		session(['role' => $num_role]);
 		session(['email' => $email]);
+		$nbDives = Session::getNbDives($email);
+		session(['nbDives' => $nbDives]);
 		session()->flash('password',$password);
+		
 		
 		if(session('role')===1){
 			return redirect()->route('secretary.home');

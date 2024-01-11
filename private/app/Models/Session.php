@@ -146,4 +146,17 @@ class Session {
         return $effective;
     }
 
+    public static function getNbDives(string $AD_EMAIL) : string  {
+        $lines = DB::select(
+            "SELECT AD_NBPLONGEES_ANS FROM ADHERENT WHERE AD_EMAIL = ? LIMIT 1",
+            [$AD_EMAIL]
+        );
+
+        foreach ($lines as $line) {
+            return $line->AD_NBPLONGEES_ANS;
+        }
+        
+        return "-1";
+    }
+
 }
