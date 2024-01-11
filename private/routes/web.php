@@ -102,5 +102,10 @@ Route::get(
     '/unregister{date}{sea_id}',
     [PlongeeController::class, 'unregister']
 );
+
+Route::get('/voirPlus', function () {
+    return view('voirPlus');
+});
+
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
