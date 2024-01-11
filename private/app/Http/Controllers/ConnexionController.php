@@ -34,8 +34,7 @@ class ConnexionController extends BaseController
 		$num_role= $max_id[0]->ID;
 		session(['role' => $num_role]);
 		session(['email' => $email]);
-		$nbDives = Session::getNbDives($email);
-		session(['nbDives' => $nbDives]);
+		session(['nbDives' => Session::getNbDives($email)]);
 		session()->flash('password',$password);
 		
 		
