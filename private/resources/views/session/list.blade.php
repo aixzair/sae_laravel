@@ -24,19 +24,6 @@
       </div>
     </nav>
   </header>
-<?php
-    
-    /*if(isset($_GET['action'])){
-        if($_GET['action']=='register'){
-            $controller->register($_GET['sea_id'], $_GET['plon_date'], session('email'));
-        }else{
-            $controller->unregister($_GET['sea_id'], $_GET['plon_date'], session('email'));
-        }
-        
-    }*/
-    //PlongeeController::displayDivings();
-?>
-
   <div class="monthContainer">
     <div class="monthBar">
         <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
@@ -51,6 +38,7 @@
     <div class="scroll">
         <?php
             use Illuminate\Support\Facades\DB;
+
         /**
          * Get and displays the list of dives for the selected month
          *
@@ -70,14 +58,13 @@
                 [$fDay, $lDay]
             );
             
-
+            //Isolates dives for selected month depending on thee tab clicked
             foreach($result as $line)
             {
                 $year = date("Y");
                 $fDay = date_create($year.'-'.$month.'-1');
                 $lDay = date_create($year.'-'.($month+1).'-1');
                 
-                //DD-MM-YYYY HH-mm format
                 $sea_id = $line->SEA_ID;
                 $plon_date = $line->PLON_DATE;
                 $plon_niveau = $line->PLON_NIVEAU;
@@ -100,22 +87,22 @@
                 {
                     if(!$complete)
                     {
+                        //If there are empty spots, container is greenMarked
                         echo "greenMarked\">";
                     }
                     else{
                         echo "\">";
                     }
-                    echo "<p>$plon_date de $startingTime à $endingTime        Niveau min. : $plon_niveau</p>";
-                    //echo "Test : sea:$sea_id date:$plon_date isReg:".PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com");
+                    echo "<p>$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
                     if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
                         echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
                     }else if($complete){
                         echo "<p>COMPLET</p>";
                     }
                     else{
+                        //Checks if current user's level is high enough to apply to the dive
                         if(PlongeeController::isRightLevel($sea_id, $plon_date, "chloe.young@gmail.com"))
                         {
-                            echo "$plon_niveau";
                             echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
                         }
                         else
@@ -128,8 +115,6 @@
                     echo "\">";
                     echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p><p></p>";
                 }
-                
-
                 echo "</div>";
             }
         }

@@ -431,12 +431,11 @@ header{
     border-left: 2px solid;
     border-right: 2px solid;
     border-bottom: 2px solid;
-    font-size: 1.8em;
+    font-size: 1.6em;
 }
 
 .session p{
     vertical-align: middle;
-    margin-left: 4vw;
     width:55vw;
     padding-top: 2vh;
 }
@@ -449,6 +448,7 @@ header{
     border-radius: 1em;
     margin-top: 2vh;
     margin-right: 3vw;
+    padding-left: 3vw;
     text-align: center;
     display:flex;
     flex-direction: row;
@@ -460,10 +460,13 @@ header{
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 2em;
+    padding-top: 1.5vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
     border: 2px solid;
-    width:12vw;
+    width:13vw;
     background-color: white;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 .regButton a{

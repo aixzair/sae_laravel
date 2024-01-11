@@ -10,29 +10,23 @@ class PlongeeModel
     }
 
     /**
-     * register a diver to a dive
+     * register a diver to a dive session
      * @param int $sea_id the dive's session id
      * @param String $plon_date the dive's date
      * @param String $user_email the diver's email 
      * @return void
      */
     public function register(int $sea_id, String $plon_date, String $user_email){
-        /*require("connexion.php");
-        $req = $bdd->prepare("INSERT INTO INSCRIRE(sea_id, plon_date, ad_email) VALUES($sea_id, '$plon_date', '$user_email');");
-        //echo "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) VALUES($sea_id, '$plon_date', '$user_email');";
-        $req->execute();*/
 
         DB::insert(
             "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) 
             VALUES (? , ?, ?)",
             [$sea_id, $plon_date, $user_email]);
         DB::commit();
-
-        //refresh page?
     }
 
     /**
-     * Undocumented function
+     * Unregisters user from selected diving session
      *
      * @param int $sea_id the dive's session id
      * @param String $plon_date the dive's date
@@ -51,14 +45,11 @@ class PlongeeModel
     }
 
     /**
-     * search all of the upcomings diving sessions
+     * searches all of the diving sessions for the year
      * 
      * @return a list of all the upcomings dives
      */
     public function list(){
-        
-
-        //$answer = $bdd->query("select sea_id, plon_date, bat_id, plon_effectifs, plon_observation, lieu_nom, plon_debut, plon_fin from PLONGEE join LIEU using (lieu_id) order by plon_date;");
         $answer = DB::SELECT(
             "SELECT PLON_DATE, SEA_ID, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN, PLON_NIVEAU
                     FROM PLONGEE
@@ -108,6 +99,14 @@ class PlongeeModel
         return $inscrits->nb > 0;
     }
 
+    /**
+     * Checks if user's level is high enough for the minimum level of selected dive session
+     *
+     * @param integer $sea_id
+     * @param String $plon_date
+     * @param String $user_email
+     * @return boolean
+     */
     public function isRightLevel(int $sea_id, String $plon_date, String $user_email){
         $answer = DB::SELECT(
             "SELECT count(*) as nb 
