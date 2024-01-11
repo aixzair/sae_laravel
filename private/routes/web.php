@@ -101,6 +101,7 @@ Route::post('/store-palanque-details', [PalanqueController::class, 'storePalanqu
 Route::match(['get', 'post'],'/palanquees', [PalanqueController::class, 'index'])->name('palanquees.index');
 Route::match(['get', 'post'],'/get-palanque-details-form', [PalanqueController::class, 'getPalanqueDetailsForm'])->name('get.palanque.details.form');
 Route::match(['get', 'post'],'/store-palanque-details', [PalanqueController::class, 'storePalanqueDetails'])->name('store.palanque.details');
+Route::match(['get', 'post'],'/store-adherent-details', [PalanqueController::class, 'storeAdherentDetails'])->name('store.adherent.details');
 
 
 //Route::match(['get', 'post'],'/gestionAuthentification', function() {

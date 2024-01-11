@@ -54,9 +54,21 @@ class PalanqueController extends Controller
             ]);
 			$max_idpalanque++;
         }
+		
+		
 
+		$request->session()->flash('success_message', 'Les détails de la palanquée ont été enregistrés avec succès.');
+		 
+		
+		
         return redirect()->route('palanquees.index');
     }
+	
+	public function storeAdherentDetails(Request $request)
+	{
+		
+	}
+	
 }
 
 

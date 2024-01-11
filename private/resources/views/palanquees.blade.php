@@ -41,5 +41,20 @@
     </form>
 @endif
 
+@if (session('success_message'))
+    <div class="alert alert-success">
+        
+		<form action="{{ route('store.adherent.details') }}" method="post">
+        @csrf
+		
+        @endfor
+
+        <button type="submit">Enregistrer</button>
+    </form>
+		
+    </div>
+@endif
+	
+
 </body>
 </html>
