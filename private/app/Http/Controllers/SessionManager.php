@@ -178,7 +178,7 @@ class SessionManager extends BaseController {
         if ($sessionModel->editSession($plongee)) {
             return view('welcome');
         } else {
-            return view('session/show?SEA_ID=1&PLON_DATE=2024-01-17');
+            return view('/session/erroredit');
             //return $this->edit($request);
         }
     }

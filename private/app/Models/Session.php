@@ -139,21 +139,23 @@ class Session {
         return $securities;
     }
 
-    /*public function getEffectif(string $SEA_ID, string $PLON_DATE) : ?Plongee {
-        $plongee = new PLONGEE();
+    public function getEffectif(string $SEA_ID, string $PLON_DATE) : array {
+        $effective = [];
 
         $lines = DB::select(
-            "SELECT PLON_EFFECTIFS FROM PLONGEE WHERE SEA_ID = ? AND PLON_DATE = ? LIMIT 1",
+            "SELECT * FROM PLONGEE WHERE SEA_ID = ? AND PLON_DATE = ? LIMIT 1",
             [$SEA_ID, $PLON_DATE]
         );
 
         foreach ($lines as $line) {
-
-            $plongee->SEA_ID = $SEA_ID;
-            $plongee->PLON_DATE = $PLON_DATE;
+            $plongee = new Plongee();
+            $plongee->$PLON_EFFECTIF = $line->PLON_EFFECTIF;
+            $effective[] = $security;
+            /*$plongee->SEA_ID = $SEA_ID;
+            $plongee->PLON_DATE = $PLON_DATE;*/
         }
 
-        return $plongee;
-    }*/
+        return $effective;
+    }
 
 }
