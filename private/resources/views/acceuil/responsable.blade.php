@@ -29,9 +29,9 @@
         </div>
 
         <div class="profileBoxes profileHalfbox container">
-            <button class="button profileButton buttonRoute" data-route="{{ route('role.set') }}">ATTRIBUTION DES RÔLES</button>
+            <button class="button profileButton buttonRoute" data-route="{{ route('role/set') }}">ATTRIBUTION DES RÔLES</button>
             <button class="button profileButton">ARCHIVES DES FICHES DE SÉCURITÉ</button>
-            <button class="button profileButton">CRÉER SÉANCE</button>
+            <button class="button profileButton buttonRoute" data-route="{{ route('session/add') }}">CRÉER SÉANCE</button>
         </div>
         </div>
 

@@ -38,7 +38,7 @@ Route::get('\connectionError', function() {
 
 Route::get('/session/add', 
     [SessionManager::class, 'add']
-)->name('session.add');
+)->name('session/add');
 Route::post('/session/addSubmit', [SessionManager::class, 'addSubmit'])
 ->name('session/add.submit');
 
@@ -52,16 +52,16 @@ Route::get('/session/edit',
 Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
 ->name('session/edit.submit');
 
-Route::get('/sessionList', function() {
+Route::get('/session/list', function() {
 	return view('session/list');
-});
+})->name('session/list');
 
 
 // ROLES ----------------------------------
 
 Route::get('/role/set',
     [Responsable::class, 'setRolls']
-)->name('role.set');
+)->name('role/set');
 Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 ->name('role/set.submit');
 

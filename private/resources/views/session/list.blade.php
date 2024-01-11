@@ -13,17 +13,7 @@
     <title>Liste Séance</title>
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées annuelles restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
+    @include('header')
 <?php
     
     /*if(isset($_GET['action'])){

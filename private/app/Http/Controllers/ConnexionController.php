@@ -22,7 +22,7 @@ class ConnexionController extends BaseController
 		$count=count($max_id);
 		if($count==0){
 			session(['role' => 0]);
-			session()->flash('email',"");
+			session(['email' => ""]);
 			session()->flash('password',"");
 			return view('\connectionError');
 		}
@@ -31,7 +31,7 @@ class ConnexionController extends BaseController
 		$max_id= DB::select ('SELECT RES_ID AS ID FROM RESPONSABILISER JOIN ADHERENT USING(AD_EMAIL) JOIN RESPONSABILITE USING(RES_ID) WHERE AD_EMAIL=? AND AD_MDP=? order by res_id desc',[$email,$password]);
 		$num_role= $max_id[0]->ID;
 		session(['role' => $num_role]);
-		session()->flash('email',$email);
+		session(['email' => $email]);
 		session()->flash('password',$password);
 		
 		if(session('role')===1){

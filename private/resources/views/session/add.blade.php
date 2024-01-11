@@ -7,9 +7,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Ajouter séance</title>
+
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
 </head>
 <body>
+    @include('header')
 
     <!-- Si il y a eu une tentative d'ajoute, indique la finalité -->
     @if(session('message'))
