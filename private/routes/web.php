@@ -71,6 +71,8 @@ Route::get('/exempleDirecteur', function() {
 	return view('exempleDirecteur');
 });
 
+Route::get('/deconnexion', [DeconnexionController::class, 'deconnect']);
+
 
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
