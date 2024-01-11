@@ -79,11 +79,10 @@ use App\Http\Controllers\PlongeeController;
                             echo "<p> " . $plon_date . ' ' . $startingTime . ' à ' . $endingTime . "</p>";
                         } else {
                             echo "\">"; ?>
-                            <a href="{{ route('session/show', 
-                                ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
-                            >
-                                <p> <?= $plon_date ?> <?= $startingTime ?> à <?= $endingTime ?> </p><p></p>
-                            </a> 
+                            <a href="{{ route('session/show', ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"><!--a tester-->
+                                <p>{{ $plon_date }} {{ $startingTime }} à {{ $endingTime }}</p><p></p>
+                            </a>
+
                             <?php
                         }
 
@@ -159,6 +158,7 @@ use App\Http\Controllers\PlongeeController;
         document.getElementById("bt" + monthName).style.backgroundColor = 'grey';
         document.getElementById("bt" + monthName).style.borderBottomStyle = "none";
     }
+
 </script>
 
 </html>

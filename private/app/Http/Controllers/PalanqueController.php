@@ -86,6 +86,17 @@ class PalanqueController extends Controller
 		
 		
 	}
+
+    public function sessionShow(Request $request) {
+        $sea_id = $request->input('SEA_ID');
+        $plon_date = $request->input('PLON_DATE');
+    
+        // Faites ce que vous avez à faire avec les valeurs de $sea_id et $plon_date
+    
+        // Retournez la vue palanquees.blade.php avec les données nécessaires
+        return view('palanquees', ['sea_id' => $sea_id, 'plon_date' => $plon_date]);
+    }
+    
 	
 }
 

@@ -138,3 +138,6 @@ Route::match(['get', 'post'],'/store-adherent-details', [PalanqueController::cla
 //Route::match(['get', 'post'],'/gestionAuthentification', function() {
 	//return view('gestionAuthentification');
 //});
+
+Route::get('/session/show', 'PalanqueController@sessionShow')->name('session/show');/*a tester*/
+
