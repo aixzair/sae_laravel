@@ -1,25 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\DeconnexionController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 use App\Http\Controllers\Responsable;
 use App\Http\Controllers\SessionManager;
-
-use app\Http\Controllers\PlongeeController;
-
 
 
 Route::get('/', function () {
@@ -45,13 +31,26 @@ Route::get('/session/edit',
 Route::post('/session/editSubmit', [SessionManager::class, 'editSubmit'])
 ->name('session/edit.submit');
 
+
 // ROLES ----------------------------------
 
 Route::get('/role/set',
     [Responsable::class, 'setRolls']
-);
+)->name('role.set');
 Route::post('/role/setSubmit', [Responsable::class, 'setRollsSubmit'])
 ->name('role/set.submit');
+
+
+// ACCEUIL ---------------------------------
+
+Route::get('/acceuil/responsable', function () {
+    return view('acceuil/responsable');
+})->name('responsable.home');
+
+Route::get('/acceuil/adherent', function () {
+    return view('acceuil/member');
+})->name('member.home');
+
 
 // AUTRES ---------------------------------
 
@@ -59,20 +58,8 @@ Route::get('/creneau', function () {
     return view('creneau');
 });
 
-
-Route::get('/addSession', function () {
-    return view('addSession');
-});
-Route::get('/showSession', function () {
-    return view('showSession');
-});
-
 Route::get('/sessionList', function () {
     return view('sessionList');
-});
-
-Route::get('/sessionAdded', function () {
-    return view('sessionAdded');
 });
 
 Route::get('/editSession', function () {
@@ -82,9 +69,7 @@ Route::get('/editSession', function () {
 Route::get('/sessionEdited', function () {
     return view('sessionEdited');
 });
-// Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
 
-Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
 Route::get('/profileSecretary', function() {
 	return view('profileSecretary');
@@ -94,6 +79,8 @@ Route::get('/exempleDirecteur', function() {
 	return view('exempleDirecteur');
 });
 
+Route::get('/deconnexion', [DeconnexionController::class, 'deconnect']);
+
 
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
@@ -102,8 +89,3 @@ Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, '
 Route::get('/Connexion', function() {
 	return view('Connexion');
 });
-
-//Route::match(['get', 'post'],'/gestionAuthentification', function() {
-	//return view('gestionAuthentification');
-//});
-
