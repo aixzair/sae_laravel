@@ -119,7 +119,7 @@ class SessionManager extends BaseController {
         $plongee->PLON_DIRECTEUR = $memberModel->getMember($director[0], $director[1])->AD_EMAIL;
         $plongee->PLON_SECURITE = $memberModel->getMember($manager[0], $manager[1])->AD_EMAIL;
         $plongee->PLON_PILOTE = $memberModel->getMember($driver[0], $driver[1])->AD_EMAIL;
-        $plongee->BAT_NOM = $boatModel->getBoatByName($boat)->BAT_NOM;
+        $plongee->BAT_ID = $boatModel->getBoatByName($boat)->BAT_ID;
         //$plongee->PLON_EFFECTIFS = $sessionModel->getEffectif($plongee, $date);
 
         if ($sessionModel->addSession($plongee)) {
@@ -166,8 +166,8 @@ class SessionManager extends BaseController {
         $plongee->SEA_ID = $periode;
         $plongee->PLON_DATE = $date;
 
-        $plongee->primSEA_ID = $primSession;
-        $plongee->primPLON_DATE = $primDate;
+        // $plongee->primSEA_ID = $primSession;
+        // $plongee->primPLON_DATE = $primDate;
 
         $plongee->PLON_DIRECTEUR = $memberModel->getMember($director[0], $director[1])->AD_EMAIL;
         $plongee->PLON_SECURITE = $memberModel->getMember($manager[0], $manager[1])->AD_EMAIL;
