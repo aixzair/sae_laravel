@@ -90,42 +90,32 @@
                 $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
                 $endingTime = date("H:i",strtotime($line->PLON_FIN));
                 
-                //$div = "";
                 //Changes background color if session is valid, invalid or full
                 if($complete = PlongeeController::isComplete($sea_id, $plon_date))
                 {
                     //If full, container is redMarked
-                    echo "<div class=\"redMarked\"";
-                    //$div +="<div class=\"redMarked\"";
+                    echo "<div class=\"redMarked\"session ";
                 }
                 else
                 {
-                    echo "<div";
-                    //$div += "<div";
+                    echo "<div class=\"session ";
                 }
-                echo " class=\"session ";
-                //$div += " class=\"session ";
                 if(PlongeeController::isValid($sea_id, $plon_date))
                 {
                     echo "greenMarked\">";
                     echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
-                    //$div += "greenMarked\">";
                     if(PlongeeController::isRegistered($sea_id, $plon_date, "session('email')")){ //TODO : replacer l'adresse mail de l'utilisateur
                         echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
-                        //$div += "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
                     }else if($complete){
                         echo "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
-                        //$div += "<a href=\"unregister/$fSessionDate/$sea_id\">Se retirer</a>";
                     }
                     else{
                         echo "<a href=\"register/$fSessionDate/$sea_id\">S'inscrire</a>";
-                        //$div += "<a href=\"register/$fSessionDate/$sea_id\">S'inscrire</a>";
                     }
                 }
                 else{
                     echo "\">";
                     echo "<p> ".$fSessionDate.' '.$startingTime.' à '.$endingTime."</p>";
-                    //$div += "\">";
                 }
                 
 
