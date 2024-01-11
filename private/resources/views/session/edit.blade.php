@@ -1,53 +1,74 @@
-<?php
-        use Illuminate\Support\Facades\DB;
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+  <title>Editer séance</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <?php
-        $id1 = $_GET['id1'];
-        $id2 = $_GET['id2'];
-        
-        //$dt = new Date($id2);
-        $dt = (string) $id2;
-        echo $dt;
+  <header>
+    <img class = "Logo" src="../img/logo.png" alt="Logo">
+  </header>
+  
+  <div class="window">
+    <div class="labels">
+      <form action="{{ route('session/edit.submit') }}" method="post">
+        @csrf
+        <p class="label">DATE: </p>
+        <input type="date" name="day-start" min="2018-01-01" value= "{{$session['PLON_DATE']}}" required/>
 
-        //$info = DB::Select('SELECT * FROM PLONGEE WHERE PLON_DATE = DATE_FORMAT(\'2024-04-05\', \'%Y/%m/%d\')');
-        $info = DB::select('SELECT * FROM PLONGEE WHERE PLON_DATE = ?', ['$dt']);
-        foreach($info as $session){
-            $date = $session->PLON_DATE;
-            $seance = $session->SEA_ID;
+        <p class="label">Créneau:</p>
+        <select name="session" required>
+              <option value="">{{$session['MOMENT']}}</option>
+              <option value="morning">Matin</option>
+              <option value="afternoon">Apres-Midi</option>
+              <option value="evening">Soir</option>
+          </select>
 
-            echo $session->PLON_DATE.'<br>';
-        }
-    ?>
+        <p class="label">Site : {{$session['LIEU_NOM']}} </p>
 
+        <p class="label">Pilote :</p>
+        <select name="pilot">
+              @foreach($pilots as $pilot)
+              <option>{{$pilot->AD_NOM }} {{$pilot->AD_PRENOM}}</option>
+              @endforeach
+          </select>
 
-<form name="form" action="{{ route('session/edit.submit') }}" method="post">
+        <p class="label">Sécurité : </p>
+        <select name="security">
+            @foreach($securities as $security)
+                <option>{{$security->AD_NOM }} {{$security->AD_PRENOM}}</option>
+            @endforeach
+        </select>
 
-    <p> Date de la plongée </p>
-    <input type="date" name="day-start" min="2018-01-01" value=<?php echo $id2 ?> required/>
-    <br>
+        <p class="label">Directeur : </p>
+        <select name="director">
+            @foreach($directors as $director)
+                <option>{{$director->AD_NOM }} {{$director->AD_PRENOM}}</option>
+            @endforeach
+        </select>
 
-    <p> Séance: </p>
-    <select name="session" required>
-        <option value="default"><?php echo $id1; ?></option>
-        <option value="morning">Matin</option>
-        <option value="afternoon">Apres-Midi</option>
-        <option value="evening">Soir</option>
-    </select> <br>
+        <p class="label">Bateau :</p>
+        <select name="boat">
+            @foreach($boats as $boat)
+                <option>{{$boat->BAT_NOM}}</option>
+            @endforeach
+        </select>
 
-        <input type='hidden' name='pSession' value=<?php echo $id1 ?> />
-        <input type='hidden' name='pDate' value=<?php echo $id2 ?> />
+        <p class="label">Niveau min. :</p>
 
-        <button type="submit">Modifier</button>
-</form>
+        <input type="hidden" name="pSession" value="{{$session['SEA_ID']}}">
+        <input type="hidden" name="pDate" value="{{$session['PLON_DATE']}}">
+
+        <button type="submit">Ajouter</button>
+      </form>
+    </div>
+  </div>
 </body>
+<script src="https://kit.fontawesome.com/1e3d9ff904.js" crossorigin="anonymous"></script>
 </html>

@@ -1,9 +1,3 @@
-<?php 
-  $lignes = DB::select("SELECT AD_NOM, AD_PRENOM, AD_NIVEAU, PLON_DATE FROM ADHERENT JOIN INSCRIRE USING (AD_EMAIL) JOIN PLONGEE USING (SEA_ID, PLON_DATE) LIMIT 3"); 
-  // use ...
-?>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{asset('css/style.css')}}" />
-  <title>Document</title>
+  <title>Profil</title>
 </head>
 <body>
 
@@ -31,32 +25,27 @@
       </div>
 
       <div class="profileBoxes profileHalfbox container">
-        <button class="button profileButton">ATTRIBUTION DES RÔLES</button>
-        <button class="button profileButton">ARCHIVES DES FICHES DE SÉCURITÉ</button>
-        <button class="button profileButton">CRÉER SÉANCE</button>
+        <button class="button profileButton buttonRoute" data-route="{{route('session/director')}}">Liste de mes Séances</button>
       </div>
     </div>
 
     <div class="profileBoxes profileFullbox tabSession">
-      <h1 class="titre" id="infoSeance">Info Séance</h1>
-        <table class="roleTab">
-          <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Niveau</th>
-            <th>Séance</th>
-          </tr>
-          
-        <!-- Un for each pour recup les 3 premier résultat pour les adhérents ayant participé à une plongée passée -->
-          
-          <?php foreach($lignes as $ligne){ ?>
-          <tr>
-            <th><?php echo" $ligne->AD_NOM"?></th>
-            <th><?php echo" $ligne->AD_PRENOM"?></th>
-            <th><?php echo" $ligne->AD_NIVEAU"?></th>
-            <th><?php echo" $ligne->PLON_DATE"?></th>
-          </tr>
-          <?php } ?> 
+      <h1 class="titre" id="infoSeance">Info Plongées</h1>
+             
+      <div class="profileSessionsContainer">
+        <div class="profileSessions">
+            <p class="profileScheduled profileTitles">SÉANCES PRÉVUES</p>
+            <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>
+            <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>
+            <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>        
+        </div>
+        <div class="profileSessions">
+            <p class="profilePassed profileTitles">SÉANCES PASSÉES</p>
+            <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>
+            <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>
+            <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>        
+        </div>
+      </div>
         
         </table>
       <div class="button profileButton">

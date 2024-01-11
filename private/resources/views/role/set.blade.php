@@ -6,28 +6,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+
     <title>Attribution des rôles</title>
 
     <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script defer src="{{ asset('/js/updateRoles.js') }}"></script>
 </head>
 <body>
-    <?php // include "header.blade.php" ?>
+    @include('header')
+
     <main>
         <div>
-            <button class="back">
+            <button class="back buttonRoute" data-route="{{route('responsable.home')}}">
                 <img src="{{ asset('/images/arrow-left-solid.svg')}}" alt="Retour">
             </button>
         </div>
 
         <p>{{$message}}</p>
 
-<<<<<<< HEAD:private/resources/views/roles.blade.php
-        <form action="{{ route('roles.submit') }}" method="post" onsubmit="updateCheckBox()">
-=======
         <form action="{{ route('role/set.submit') }}" method="post" onsubmit="updateCheckBox()">
->>>>>>> mvc_stable:private/resources/views/role/set.blade.php
         @csrf
             <table class="roleTab">
                 <tr>
