@@ -104,7 +104,7 @@ class PlongeeModel
                     WHERE SEA_ID = ? AND PLON_DATE = ?",
                     [$sea_id, $plon_date]);
         $inscrits = array_shift($answer);
-        return $inscrits->nb > $max->PLON_EFFECTIFS_MAX;
+        return $inscrits->nb >= $max->PLON_EFFECTIFS_MAX;
     }
 
     /**
