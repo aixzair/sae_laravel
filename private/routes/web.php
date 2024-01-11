@@ -1,5 +1,16 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConnexionController;
@@ -14,6 +25,7 @@ Route::get('/', function () {
     return view('connexion');
 })->name('index');
 
+
 // CONNEXION -----------------------------
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
@@ -25,6 +37,7 @@ Route::get('/Connexion', function() {
 Route::get('/deconnexion', 
     [DeconnexionController::class, 'deconnect']
 );
+
 
 // SESSION --------------------------------
 
@@ -62,7 +75,8 @@ Route::get('/home',
 
 Route::get('/acceuil/secretaire', function () {
     return view('acceuil/secretary');
-})->name('secretary.home');
+})->name('secretary.home')
+->middleware('role:1');
 
 Route::get('/acceuil/responsable', function () {
     return view('acceuil/responsable');
@@ -78,14 +92,31 @@ Route::get('/acceuil/adherent', function () {
 Route::get('/register/{date}/{sea_id}',
     [PlongeeController::class, 'register']
 );
-Route::get('/unregister{date}{sea_id}', [PlongeeController::class, 'unregister']);
+
+Route::get('/creneau', function () {
+    return view('creneau');
+});
+// Route::get('/sessionList/{month}', [sessionListController::class, 'getMonthlySessions']);
+
+Route::get(
+    '/register/{date}/{sea_id}',
+    [PlongeeController::class, 'register']
+);
+
+Route::get(
+    '/unregister{date}{sea_id}',
+    [PlongeeController::class, 'unregister']
+);
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
-Route::get('/editSession', function () {
-    return view('editSession');
+Route::get('\connectionError', function() {
+	return view('connectionError');
 });
 
-Route::get('/profileSecretary', function() {
-	return view('profileSecretary');
-})->middleware('role:1');
+Route::match(['post'],'/gestionAuthentification',
+    [ConnexionController::class, 'index']
+);
 
+//Route::match(['get', 'post'],'/gestionAuthentification', function() {
+	//return view('gestionAuthentification');
+//});

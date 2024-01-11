@@ -35,10 +35,11 @@ class SessionManager extends BaseController {
         $sessionShow['BAT_NOM'] = $boatModel->getBoat($session->BAT_ID)->BAT_NOM;
         $sessionShow['LIEU_NOM'] = $sessionModel->getSiteName($session);
         $sessionShow['MOMENT'] = $sessionModel->getMoment($session);
+        //$sessionShow['PLON_EFFECTIFS'] = $sessionModel->getEffectifs($session);
 
         return view('session/show', [
             "session" => $sessionShow,
-            "memberCount" => $session->PLON_EFFECTIFS
+            //"memberCount" => $session->PLON_EFFECTIFS
         ]);
     }
 
@@ -74,6 +75,7 @@ class SessionManager extends BaseController {
         $boat = isset($data['boat']) ? $data['boat'] : "";
         $date = isset($data['day-start'])? $data['day-start'] : "";
         $periode = isset($data['session'])? $data['session'] : "";
+        $effective = isset($data['effective'])? $data['effective'] : "";
 
         switch ($periode) {
             case 'Matin': $periode = 1; break;
@@ -89,6 +91,7 @@ class SessionManager extends BaseController {
         $plongee->PLON_SECURITE = $memberMobel->getMember($manager[0], $manager[1])->AD_EMAIL;
         $plongee->PLON_PILOTE = $memberMobel->getMember($driver[0], $driver[1])->AD_EMAIL;
         $plongee->BAT_ID = $boatModel->getBoatByName($boat)->BAT_ID;
+        //$plongee->PLON_EFFECTIFS = $sessionModel->getEffectif($plongee, $date);
 
         if ($sessionModel->addSession($plongee)) {
             return redirect()->route('session.add')

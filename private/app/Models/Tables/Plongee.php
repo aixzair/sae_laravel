@@ -8,7 +8,7 @@ class Plongee {
     public string $PLON_DIRECTEUR;
     public string $PLON_SECURITE;
     public string $PLON_PILOTE;
-    public string $PLON_EFFECTIFS;
+    public int $PLON_EFFECTIFS;
     public string $BAT_ID;
     public string $LIEU_ID;
 }

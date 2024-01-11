@@ -37,7 +37,7 @@
       <p class="label">Directeur de plongée : {{$session['PLON_DIRECTEUR']}}</p>
       <p class="label">Bateau : {{$session['BAT_NOM']}}</p>
       <p class="label">Niveau min. :</p>
-      <p class="label">Nombre participants : {{$memberCount}}</p>
+      <!---<p class="label">Nombre participants : {{$memberCount}}</p>--->
     </div>
   </div>
 </body>
