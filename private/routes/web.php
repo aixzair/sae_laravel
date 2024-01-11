@@ -32,6 +32,9 @@ Route::get('/creneau', function () {
 Route::get('/addSession', function () {
     return view('addSession');
 });
+Route::get('/showSession', function () {
+    return view('showSession');
+});
 
 Route::get('/sessionList', function () {
     return view('sessionList');
