@@ -26,7 +26,7 @@ header{
     /*font-size: x-large;*/
     font-size: 2.1vw;
     text-align: center;
-    min-width: 40%;
+    width: 40%;
 }
 
 .NavButton{
@@ -434,10 +434,14 @@ header{
     font-size: 1.6em;
 }
 
+.session.dateSesssion{
+    width:35vw;
+}
+
 .session p{
-    vertical-align: middle;
-    width:55vw;
     padding-top: 2vh;
+    vertical-align: middle;
+    width: fit-content;
 }
 
 .session{
