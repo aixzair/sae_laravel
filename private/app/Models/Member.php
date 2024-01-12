@@ -8,6 +8,14 @@ use App\Models\Tables\Adherent;
 
 class Member {
 
+    /**
+     * Get a member by his name and surname
+     * 
+     * @param string $AD_NOM his sunrmae
+     * @param string $AD_PRENOm his name
+     * 
+     * @return Adherent the member
+     */
     public function getMember(string $AD_NOM, string $AD_PRENOM) : Adherent {
         $adherent = new Adherent();
 
@@ -25,6 +33,13 @@ class Member {
         return $adherent;
     }
 
+    /**
+     * Get a member by his mail address
+     * 
+     * @param string $AD_EMAIL his mail
+     * 
+     * @return Adherent the member
+     */
     public function getMemberByEmail(string $AD_EMAIL) : Adherent {
         $adherent = new Adherent();
 
@@ -42,6 +57,11 @@ class Member {
         return $adherent;
     }
 
+    /**
+     * Get all members
+     * 
+     * @return array of members
+     */
     public function getMembers() : array {
         $members = [];
         $lines = DB::select('SELECT AD_NOM, AD_PRENOM FROM ADHERENT');
@@ -56,6 +76,11 @@ class Member {
         return $members;
     }
 
+    /**
+     * Get all directors
+     * 
+     * @return array of directors
+     */
     public function getDirectors() : array {
         $directors = [];
         $lines = DB::select(
@@ -76,6 +101,11 @@ class Member {
         return $directors;
     }
 
+    /**
+     * Get all securities
+     * 
+     * @return array of securities
+     */
     public function getSecurities() : array {
         $securities = [];
         $lines = DB::select(
@@ -96,6 +126,11 @@ class Member {
         return $securities;
     }
 
+    /**
+     * Get all Pilots
+     * 
+     * @return array of pilots
+     */
     public function getPilots() : array {
         $pilots = [];
         $lines = DB::select(

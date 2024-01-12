@@ -17,6 +17,7 @@ header{
     margin-right:1vw;
     margin-top: 2.5vh;
     position:absolute;
+    width : 23%;
 }
 
 .NavText{
@@ -26,27 +27,44 @@ header{
     /*font-size: x-large;*/
     font-size: 2.1vw;
     text-align: center;
-    min-width: 40%;
+    width: 40%;
 }
 
 .NavButton{
-    height : 7vh;
-    width: 9vw;
+    height : 8vh;
+    width: 10vw;
     margin: 3.5vh 1vw;
     padding: 10px;
     border-radius: 2em;
-    font-size: 1.1vw;
+    font-size: 1.5vw
+}
+
+.respButton{
+    font-size: 0.8vw;
+    border-radius: 3em;
 }
 
 .NavBar{
     display: flex;
     justify-content: flex-end;
-    margin: 0 5vw;
+    margin: 0 1vw;
 }
 
 #Logout{
-    margin: 0 2vw 0 1vw;
+    margin: 2vh 2vw 0 1vw;
 }
+/* ----------------------------- Style listParticipant -------------------------- */
+
+.participantTab{
+    margin: 5vh auto 0 auto;
+    text-align: center;
+    border: solid 2px;
+}
+
+.participant{
+    font-size: 0.8em;
+}
+
 /* ----------------------------- Style AddSession -------------------------- */
 
 .addSessionForm{
@@ -431,13 +449,17 @@ header{
     border-left: 2px solid;
     border-right: 2px solid;
     border-bottom: 2px solid;
-    font-size: 1.6em;
+    font-size: 1.5em;
+}
+
+.session.dateSesssion{
+    width:35vw;
 }
 
 .session p{
-    vertical-align: middle;
-    width:55vw;
     padding-top: 2vh;
+    vertical-align: middle;
+    width: fit-content;
 }
 
 .session{
@@ -460,19 +482,26 @@ header{
     margin-bottom: 10px;
     border-radius: 2em;
     padding-top: 1.2vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
     border: 2px solid;
-    width:15vw;
+    width:12vw;
     background-color: white;
     text-align: center;
     font-size: 0.9em;
+}
+
+.session a{
+    font-size: 0.9em;
+    margin-right: 2vw;
+    padding-top: 2vh;
 }
 
 .regButton a{
     vertical-align: middle;
     text-align: center;
     color: black;
+    margin:0;
 }
 
 .regButton a:hover{

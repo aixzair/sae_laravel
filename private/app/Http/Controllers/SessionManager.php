@@ -12,8 +12,18 @@ use App\Models\Session;
 
 use App\Models\Tables\Plongee;
 
+/**
+ * This controller manage action about session (dives)
+ */
 class SessionManager extends BaseController {
 
+    /**
+     * Function to show a session
+     * 
+     * @param Request $request the data
+     * 
+     * @return ? the view of a session
+     */
     public function show(Request $request) {
         $sessionModel = new Session();
         $memberModel = new Member();
@@ -44,6 +54,13 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    /**
+     * Function to show the list of members
+     * 
+     * @param Request $request datas
+     * 
+     * @return ? view of members
+     */
     public function membersList(Request $request) {
         return view('session/membersList', [
             "SEA_ID" => ($request->has('SEA_ID') ? $request->input('SEA_ID') : "a"),
@@ -51,6 +68,11 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    /**
+     * function to add a session
+     * 
+     * @return ? the view
+     */
     public function add() {
         $boatModel = new Boat();
         $memberModel = new Member();
@@ -96,6 +118,13 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    /**
+     * Function to process the request to add session
+     * 
+     * @param Request $request
+     * 
+     * @return ? the view to add a session with the message
+     */
     public function addSubmit(Request $request) {
         $plongee = new Plongee();
         $data = $request->all();
@@ -157,11 +186,7 @@ class SessionManager extends BaseController {
         $effective = isset($data['effective'])? $data['effective'] : "";
 
         $primSession = isset($data['pSession'])? $data['pSession'] : "";
-        Log::debug($data);
         $primDate = isset($data['pDate'])? $data['pDate'] : "";
-
-        //$primSession = 1;
-        //$primDate = '2024-05-27';
 
         switch ($periode) {
             case 'morning': $periode = 1; break;
@@ -173,8 +198,8 @@ class SessionManager extends BaseController {
         $plongee->SEA_ID = $periode;
         $plongee->PLON_DATE = $date;
 
-        // $plongee->primSEA_ID = $primSession;
-        // $plongee->primPLON_DATE = $primDate;
+        $plongee->primSEA_ID = $primSession;
+        $plongee->primPLON_DATE = $primDate;
 
         $plongee->PLON_DIRECTEUR = $memberModel->getMember($director[0], $director[1])->AD_EMAIL;
         $plongee->PLON_SECURITE = $memberModel->getMember($manager[0], $manager[1])->AD_EMAIL;

@@ -7,8 +7,19 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Tables\Plongee;
 use App\Models\Tables\Adherent;
 
+/**
+ * Managed a session (drives)
+ */
 class Session {
 
+    /**
+     * Get a session
+     * 
+     * @param string $SEA_ID id
+     * @param string $PLON_DATE the date
+     * 
+     * @return ?Plongee a session or not
+     */
     function getSession(string $SEA_ID, string $PLON_DATE) : ?Plongee {
         $plongee = new Plongee();
 
@@ -29,12 +40,19 @@ class Session {
             $plongee->PLON_PILOTE = $line->PLON_PILOTE;
             $plongee->BAT_ID = $line->BAT_ID;
             $plongee->LIEU_ID = $line->LIEU_ID;
-            $plongee->PLON_EFFECTIFS_MAX = $line->PLON_EFFECTIFS_MAX;
+            //$plongee->PLON_EFFECTIFS_MAX = $line->PLON_EFFECTIFS_MAX;
         }
 
         return $plongee;
     }
 
+    /**
+     * Add a session
+     * 
+     * @param Plongee $plongee the session
+     * 
+     * @return bool succes
+     */
     function addSession(Plongee $plongee) : bool {
         try {
             return DB::insert(
@@ -52,12 +70,21 @@ class Session {
         }
     }
 
+    /**
+     * Eddit a session
+     * 
+     * @param Plongee $plongee the session
+     * 
+     * @return bool succes
+     */
     function editSession(Plongee $plongee) : bool {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         try {
             return DB::update(
                 "UPDATE PLONGEE SET
+                    SEA_ID = ?,
+                    PLON_DATE = ?,
                     PLON_DIRECTEUR = ?, 
                     BAT_ID = ?,
                     LIEU_ID = ?, 
@@ -66,13 +93,15 @@ class Session {
                     WHERE SEA_ID = ? AND PLON_DATE = ? ", 
 
                 [
+                    $plongee->SEA_ID,
+                    $plongee->PLON_DATE,
                     $plongee->PLON_DIRECTEUR,
                     $plongee->BAT_ID,
                     1,
                     $plongee->PLON_SECURITE,
                     $plongee->PLON_PILOTE,
-                    $plongee->SEA_ID,
-                    $plongee->PLON_DATE
+                    $plongee->primSEA_ID,
+                    $plongee->primPLON_DATE
                 ]
             );
         } catch (\Exception $exception) {
@@ -80,6 +109,13 @@ class Session {
         }
     }
 
+    /**
+     * Get the site name's of a session
+     * 
+     * @param Plongee $plongee the session
+     * 
+     * @return string the name
+     */
     public function getSiteName(Plongee $plongee) : string {
         $lines = DB::select(
             "SELECT LIEU_NOM FROM LIEU WHERE LIEU_ID = ? LIMIT 1",
@@ -93,6 +129,13 @@ class Session {
         return "?";
     }
 
+    /**
+     * Get the moment of a session
+     * 
+     * @param Plongee $plongee the session
+     * 
+     * @return string moment
+     */
     public function getMoment(Plongee $plongee) : string {
         $lines = DB::select(
             "SELECT SEA_LABEL FROM SEANCE WHERE SEA_ID = ? LIMIT 1",
@@ -106,6 +149,11 @@ class Session {
         return "?";
     }
 
+    /**
+     * Get securities
+     * 
+     * @return array securities
+     */
     public function getSecurities() : array {
         $securities = [];
         $lines = DB::select(
@@ -146,6 +194,13 @@ class Session {
         return $effective;
     }
 
+    /**
+     * Get the number of dives of a member
+     * 
+     * @param string $AD_EMAIL
+     * 
+     * @return string the number of a drives
+     */
     public static function getNbDives(string $AD_EMAIL) : string  {
         $lines = DB::select(
             "SELECT AD_NBPLONGEES_ANS FROM ADHERENT WHERE AD_EMAIL = ? LIMIT 1",

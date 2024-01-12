@@ -2,6 +2,9 @@
 
 namespace App\Models\Tables;
 
+/**
+ * This Class represent the table of PLONGEE in the data-base
+ */
 class Plongee {
     public string $SEA_ID;
     public string $PLON_DATE;
@@ -11,4 +14,7 @@ class Plongee {
     public string $PLON_EFFECTIFS_MAX;
     public string $BAT_ID;
     public string $LIEU_ID;
+
+    public string $primSEA_ID;
+    public string $primPLON_DATE;
 }

@@ -1,28 +1,28 @@
 <?php
     use App\Http\Controllers\PlongeeController;
+    use Illuminate\Support\Facades\DB;
 
-    function getListDivers($sea_id, $plon_date) {
+    function getListDivers($sea_id, $plon_date)
+    {
         $listDivers = PlongeeController::listDivers($sea_id, $plon_date);
     
         $min =0;
         $max =0;
         $nb=0;
         ?>
-
         <div class="participantTab">
-        <?php foreach($listDivers as $line): ?>
-        
-            <p class="participant"> <?= $line->AD_PRENOM ?> <?= $line->AD_NOM ?> <?= $line->AD_NIVEAU ?> </p>
-
+        <?php
+        foreach($listDivers as $line)
+        {
+            ?>
+            <p class="participant"><?=$line->AD_PRENOM?> <?=$line->AD_NOM?> : niveau <?= $line->AD_NIVEAU ?></p>
             <?php
             $max = $line->PLON_EFFECTIFS_MAX;
             $min = $line->PLON_EFFECTIFS_MIN;
             $nb++;
-            ?>
-        <?php endforeach ?>
-        
-        </div><br><br><p class="footer">Min : <?= $min ?> / <?= $nb?> / Max : <?=$max?></p>
-
+        }
+        ?>
+        </div><br><br><p class="footer">Min : <?= $min ?> / Nombre de participants : <?= $nb?> / Max : <?=$max?></p>
         <?php
     }
 ?>
@@ -40,6 +40,12 @@
 </head>
 <body>
     @include('header')
-    {{getListDivers($SEA_ID, $PLON_DATE)}}
+        <?php
+            getListDivers(
+                $SEA_ID,
+                $PLON_DATE
+            );
+
+        ?>
 </body>
 </html>
