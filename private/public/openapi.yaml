@@ -1,0 +1,46 @@
+info:
+  title: Ganrantec Nautisme
+  description: Manages the diving sessions at Garantec Nautisme
+
+paths:
+  /adherents/{seaId}/{plonDate}/{palId}:
+    get:
+      summary: Retrieves the divers registered to a specific group of a diver ("palanquee") of a diving session
+      parameters:
+        seaId:
+          name: seaId
+          description: the session identifier of the group of diver ("palanquee")
+          schema:
+            type: int
+        plonDate:
+          name: plonDate
+          description: the session date of the group of diver ("palanquee")
+          schema:
+            type: string
+        palId:
+          name: palId
+          description: the identifier of the group of diver ("palanquee")
+          schema:
+            type: int
+      responses:
+        "200":
+          decription: "OK"
+
+  /adherents/{seaId}/{plonDate}:
+    get:
+      summary: Retrieves the divers registered to a specific diving session. Returns their first name, last name and email address
+      parameters:
+        seaId:
+          name: seaId
+          description: the session identifier
+          schema:
+            type: int
+        plonDate:
+          name: plonDate
+          description: the session date
+          schema:
+            type: string
+      responses: 
+        "200":
+          description: "OK"
+  
