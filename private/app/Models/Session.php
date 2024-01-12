@@ -174,6 +174,11 @@ class Session {
         return $securities;
     }
 
+    /**
+     * Retirn the effective of the session
+     * @param string $SEA_ID, string $PLON_DATE
+     * @return array
+     */
     public function getEffectif(string $SEA_ID, string $PLON_DATE) : array {
         $effective = [];
 

@@ -167,6 +167,12 @@ class SessionManager extends BaseController {
         }
     }
 
+    /**
+     * Submit the edit form of a specific existing session
+     * @param Request $request
+     * @return view
+     */
+
     function editSubmit(Request $request) {
 
         $plongee = new Plongee();
