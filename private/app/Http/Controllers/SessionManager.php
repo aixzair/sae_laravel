@@ -186,11 +186,7 @@ class SessionManager extends BaseController {
         $effective = isset($data['effective'])? $data['effective'] : "";
 
         $primSession = isset($data['pSession'])? $data['pSession'] : "";
-        Log::debug($data);
         $primDate = isset($data['pDate'])? $data['pDate'] : "";
-
-        //$primSession = 1;
-        //$primDate = '2024-05-27';
 
         switch ($periode) {
             case 'morning': $periode = 1; break;
@@ -202,8 +198,8 @@ class SessionManager extends BaseController {
         $plongee->SEA_ID = $periode;
         $plongee->PLON_DATE = $date;
 
-        // $plongee->primSEA_ID = $primSession;
-        // $plongee->primPLON_DATE = $primDate;
+        $plongee->primSEA_ID = $primSession;
+        $plongee->primPLON_DATE = $primDate;
 
         $plongee->PLON_DIRECTEUR = $memberModel->getMember($director[0], $director[1])->AD_EMAIL;
         $plongee->PLON_SECURITE = $memberModel->getMember($manager[0], $manager[1])->AD_EMAIL;

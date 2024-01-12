@@ -40,7 +40,7 @@ class Session {
             $plongee->PLON_PILOTE = $line->PLON_PILOTE;
             $plongee->BAT_ID = $line->BAT_ID;
             $plongee->LIEU_ID = $line->LIEU_ID;
-            $plongee->PLON_EFFECTIFS_MAX = $line->PLON_EFFECTIFS_MAX;
+            //$plongee->PLON_EFFECTIFS_MAX = $line->PLON_EFFECTIFS_MAX;
         }
 
         return $plongee;
@@ -83,6 +83,8 @@ class Session {
         try {
             return DB::update(
                 "UPDATE PLONGEE SET
+                    SEA_ID = ?,
+                    PLON_DATE = ?,
                     PLON_DIRECTEUR = ?, 
                     BAT_ID = ?,
                     LIEU_ID = ?, 
@@ -91,13 +93,15 @@ class Session {
                     WHERE SEA_ID = ? AND PLON_DATE = ? ", 
 
                 [
+                    $plongee->SEA_ID,
+                    $plongee->PLON_DATE,
                     $plongee->PLON_DIRECTEUR,
                     $plongee->BAT_ID,
                     1,
                     $plongee->PLON_SECURITE,
                     $plongee->PLON_PILOTE,
-                    $plongee->SEA_ID,
-                    $plongee->PLON_DATE
+                    $plongee->primSEA_ID,
+                    $plongee->primPLON_DATE
                 ]
             );
         } catch (\Exception $exception) {
