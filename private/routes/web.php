@@ -134,4 +134,5 @@ Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, '
 Route::get(
     '/plongée/unregister{date}{sea_id}',
     [PlongeeController::class, 'unregister']
-)->middleware('role:2');
+);
+//->middleware('role:2');
