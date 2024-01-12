@@ -4,7 +4,16 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 
+/**
+ * A class who make request to responsabilite table in the data base
+ */
 class Responsabilite {
+
+    /**
+     * Get all responsabilities
+     * 
+     * @return array of responsabilites
+     */
     function getResponsabilities() : array {
         $responsabilities = [];
 
@@ -22,6 +31,14 @@ class Responsabilite {
         return $responsabilities;
     }
 
+    /**
+     * Add a role to adherent
+     * 
+     * @param string $email of the adhrent
+     * @param string $name of the role
+     * 
+     * @return bool win
+     */
     function addRole(string $email, string $name) : bool {
         try {
             return DB::insert(
@@ -37,6 +54,14 @@ class Responsabilite {
         }
     }
 
+    /**
+     * Get if member have a role
+     * 
+     * @param string $identity his name a surname
+     * @param string $responsability the role
+     * 
+     * @return bool true if he has the role
+     */
     function memberHaveResponsability(string $idendity, string $responsability) : bool {
         $lines = DB::select(
             "SELECT RES_ID
@@ -56,6 +81,14 @@ class Responsabilite {
         return false;
     }
 
+    /**
+     * Insert a responsability to adhrent in the data base 
+     * 
+     * @param string $identity his name with surname
+     * @param string $responsability his role
+     * 
+     * @return bool succes
+     */
     function insertResponsability(string $idendity, string $responsability) : bool {
         try {
             DB::insert(
@@ -73,6 +106,14 @@ class Responsabilite {
         }
     }
 
+    /**
+     * Delete a responsability to adhrent in the data base 
+     * 
+     * @param string $identity his name with surname
+     * @param string $responsability his role
+     * 
+     * @return bool succes
+     */
     function deleteResponsability(string $idendity, string $responsability) {
         try {
             DB::insert(

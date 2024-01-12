@@ -12,8 +12,18 @@ use App\Models\Session;
 
 use App\Models\Tables\Plongee;
 
+/**
+ * This controller manage action about session (dives)
+ */
 class SessionManager extends BaseController {
 
+    /**
+     * Function to show a session
+     * 
+     * @param Request $request the data
+     * 
+     * @return ? the view of a session
+     */
     public function show(Request $request) {
         $sessionModel = new Session();
         $memberModel = new Member();
@@ -44,6 +54,13 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    /**
+     * Function to show the list of members
+     * 
+     * @param Request $request datas
+     * 
+     * @return ? view of members
+     */
     public function membersList(Request $request) {
         return view('session/membersList', [
             "SEA_ID" => ($request->has('SEA_ID') ? $request->input('SEA_ID') : "a"),
@@ -51,6 +68,11 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    /**
+     * function to add a session
+     * 
+     * @return ? the view
+     */
     public function add() {
         $boatModel = new Boat();
         $memberModel = new Member();
@@ -96,6 +118,13 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    /**
+     * Function to process the request to add session
+     * 
+     * @param Request $request
+     * 
+     * @return ? the view to add a session with the message
+     */
     public function addSubmit(Request $request) {
         $plongee = new Plongee();
         $data = $request->all();
