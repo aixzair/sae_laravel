@@ -56,14 +56,14 @@
                 else{
                     echo "\">";
                 }
-                echo "<p>$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
+                echo "<p class=\"dateSesssion\">$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
                 
 echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
 
                 if(PlongeeController::isRegistered($sea_id, $plon_date, session('email'))){ //TODO : replacer l'adresse mail de l'utilisateur
                     echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
                 }else if($complete){
-                    echo "<p>COMPLET</p>";
+                    echo "<div class=\"regButton\"><a>COMPLET</a></div>";
                 }
                 else{
                     //Checks if current user's level is high enough to apply to the dive
