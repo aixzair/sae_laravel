@@ -1,4 +1,4 @@
-// app/Models/Palanque.php
+<?php
 
 namespace App\Models;
 

@@ -9,7 +9,7 @@
         <!-- display the number of remaining dives through at the function that places in the function nbDives that is in the view "Session.php"  -->
         <p class="NavText">Plongées anuelle restantes : {{session('nbDives')}}</p>
         <!--  button that permits to reserve a snorkelling -->
-        <button class = "NavButton buttonRoute" data-route="{{route('session/list')}}">RESERVER PLONGÉE EN TANT QUE PLONGEUR</button>
+        <button class = "NavButton buttonRoute respButton" data-route="{{route('session/list')}}">RESERVER PLONGÉE EN TANT QUE PLONGEUR</button>
         <!-- button for see the profil of the member currently connect -->
         <button class = "NavButton buttonRoute" data-route="{{route('home')}}">PROFIL</button>
          <!-- button for disconnect, the button use the view deconnexion -->

@@ -8,8 +8,10 @@ use App\Models\Palanque;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Routing\Controller as BaseController;
 
-class PalanqueController extends Controller
+
+class PalanqueController extends BaseController
 {
 
     // Display the main view of palanquées

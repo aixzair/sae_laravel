@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\DeconnexionController;
+use App\Http\Controllers\PalanqueController;
 use App\Http\Controllers\PlongeeController;
 use App\Http\Controllers\Responsable;
 use App\Http\Controllers\SessionManager;
@@ -136,3 +137,11 @@ Route::get(
     [PlongeeController::class, 'unregister']
 );
 //->middleware('role:2');
+
+Route::post('/palanquees', 'PalanqueController@index')->name('directionPalanquees');
+Route::post('/pdf', 'formController@index')->name('pdf');
+
+Route::match(['get', 'post'],'/palanquees', [PalanqueController::class, 'index'])->name('palanquees.index');
+Route::match(['get', 'post'],'/get-palanque-details-form', [PalanqueController::class, 'getPalanqueDetailsForm'])->name('get.palanque.details.form');
+Route::match(['get', 'post'],'/store-palanque-details', [PalanqueController::class, 'storePalanqueDetails'])->name('store.palanque.details');
+Route::match(['get', 'post'],'/store-adherent-details', [PalanqueController::class, 'storeAdherentDetails'])->name('store.adherent.details');
