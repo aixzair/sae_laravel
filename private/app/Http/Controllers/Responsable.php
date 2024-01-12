@@ -8,8 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\Responsabilite;
 use App\Models\Member;
 
+/**
+ * Controller who manage the responsable role
+ */
 class Responsable extends BaseController {
 
+    /**
+     * Function to show the view for setting roles
+     * 
+     * @return ? view of set role
+     */
     function setRolls(string $message = "") {
         return view('role/set', [
             'names' => (new Responsabilite())->getResponsabilities(),
@@ -17,6 +25,11 @@ class Responsable extends BaseController {
         ]);
     }
 
+    /**
+     * Function to process the requestion of setRolls
+     * 
+     * @return ? view of setRole with message
+     */
     function setRollsSubmit(Request $request) {
         $data = $request->all();
         $model_responsabilitie = new Responsabilite();

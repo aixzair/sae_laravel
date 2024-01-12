@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 
+/**
+ * Manage users
+ */
 class User extends BaseController {
 
+    /**
+     * Find the true home
+     */
     public function toHome() {
         if (session()->has('role')) {
             switch (session('role')) {
