@@ -22,7 +22,7 @@ class PlongeeController extends Controller
      */
     public function register(String $date, int $sea_id){
         $modele = new PlongeeModel();
-        $modele->register($sea_id, $date, "chloe.young@gmail.com");
+        $modele->register($sea_id, $date, session('email'));
         //return view('session/list');
         //return redirect('/sessionList');
         return back();
@@ -37,7 +37,7 @@ class PlongeeController extends Controller
      */
     public function unregister(String $date, int $sea_id){
         $modele = new PlongeeModel();
-        $modele->unregister($sea_id, $date, "chloe.young@gmail.com");
+        $modele->unregister($sea_id, $date, session('email'));
         return back();
     }
     /**

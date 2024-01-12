@@ -31,23 +31,40 @@ header{
 }
 
 .NavButton{
-    height : 7vh;
-    width: 9vw;
+    height : 8vh;
+    width: 10vw;
     margin: 3.5vh 1vw;
     padding: 10px;
     border-radius: 2em;
-    font-size: 1.1vw;
+    font-size: 1.5vw
+}
+
+.respButton{
+    font-size: 0.8vw;
+    border-radius: 3em;
 }
 
 .NavBar{
     display: flex;
     justify-content: flex-end;
-    margin: 0 5vw;
+    margin: 0 1vw;
 }
 
 #Logout{
-    margin: 0 2vw 0 1vw;
+    margin: 2vh 2vw 0 1vw;
 }
+/* ----------------------------- Style listParticipant -------------------------- */
+
+.participantTab{
+    margin: 5vh auto 0 auto;
+    text-align: center;
+    border: solid 2px;
+}
+
+.participant{
+    font-size: 0.8em;
+}
+
 /* ----------------------------- Style AddSession -------------------------- */
 
 .addSessionForm{
