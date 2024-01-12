@@ -26,7 +26,7 @@ header{
     /*font-size: x-large;*/
     font-size: 2.1vw;
     text-align: center;
-    min-width: 40%;
+    width:40%;
 }
 
 .NavButton{
