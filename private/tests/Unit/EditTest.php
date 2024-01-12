@@ -27,7 +27,7 @@ class EditSessionTest extends TestCase
             'pDate' => '2024-01-22'
         ]);
 
-
+        $response->assertSessionHas('role', 6);// Verify that the session variable corresponds to the role of the test
     }
 
     /**
@@ -47,6 +47,6 @@ class EditSessionTest extends TestCase
             'pDate' => '2024-01-22'
         ]);
 
-        
+        $response->assertSessionHas('role', 6);// Verify that the session variable corresponds to the role of the test
     }
 }

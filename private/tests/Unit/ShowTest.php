@@ -25,7 +25,7 @@ class ShowTest extends TestCase
             'boat' => '1'
         ]);
 
-
+        $response->assertSessionHas('role', 2);// Verify that the session variable corresponds to the role of the test
     }
 
     /**
@@ -37,14 +37,14 @@ class ShowTest extends TestCase
     {
         $response = $this->post('{{ route(\'plongée/show\') }}',
         [
+            'day-start' => '3',
+            'session' => '2024-01-22',
             'pilot' => 'ella.robinson@gmail.com',
             'security' => 'abigail.garcia@gmail.com',
             'director' => 'ethan.jackson@gmail.com',
-            'boat' => '1',
-            'pSession' => '3',
-            'pDate' => '2024-01-22'
+            'boat' => '1'
         ]);
 
-        
+        $response->assertSessionHas('role', 2);// Verify that the session variable corresponds to the role of the test
     }
 }

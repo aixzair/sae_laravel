@@ -43,6 +43,7 @@ class AddTest extends TestCase
             'director' => 'ethan.jackson@gmail.com'
         ]);
 
+        $response->assertSessionHas('role', 6);// Verify that the session variable corresponds to the role of the test
     }
 
     /**
@@ -60,5 +61,6 @@ class AddTest extends TestCase
             'boat' => '1'
         ]);
 
+        $response->assertSessionHas('role', 6);// Verify that the session variable corresponds to the role of the test
     }
 }
