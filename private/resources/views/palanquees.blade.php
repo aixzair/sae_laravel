@@ -14,8 +14,8 @@
     <!-- Form to get the number of dives -->
     <form action="{{ route('get.palanque.details.form') }}" method="post">        
      @csrf
-    <input type="" name="sea_id" value="{{$sea_id}}">
-    <input type="" name="plon_date" value="{{$plon_date}}">
+    <input type="hidden" name="sea_id" value="{{$sea_id}}">
+    <input type="hidden" name="plon_date" value="{{$plon_date}}">
     <label for="nb_palanque">Nombre de palanquée :</label>
     <input type="number" name="nb_palanque" id="nb_palanque" required>
 
@@ -30,9 +30,9 @@
     <!-- Form to store details of dives -->
     <form action="{{ route('store.palanque.details') }}" method="post">
         @csrf
-		<input type="" name="nb_palanquee" value="{{$nb_palanque}}">
-        <input type="" name="sea_id" value="{{$sea_id}}">
-        <input type="" name="plon_date" value="{{$plon_date}}">
+		<input type="hidden" name="nb_palanquee" value="{{$nb_palanque}}">
+        <input type="hidden" name="sea_id" value="{{$sea_id}}">
+        <input type="hidden" name="plon_date" value="{{$plon_date}}">
         <!-- Loop for all details of a number of dives -->
         @for ($i = 1; $i <= $nb_palanque; $i++)
             <h2>Palanquée {{ $i }}</h2>
@@ -60,8 +60,8 @@
     <form action="{{ route('store.adherent.details') }}" method="post">
         @csrf
 		<input type="hidden" name="nb_adherent" value="{{count($participantsInscrits)}}">
-		<input type="" name="sea_id" value="{{$sea_id}}">
-        <input type="" name="plon_date" value="{{$plon_date}}">
+		<input type="hidden" name="sea_id" value="{{$sea_id}}">
+        <input type="hidden" name="plon_date" value="{{$plon_date}}">
         <!-- Foreach loop for each registered member -->
 		@foreach ($max_idpalanques as $key => $max_idpalanque)
             <input type="hidden" name="max_idpalanques[{{ $key }}]" value="{{ $max_idpalanque }}">
@@ -92,10 +92,10 @@
 
 <!-- Check if participantsInscrits is set -->
 @if (isset($creation))
-<form action="{{ route('get.palanque.details.form') }}" method="post">        
+<form action="{{ route('pdf') }}" method="post">        
      @csrf
-    <input type="" name="sea_id" value="{{$sea_id}}">
-    <input type="" name="plon_date" value="{{$plon_date}}">
+    <input type="hidden" name="sea_id" value="{{$sea_id}}">
+    <input type="hidden" name="plon_date" value="{{$plon_date}}">
 
     <button type="submit">Enregistrer pdf</button>
 	</form>

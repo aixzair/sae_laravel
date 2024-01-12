@@ -10,13 +10,12 @@
     <title>Résultats des requêtes de plongée</title>
 </head>
 <body>
-    <h1>Résultats des requêtes de plongée</h1>
+    <h1>Fiche de Sécurité</h1>
 
-    <h2>Tableau 1</h2>
-    <table border="1">
+    <table class="roleTab">
         <tr>
             <th>Date</th>
-            <th>Nom Adhérent</th>
+            <th>Nom Directeur</th>
             <th>Lieu</th>
             <th>Nombre</th>
         </tr>
@@ -30,15 +29,22 @@
         @endforeach
     </table>
 
-    <h2>Tableau 2</h2>
-    <ul>
+    <table class="roleTab">
         @foreach ($tableau2Results as $result)
-        <li>{{ $result->ad_nom }}</li>
+        <tr>
+            <th>Sécurité</th>
+            <th>
+                {{ $result->ad_nom }}
+            </th>
+        </tr>
         @endforeach
+        <tr>
+            <th>Observation</th>
+            <th></th>
+        </tr>
     </ul>
 
-    <h2>Tableau 3</h2>
-    <p>Nombre de palanquées : {{ $tableau3Results }}</p>
+    
 
 </body>
 </html>

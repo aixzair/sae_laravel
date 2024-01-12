@@ -154,3 +154,4 @@ Route::get(
 
 // Route::post('/palanquees', 'PalanqueController@index')->name('directionPalanquees');
 Route::post('/palanquees', 'PalanqueController@index')->name('directionPalanquees');
+Route::post('/pdf', 'formController@index')->name('pdf');
