@@ -83,7 +83,7 @@ use App\Http\Controllers\PlongeeController;
                                 <button type="submit" style="border: none; background: none; cursor: pointer;">
                                     <p>{{ $plon_date }} {{ $startingTime }} à {{ $endingTime }}</p>
                                 </button>
-                            </form>
+                            </form> 
                             <?php
                         } else {
                             echo "\">"; ?>
