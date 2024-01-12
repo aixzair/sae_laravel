@@ -69,9 +69,7 @@
             <?php } ?> 
             
             </table>
-        <div class="button profileButton">
-            <a href="#">Voir plus</a>
-        </div>
+            <div class="button profileButton buttonRoute" data-route="{{route('showMore.home')}}">Voir plus</div>
         </div>
     </main>
     </body>

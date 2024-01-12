@@ -41,9 +41,7 @@
           <p class="profileText ">19/05/2024 - 9h00 à 12h00</p>        
       </div>
     </div>
-    <div class="button profileButton">
-      <a href="#">Voir plus</a>
-    </div>
+    <div class="button profileButton buttonRoute" data-route="{{route('showMore.home')}}">Voir plus</div>
   </div>
   
 

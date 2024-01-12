@@ -108,6 +108,9 @@ Route::get('/acceuil/adherent', function () {
 })->name('member.home');
 //->middleware('role:2');
 
+Route::get('/acceuil/voirPlus', function () {
+    return view('acceuil/showMore');
+})->name('showMore.home');
 
 // AUTRES ---------------------------------
 
