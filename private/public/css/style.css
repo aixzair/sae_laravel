@@ -17,6 +17,7 @@ header{
     margin-right:1vw;
     margin-top: 2.5vh;
     position:absolute;
+    width : 23%;
 }
 
 .NavText{
@@ -431,7 +432,11 @@ header{
     border-left: 2px solid;
     border-right: 2px solid;
     border-bottom: 2px solid;
-    font-size: 1.6em;
+    font-size: 1.5em;
+}
+
+.session.dateSesssion{
+    width:35vw;
 }
 
 .session.dateSesssion{
@@ -464,19 +469,26 @@ header{
     margin-bottom: 10px;
     border-radius: 2em;
     padding-top: 1.2vh;
-    padding-left: 1vw;
-    padding-right: 1vw;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
     border: 2px solid;
-    width:15vw;
+    width:12vw;
     background-color: white;
     text-align: center;
     font-size: 0.9em;
+}
+
+.session a{
+    font-size: 0.9em;
+    margin-right: 2vw;
+    padding-top: 2vh;
 }
 
 .regButton a{
     vertical-align: middle;
     text-align: center;
     color: black;
+    margin:0;
 }
 
 .regButton a:hover{

@@ -117,6 +117,9 @@ Route::get('/acceuil/voirPlus', function () {
 Route::get('/register/{date}/{sea_id}', [PlongeeController::class, 'register']);
 Route::get('/unregister/{date}/{sea_id}', [PlongeeController::class, 'unregister']);
 
+Route::get('/editSession', function () {
+    return view('editSession');
+});
 Route::get('/creneau', function () {
     return view('creneau');
 });
