@@ -8,7 +8,10 @@
     <title>Formulaire Palanque</title>
 </head>
 <body>
+
+<!-- Check if the number of dives is not set -->
 @if (!isset($nb_palanque))
+    <!-- Form to get the number of dives -->
     <form action="{{ route('get.palanque.details.form') }}" method="post">
     @csrf
 
@@ -19,10 +22,16 @@
 	</form>
 @endif
 
+
+
+<!-- Check if the number of dives is set -->
 @if (isset($nb_palanque))
+    <!-- Form to store details of dives -->
     <form action="{{ route('store.palanque.details') }}" method="post">
         @csrf
 		<input type="hidden" name="nb_palanquee" value="{{$nb_palanque}}">
+        
+        <!-- Loop for all details of a number of dives -->
         @for ($i = 1; $i <= $nb_palanque; $i++)
             <h2>Palanquée {{ $i }}</h2>
             <label for="effectif[{{ $i }}]">Effectif :</label>
@@ -42,25 +51,31 @@
     </form>
 @endif
 
+
+<!-- Check if participantsInscrits is set -->
 @if (isset($participantsInscrits))
+    <!-- Form to store details of registered members -->
     <form action="{{ route('store.adherent.details') }}" method="post">
         @csrf
 		<input type="hidden" name="nb_adherent" value="{{count($participantsInscrits)}}">
 		
+        <!-- Foreach loop for each registered member -->
 		@foreach ($max_idpalanques as $key => $max_idpalanque)
             <input type="hidden" name="max_idpalanques[{{ $key }}]" value="{{ $max_idpalanque }}">
         @endforeach
 		
+        <!-- Loop for each registered member -->
        @for ($i = 0; $i < count($participantsInscrits); $i++)
 			<h2>Adhérent</h2>
 			<p>Nom: {{ $participantsInscrits[$i]->AD_NOM }}</p>
 			<p>Prénom: {{ $participantsInscrits[$i]->AD_PRENOM }}</p>
 
-			<!-- Ajoutez un champ d'entrée prérempli pour l'e-mail -->
+			<!-- Add a pre-filled input for email -->
 			<label for="email_{{ $participantsInscrits[$i]->AD_EMAIL }}">E-mail :</label>
 			<input type="hidden" name="emails[{{$i}}]" id="email_{{ $participantsInscrits[$i]->AD_EMAIL }}" value="{{ $participantsInscrits[$i]->AD_EMAIL }}" readonly>
 		
 			<select name="nombrePalanques[{{$i}}]" id="nombrePalanques">
+                <!-- Foreach loop for each possible dive -->
 				@foreach ($max_idpalanques as $key => $max_idpalanque)
 					<option value="{{$max_idpalanque}}">{{ $max_idpalanque }} palanquée{{ $max_idpalanque > 1 ? 's' : '' }}</option>
 				@endforeach
