@@ -8,8 +8,7 @@
      * @param [type] $month
      * @return void
      */
-    function getMonthlySessions($month)
-    {
+    function getMonthlySessions($month) {
         $year = date("Y");
         $fDay = date_create($year.'-'.$month.'-01');
         $lDay = date_create($year.'-'.($month+1).'-01');
@@ -22,8 +21,7 @@
         );
         
         //Isolates dives for selected month depending on thee tab clicked
-        foreach($result as $line)
-        {
+        foreach($result as $line) {
             $year = date("Y");
             $fDay = date_create($year.'-'.$month.'-1');
             $lDay = date_create($year.'-'.($month+1).'-1');
@@ -36,57 +34,50 @@
             $startingTime = date("H:i",strtotime($line->PLON_DEBUT));
             $endingTime = date("H:i",strtotime($line->PLON_FIN));
 
-            //Changes background color if session is valid, invalid or full
-            if($complete = PlongeeController::isComplete($sea_id, $plon_date))
-            {
-                //If full, container is redMarked
-                echo "<div class=\"redMarked session ";
-            }
-            else
-            {
-                echo "<div class=\"session ";
-            }
-            if(PlongeeController::isValid($sea_id, $plon_date))
-            {
-                if(!$complete)
-                {
-                    //If there are empty spots, container is greenMarked
-                    echo "greenMarked\">";
-                }
-                else{
-                    echo "\">";
-                }
-                echo "<p>$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
-                ?>
+            $green = true; // PlongeeController::isValid($sea_id, $plon_date);
+            $red = PlongeeController::isComplete($sea_id, $plon_date);
 
-<a href="listeParticipants/{{$plon_date}}/{{$sea_id}}">Liste Participants</a>
+            ?>
 
-                <?php
-                if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
-                    echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
-                }else if($complete){
-                    echo "<p>COMPLET</p>";
-                }
-                else{
-                    //Checks if current user's level is high enough to apply to the dive
-                    if(PlongeeController::isRightLevel($sea_id, $plon_date, "chloe.young@gmail.com"))
-                    {
-                        echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
-                    }
-                    else
-                    {
-                        echo "<div class=\"regButton\"><a>Niveau Insuffisant</a></div>";
-                    }
-                }
-            }
-            else{
-                echo "\">";
-                echo "<p> ".$plon_date.' '.$startingTime.' à '.$endingTime."</p><p></p><div></div>";
-            }
-            echo "</div>";
-        }
+            <!-- Changes background color if session is valid, invalid or full -->
+            <!-- If full, container is redMarked -->
+            <!-- If there are empty spots, container is greenMarked -->
+            <div class="session 
+                {{($red)? 'redMarked' : '' }}
+                {{(!$red && $green)? 'greenMarked' : ''}}
+            ">
+                <p>{{$plon_date}} de {{$startingTime}} à {{$endingTime}}</p>
+
+                @if($green)                
+                    <p>Niveau min. : {{$plon_niveau}}</p>
+                    <a href="{{ route('session/membersList', 
+                        ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
+                    >Liste Participants</a>
+
+                    @if (PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com"))
+                        <div class="regButton">
+                            <a href="unregister/{{$plon_date}}/{{$sea_id}}">Se retirer</a>
+                        </div>
+                    @elseif ($green)
+                        <p>COMPLET</p>
+                    @else
+                        <!-- Checks if current user's level is high enough to apply to the dive -->
+                        <div class="regButton">
+                        @if (PlongeeController::isRightLevel($sea_id, $plon_date, "chloe.young@gmail.com"))
+                            <a href="register/{{$plon_date}}/{{$sea_id}}">S'inscrire</a>
+                        @else
+                            <a>Niveau Insuffisant</a>
+                        @endif
+                        </div>
+                    @endif
+                @else
+                    <p></p><div></div>
+                @endif
+            </div>
+        <?php }
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -100,6 +91,7 @@
 </head>
 <body>
   @include('header')
+
   <div class="monthContainer">
     <div class="monthBar">
         <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>

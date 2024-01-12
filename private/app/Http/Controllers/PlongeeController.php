@@ -55,12 +55,12 @@ class PlongeeController extends Controller
     /**
      * Calls model method to check if user is registered for selectted dive session
      *
-     * @param integer $sea_id
-     * @param String $plon_date
-     * @param String $user_email
+     * @param string $sea_id
+     * @param string $plon_date
+     * @param string $user_email
      * @return boolean
      */
-    public static function isRegistered(int $sea_id, String $plon_date, String $user_email){
+    public static function isRegistered(string $sea_id, string $plon_date, string $user_email){
         $modele = new PlongeeModel();
         return $modele->isRegistered($sea_id, $plon_date, $user_email);
     }
@@ -68,12 +68,12 @@ class PlongeeController extends Controller
     /**
      * Calls model method to check if the user's diver level is high enough for selected dive session
      *
-     * @param integer $sea_id
-     * @param String $plon_date
-     * @param String $user_email
+     * @param string $sea_id
+     * @param string $plon_date
+     * @param string $user_email
      * @return boolean
      */
-    public static function isRightLevel(int $sea_id, String $plon_date, String $user_email){
+    public static function isRightLevel(string $sea_id, string $plon_date, string $user_email){
         $modele = new PlongeeModel();
         return $modele->isRightLevel($sea_id, $plon_date, $user_email);
     }
@@ -81,16 +81,16 @@ class PlongeeController extends Controller
     /**
      * Calls model method to check if selected session is valid (all attributes filled)
      *
-     * @param integer $sea_id
-     * @param String $plon_date
+     * @param string $sea_id
+     * @param string $plon_date
      * @return boolean
      */
-    public static function isValid(int $sea_id, String $plon_date){
+    public static function isValid(string $sea_id, String $plon_date){
         $modele = new PlongeeModel();
         return $modele->isValid($sea_id, $plon_date);
     }
 
-    public static function listDivers(int $sea_id, String $plon_date){
+    public static function listDivers(string $sea_id, String $plon_date){
         $modele = new PlongeeModel();
         return $modele->listDivers($sea_id, $plon_date);
     }

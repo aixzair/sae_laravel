@@ -66,6 +66,10 @@ Route::get('/plongée/director', function() {
 	return view('session/director');
 })->name('session/director');
 
+Route::get('/plongée/listeMembres',
+    [SessionManager::class, 'membersList'] 
+)->name('session/membersList');
+
 
 // ROLES ----------------------------------
 

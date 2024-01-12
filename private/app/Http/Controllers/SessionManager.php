@@ -44,6 +44,13 @@ class SessionManager extends BaseController {
         ]);
     }
 
+    public function membersList(Request $request) {
+        return view('session/membersList', [
+            "SEA_ID" => ($request->has('SEA_ID') ? $request->input('SEA_ID') : "a"),
+            "PLON_DATE" => ($request->has('PLON_DATE') ? $request->input('PLON_DATE') : "a")
+        ]);
+    }
+
     public function add() {
         $boatModel = new Boat();
         $memberModel = new Member();
@@ -179,7 +186,6 @@ class SessionManager extends BaseController {
             return view('welcome');
         } else {
             return view('/session/erroredit');
-            //return $this->edit($request);
         }
     }
 }
