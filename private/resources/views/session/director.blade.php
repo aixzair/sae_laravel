@@ -1,4 +1,5 @@
 <?php
+//use App\Models\sessionListModel;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\PlongeeController;
 ?>
@@ -69,22 +70,32 @@ use App\Http\Controllers\PlongeeController;
                         } else {
                             echo "<div class=\"session ";
                         }
-
                         if (PlongeeController::isValid($sea_id, $plon_date)) {
                             if (!$complete) {
                                 echo "greenMarked\">";
                             } else {
                                 echo "\">";
                             }
-                            echo "<p> " . $plon_date . ' ' . $startingTime . ' à ' . $endingTime . "</p>";
+                            // echo "<a href='{{ route('palanquees', ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}'>
+                            //     <p>{{ $plon_date }} {{ $startingTime }} à {{ $endingTime }}</p>
+                            // </a>";
+
+                            ?>
+
+                            <form action="{{ route('directionPalanquees', ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="sea_id" value="{{$sea_id}}">
+                            <input type="hidden" name="plon_date" value="{{$plon_date}}">
+                                <button type="submit" style="border: none; background: none; cursor: pointer;">
+                                    <p>{{ $plon_date }} {{ $startingTime }} à {{ $endingTime }}</p>
+                                </button>
+                            </form>
+
+                        <?php
+
                         } else {
-                            echo "\">"; ?>
-                            <a href="{{ route('session/show', 
-                                ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
-                            >
-                                <p> <?= $plon_date ?> <?= $startingTime ?> à <?= $endingTime ?> </p><p></p>
-                            </a> 
-                            <?php
+                            echo "\">";
+                            echo "<p> " . $plon_date . ' ' . $startingTime . ' à ' . $endingTime . "</p><p></p>";
                         }
 
 
