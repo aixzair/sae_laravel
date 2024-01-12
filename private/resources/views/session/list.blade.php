@@ -55,8 +55,12 @@
                 }
                 else{
                     echo "\">";
-                }
-                echo "<p class=\"dateSesssion\">$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
+                } ?>
+                <a class="dateSesssion" href="{{ route('session/show', 
+                    ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
+                >
+                    <p> <?= $plon_date ?> <?= $startingTime ?> à <?= $endingTime ?> Niveau min. : <?=$plon_niveau?></p>
+                </a> <?php
                 ?>
                 <a href="{{ route('session/membersList', 
                     ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
