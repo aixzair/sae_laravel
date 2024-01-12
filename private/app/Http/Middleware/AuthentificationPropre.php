@@ -16,10 +16,12 @@ class AuthentificationPropre
      */
     public function handle(Request $request, Closure $next, $role)
     {
+		// Check if the provided role matches the session role
 		if($role===session('role')){
 			return $next($request);
 		}
 
+		// Additional checks for specific role combinations with the same rights
 		if($role===2 and session('role')===3){
 			return $next($request);
 		}	
@@ -43,7 +45,8 @@ class AuthentificationPropre
 		if($role===4 and session('role')===3){
 			return $next($request);
 		}			
-        //return Response()->view('welcome');
+        
+		// If none of the conditions match, redirect to the default route
 		return redirect('/');
     }
 }
