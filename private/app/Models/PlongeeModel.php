@@ -21,12 +21,21 @@ class PlongeeModel
         DB::insert(
             "INSERT INTO INSCRIRE(SEA_ID, PLON_DATE, AD_EMAIL) 
             VALUES (? , ?, ?)",
-            [$sea_id, $plon_date, $user_email]);
+            [$sea_id, $plon_date, $user_email]
+        );
+
+        DB::update(
+            "UPDATE ADHERENT
+            SET AD_NBPLONGEES_ANS = AD_NBPLONGEES_ANS-1
+            WHERE AD_EMAIL = ?",
+            [$user_email]
+        );
+
         DB::commit();
     }
 
     /**
-     * Unregisters user from selected diving session
+     * Unregisters user from selected diving session. Increments the number of remaining dives if unregistering in time
      *
      * @param int $sea_id the dive's session id
      * @param String $plon_date the dive's date
@@ -39,7 +48,19 @@ class PlongeeModel
             ",
             [$sea_id, $plon_date, $user_email]
         );
-        DB::commit();
+
+
+        if( abs(round( strtotime($plon_date) - strtotime(date('Y-m-d'))/86400 ) ) >1 )
+        {
+            DB::update(
+            "UPDATE ADHERENT
+            SET AD_NBPLONGEES_ANS = AD_NBPLONGEES_ANS+1
+            WHERE AD_EMAIL = ?",
+            [$user_email]
+            );
+            DB::commit();
+        }
+        
         //dd(DB::getQueryLog());
     }
 

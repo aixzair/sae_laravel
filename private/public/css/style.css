@@ -59,10 +59,11 @@ header{
     margin: 5vh auto 0 auto;
     text-align: center;
     border: solid 2px;
+    width: 40vw;
 }
 
 .participant{
-    font-size: 0.8em;
+    font-size: 1.2em;
 }
 
 /* ----------------------------- Style AddSession -------------------------- */
