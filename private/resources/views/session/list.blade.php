@@ -57,8 +57,11 @@
                     echo "\">";
                 }
                 echo "<p class=\"dateSesssion\">$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
-                
-echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
+                ?>
+                <a href="{{ route('session/membersList', 
+                    ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
+                >Liste Participants</a>
+                <?php
 
                 if(PlongeeController::isRegistered($sea_id, $plon_date, session('email'))){
                     echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";

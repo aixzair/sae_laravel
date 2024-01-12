@@ -15,13 +15,14 @@
         foreach($listDivers as $line)
         {
             ?>
-            <p class="participant">$line->AD_PRENOM $line->AD_NOM $line->NIVEAU</p>;
+            <p class="participant"><?=$line->AD_PRENOM?> <?=$line->AD_NOM?> : niveau <?= $line->AD_NIVEAU ?></p>
             <?php
             $max = $line->PLON_EFFECTIFS_MAX;
             $min = $line->PLON_EFFECTIFS_MIN;
             $nb++;
         }
-        ?></div><br><br><p class="footer">Min : <?= $min ?> / <?= $nb?> / Max : <?=$max?></p>";
+        ?>
+        </div><br><br><p class="footer">Min : <?= $min ?> / Nombre de participants : <?= $nb?> / Max : <?=$max?></p>
         <?php
     }
 ?>
@@ -38,9 +39,12 @@
     <title>Liste Participants</title>
 </head>
 <body>
-    @include()
+    @include('header')
         <?php
-            getListDivers($sea_id, $plon_date);
+            getListDivers(
+                $SEA_ID,
+                $PLON_DATE
+            );
 
         ?>
 </body>

@@ -114,8 +114,8 @@ Route::get('/acceuil/voirPlus', function () {
 
 // AUTRES ---------------------------------
 
-Route::get('/register/{date}/{sea_id}', [PlongeeController::class, 'register']);
-Route::get('/unregister/{date}/{sea_id}', [PlongeeController::class, 'unregister']);
+Route::get('/plongée/register/{date}/{sea_id}', [PlongeeController::class, 'register']);
+Route::get('/plongée/unregister/{date}/{sea_id}', [PlongeeController::class, 'unregister']);
 
 Route::get('/editSession', function () {
     return view('editSession');
@@ -132,6 +132,6 @@ Route::get('/header', function() {
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
 
 Route::get(
-    '/unregister{date}{sea_id}',
+    '/plongée/unregister{date}{sea_id}',
     [PlongeeController::class, 'unregister']
 )->middleware('role:2');
