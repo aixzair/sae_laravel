@@ -52,6 +52,12 @@ class Session {
         }
     }
 
+    /**
+     * Met à jour la plongée en question
+     * @author Hugo Sefrioui
+     * @param Plongee $plongee
+     * @return DB
+     */
     function editSession(Plongee $plongee) : bool {
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -130,6 +136,12 @@ class Session {
         return $securities;
     }
 
+    /**
+     * Renvoie l'effectif de la plongée
+     * @author Hugo Sefrioui
+     * @param string $SEA_ID, string $PLON_DATE
+     * @return array
+     */
     public function getEffectif(string $SEA_ID, string $PLON_DATE) : array {
         $effective = [];
 

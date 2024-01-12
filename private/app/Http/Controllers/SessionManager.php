@@ -138,6 +138,12 @@ class SessionManager extends BaseController {
         }
     }
 
+    /**
+     * Soumet le formulaire d'édition d'une session de plongée existante.
+     * @author Hugo Sefrioui
+     * @param Request $request
+     * @return view
+     */
     function editSubmit(Request $request) {
 
         $plongee = new Plongee();

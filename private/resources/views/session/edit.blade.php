@@ -60,8 +60,6 @@
             @endforeach
         </select>
 
-        <p class="label">Niveau min. :</p>
-
         <input type="hidden" name="pSession" value="{{$session['SEA_ID']}}">
         <input type="hidden" name="pDate" value="{{$session['PLON_DATE']}}">
 
