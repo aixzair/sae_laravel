@@ -24,7 +24,9 @@ Route::get('exemple', function (Request $request) {
 	return Response()->json(['test' => 'ceci est un test']);
 });
 
-
+Route::get('/api-docs', function () {
+    return response()->file(public_path('openapi.yaml'));
+});
 
 Route::get('/adherents/{seaId}/{plonDate}/{palId}', [APIController::class, 'getAdherentsPalanquee']);
 Route::get('/adherents/{seaId}/{plonDate}', [APIController::class, 'getAdherentsInscription']);
