@@ -37,9 +37,9 @@ use App\Http\Controllers\PlongeeController;
                     $result = DB::Select("
                         SELECT SEA_ID, PLON_DATE, PLON_DEBUT, PLON_FIN, PLON_EFFECTIFS_MAX, PLON_EFFECTIFS_MIN
                         FROM PLONGEE 
-                        JOIN adherent on ad_email = plon_directeur
+                        JOIN ADHERENT on AD_EMAIL = PLON_DIRECTEUR
                         WHERE PLON_DATE >= '2024-04-01' AND PLON_DATE < '2024-05-01'
-                            AND ad_email = '".session('email')."'
+                            AND AD_EMAIL = '".session('email')."'
                         ORDER BY PLON_DATE ASC
                     ");
 
@@ -75,8 +75,13 @@ use App\Http\Controllers\PlongeeController;
                                 echo "greenMarked\">";
                             } else {
                                 echo "\">";
-                            }
-                            echo "<p> " . $plon_date . ' ' . $startingTime . ' à ' . $endingTime . "</p>";
+                            } ?>
+                            <a href="{{ route('session/show', 
+                                ['PLON_DATE' => $plon_date, 'SEA_ID' => $sea_id]) }}"
+                            >
+                                <p> <?= $plon_date ?> <?= $startingTime ?> à <?= $endingTime ?> </p><p></p>
+                            </a> 
+                            <?php
                         } else {
                             echo "\">"; ?>
                             <a href="{{ route('session/show', 
