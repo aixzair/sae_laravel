@@ -11,11 +11,11 @@ use App\Http\Controllers\Controller as baseController;
 
 class DeconnexionController extends baseController {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+    //function to deconnect from the website
     public function deconnect() {
-
+        //Permit to deconnect with the function already present in Laravel
         Auth::logout();
-
+        //redirect towards in the root
         return redirect('/');
 
         
