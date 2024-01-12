@@ -124,8 +124,8 @@ Route::get(
     [PlongeeController::class, 'register']
 )->middleware('role:2');
 
-Route::get('/profileDirector', function () {
-    return view('session/profileDirector');
+Route::get('/accueil/profileDirector', function () {
+    return view('accueil/profileDirector');
 });
 
 Route::get('/directorList', function () {
@@ -138,3 +138,6 @@ Route::get(
 )->middleware('role:2');
 //Route::post('/sessionSubmit', [PlongeeController::class, 'setSessionSubmit'])->name('session.submit');
 
+
+// Route::post('/palanquees', 'PalanqueController@index')->name('directionPalanquees');
+Route::post('/palanquees', 'PalanqueController@index')->name('directionPalanquees');
