@@ -10,6 +10,7 @@ use App\Http\Controllers\SessionManager;
 use App\Http\Controllers\User;
 use App\Http\Controllers\PalanqueeController;
 use App\Http\Controllers\PalanqueController;
+use App\Http\Controllers\formController;
 
 
 Route::get('/', function () {
@@ -100,8 +101,20 @@ Route::get('/profilResp', function() {
 	return view('profilResp');
 });
 
+Route::get('/generationPDF', function() {
+	return view('generationPDF');
+});
+
 
 Route::match(['post'],'/gestionAuthentification', [ConnexionController::class, 'index']);
+
+
+Route::match(['get', 'post'],'/pageTest', [formController::class, 'index']);
+
+
+
+Route::match(['get', 'post'],'/pageTest', [formController::class, 'index']);
+
 
 
 
