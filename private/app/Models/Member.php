@@ -76,26 +76,6 @@ class Member {
         return $directors;
     }
 
-    public function getPilots() : array {
-        $pilots = [];
-        $lines = DB::select(
-            "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (
-                select AD_EMAIL FROM RESPONSABILISER WHERE RES_ID = (
-                    select RES_ID FROM RESPONSABILITE WHERE RES_NOM = \"pilote\"
-                )
-            )"
-        );
-
-        foreach ($lines as $line) {
-            $pilot = new Adherent();
-            $pilot->AD_NOM = $line->AD_NOM;
-            $pilot->AD_PRENOM = $line->AD_PRENOM;
-            $pilots[] = $pilot;
-        }
-
-        return $pilots;
-    }
-
     public function getSecurities() : array {
         $securities = [];
         $lines = DB::select(
@@ -114,5 +94,25 @@ class Member {
         }
 
         return $securities;
+    }
+
+    public function getPilots() : array {
+        $pilots = [];
+        $lines = DB::select(
+            "select AD_NOM, AD_PRENOM from ADHERENT where AD_EMAIL in (
+                select AD_EMAIL FROM RESPONSABILISER WHERE RES_ID = (
+                    select RES_ID FROM RESPONSABILITE WHERE RES_NOM = \"pilote\"
+                )
+            )"
+        );
+
+        foreach ($lines as $line) {
+            $pilot = new Adherent();
+            $pilot->AD_NOM = $line->AD_NOM;
+            $pilot->AD_PRENOM = $line->AD_PRENOM;
+            $pilots[] = $pilot;
+        }
+
+        return $pilots;
     }
 }

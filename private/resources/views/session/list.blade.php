@@ -58,16 +58,16 @@
                 }
                 echo "<p>$plon_date de $startingTime à $endingTime</p><p>Niveau min. : $plon_niveau</p>";
                 
-                echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
+echo "<a href=\"listeParticipants/$plon_date/$sea_id\">Liste Participants</a>";
 
-                if(PlongeeController::isRegistered($sea_id, $plon_date, "chloe.young@gmail.com")){ //TODO : replacer l'adresse mail de l'utilisateur
+                if(PlongeeController::isRegistered($sea_id, $plon_date, session('email'))){ //TODO : replacer l'adresse mail de l'utilisateur
                     echo "<div class=\"regButton\"><a href=\"unregister/$plon_date/$sea_id\">Se retirer</a></div>";
                 }else if($complete){
                     echo "<p>COMPLET</p>";
                 }
                 else{
                     //Checks if current user's level is high enough to apply to the dive
-                    if(PlongeeController::isRightLevel($sea_id, $plon_date, "chloe.young@gmail.com"))
+                    if(PlongeeController::isRightLevel($sea_id, $plon_date, session('email')))
                     {
                         echo "<div class=\"regButton\"><a href=\"register/$plon_date/$sea_id\">S'inscrire</a></div>";
                     }
@@ -94,20 +94,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    <title>Liste Séance</title>
+
+    <title>Liste plongées</title>
+
 </head>
 <body>
-  <header>
-    <img class = "Logo" src="{{ asset('/images/logo.png')}}" alt="Logo">
-    <nav>
-      <div class="NavBar">
-        <p class="NavText">Plongées annuelles restantes : 90</p>
-        <button class = "NavButton">RESERVER SÉANCE</button>
-        <button class = "NavButton">PROFIL</button>
-        <img id="Logout" src="{{ asset('images/right-from-bracket-solid.svg') }}" alt="Déconnexion">
-      </div>
-    </nav>
-  </header>
+    @include('header')
+
   <div class="monthContainer">
     <div class="monthBar">
         <button id="btMars" class="monthButton" onclick="openMonth('Mars')" style="background-color: grey; border-bottom-style: none;">Mars</button>
@@ -120,7 +113,6 @@
         <button id="btOctobre" class="monthButton" onclick="openMonth('Octobre')">Octobre</button>
     </div>
     <div class="scroll">
-        
         <div id="Mars" class="month";>
             <?php
                 getMonthlySessions(3);

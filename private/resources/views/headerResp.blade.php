@@ -5,7 +5,7 @@
 <nav>
     <div class="NavBar">
     <p class="NavText">Plongées anuelle restantes : 90</p>
-    <button class = "NavButton buttonRoute" data-route="{{route('session/list')}}">RESERVER PLONGÉE</button>
+    <button class = "NavButton buttonRoute" data-route="{{route('session/list')}}">RESERVER PLONGÉE EN TANT QUE PLONGEUR</button>
     <button class = "NavButton buttonRoute" data-route="{{route('home')}}">PROFIL</button>
     <a href="/deconnexion" class="button"><img id="Logout" src="../img/right-from-bracket-solid.svg" alt="Déconnexion"></a>
     </div>

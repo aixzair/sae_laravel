@@ -34,7 +34,6 @@ class PlongeeModel
      * @return void
      */
     public function unregister(int $sea_id, String $plon_date, String $user_email){
-        //DB::enableQueryLog();
         DB::delete(
             "DELETE FROM INSCRIRE WHERE SEA_ID = ? and PLON_DATE = ? and AD_EMAIL = ?
             ",
